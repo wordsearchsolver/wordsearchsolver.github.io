@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===== SEO META TAGS ===== -->
+  <title>Word Search Solver — Find Hidden Words Instantly | Free Online Tool</title>
+  <meta name="description" content="Free online Word Search Solver that instantly finds hidden words in any puzzle grid. Paste your grid, enter your words, and see exact row, column, and direction for every match. Works in all 8 directions.">
+  <meta name="keywords" content="word search solver, word search finder, word search puzzle solver, find words in grid, word search helper, online word search tool, word puzzle solver, hidden word finder, word search answer key, educational word puzzle">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="WordSearch Solver">
+  <link rel="canonical" href="https://wordsearchsolver.github.io/">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:title" content="Word Search Solver — Find Hidden Words Instantly">
+  <meta property="og:description" content="Paste your word search grid and instantly highlight every hidden word with exact locations. Free, instant, works on any device.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wordsearchsolver.github.io/">
+  <meta property="og:site_name" content="WordSearch Solver">
+  <meta property="og:locale" content="en_US">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Word Search Solver — Find Hidden Words Instantly">
+  <meta name="twitter:description" content="Paste your word search grid and instantly highlight every hidden word. Free, fast, educational.">
+
+  <!-- ===== SCHEMA MARKUP ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://wordsearchsolver.github.io/#app",
+        "name": "Word Search Solver",
+        "url": "https://wordsearchsolver.github.io/",
+        "description": "Free online tool that finds hidden words in word search puzzle grids. Shows exact row, column and direction for each word.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Searches all 8 directions",
+          "Instant results",
+          "Grid visualization with highlights",
+          "Copy results to clipboard",
+          "Mobile compatible"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://wordsearchsolver.github.io/#website",
+        "url": "https://wordsearchsolver.github.io/",
+        "name": "Word Search Solver",
+        "description": "Free word search puzzle solver for students, teachers, and puzzle enthusiasts",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://wordsearchsolver.github.io/#solver"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://wordsearchsolver.github.io/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I use the Word Search Solver?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Paste your word search grid into the first text box (one row per line, letters separated by spaces), enter the words you're looking for in the second box, and click Solve. The tool will highlight each word in the grid and show exact row, column, and direction."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What directions does the solver search?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The solver searches all 8 directions: horizontal (left and right), vertical (up and down), and all four diagonals."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this word search solver free to use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, the Word Search Solver is completely free to use with no account or registration required."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can it find words that appear more than once?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, the solver finds all occurrences of each word in the grid, even if a word appears multiple times in different directions."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- ===== STYLES ===== -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Header Mount Point -->
+  <div id="header-mount"></div>
+
+  <main id="main-content">
+
+    <!-- ================================================
+         SECTION 1 — HERO
+    ================================================ -->
+    <section class="hero" id="home" aria-labelledby="hero-heading">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="dot"></span>
+            Free &amp; Instant — No Sign-up Required
+          </div>
+          <h1 id="hero-heading">
+            Solve Any<br>
+            <em>Word Search</em><br>
+            <span class="highlight">In Seconds</span>
+          </h1>
+          <p class="hero-desc">
+            Paste your letter grid, type the words you're hunting, and our solver instantly highlights every hidden word — showing exact row, column, and direction for each match.
+          </p>
+          <div class="hero-actions">
+            <a href="#solver" class="btn-primary">
+              🔍 Solve a Puzzle
+            </a>
+            <a href="#how-it-works" class="btn-secondary">
+              How It Works
+            </a>
+          </div>
+          <div class="hero-trust">
+            <div class="trust-items">
+              <span class="trust-item">✅ All 8 directions</span>
+              <span class="trust-item">✅ Multiple words at once</span>
+              <span class="trust-item">✅ Visual grid highlights</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="demo-grid-wrap">
+            <div class="demo-grid" id="demo-grid" aria-hidden="true"></div>
+            <div class="demo-words" id="demo-words" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         SECTION 2 — STATS
+    ================================================ -->
+    <section class="stats-section" aria-label="Statistics">
+      <div class="stats-grid">
+        <div class="stat-card animate-on-scroll">
+          <span class="counter-num" data-target="8" data-suffix="+">0</span>
+          <p class="stat-label">Search Directions Supported</p>
+        </div>
+        <div class="stat-card animate-on-scroll">
+          <span class="counter-num" data-target="500" data-suffix="+">0</span>
+          <p class="stat-label">Max Grid Size (cells)</p>
+        </div>
+        <div class="stat-card animate-on-scroll">
+          <span class="counter-num" data-target="100" data-suffix="%">0</span>
+          <p class="stat-label">Free — No Cost, No Account</p>
+        </div>
+        <div class="stat-card animate-on-scroll">
+          <span class="counter-num" data-target="0" data-suffix="s">0</span>
+          <p class="stat-label">Seconds to Get Results</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         SECTION 3 — SOLVER TOOL
+    ================================================ -->
+    <section id="solver" aria-labelledby="solver-heading">
+      <div class="solver-inner">
+        <header class="solver-header">
+          <span class="section-label">The Tool</span>
+          <h2 id="solver-heading" class="section-title">Word Search Solver</h2>
+          <p class="section-desc">Paste your grid below and list the words to find. Our algorithm searches all 8 directions simultaneously.</p>
+        </header>
+        <div class="solver-layout">
+          <div class="solver-main">
+            <div class="input-group">
+              <label for="grid-input" class="input-label">
+                📋 Paste Your Letter Grid
+                <span class="input-label-hint">— one row per line, letters separated by spaces</span>
+              </label>
+              <div class="grid-input-wrap">
+                <textarea
+                  id="grid-input"
+                  name="grid-input"
+                  placeholder="A B C D E F G H I J&#10;K L M N O P Q R S T&#10;U V W X Y Z A B C D&#10;..."
+                  autocomplete="off"
+                  spellcheck="false"
+                  aria-label="Letter grid input"
+                ></textarea>
+                <span class="grid-info-tag" id="grid-info" aria-live="polite"></span>
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="words-input" class="input-label">
+                🔤 Words to Find
+                <span class="input-label-hint">— one per line or comma-separated</span>
+              </label>
+              <textarea
+                id="words-input"
+                name="words-input"
+                placeholder="APPLE&#10;BANANA&#10;CHERRY"
+                autocomplete="off"
+                spellcheck="false"
+                aria-label="Words to search input"
+              ></textarea>
+            </div>
+            <div class="solver-actions">
+              <button id="solve-btn" class="btn-solve" aria-label="Solve word search">
+                <span class="btn-text">🔍 Find All Words</span>
+              </button>
+              <button id="sample-btn" class="btn-sample" aria-label="Load sample puzzle">
+                📄 Load Sample
+              </button>
+              <button id="clear-btn" class="btn-clear" aria-label="Clear all inputs">
+                🗑 Clear
+              </button>
+            </div>
+          </div>
+
+          <aside class="solver-sidebar" aria-label="Solver help">
+            <div class="sidebar-card">
+              <h4>📐 Grid Format</h4>
+              <div class="format-example">
+                A B C D E F<br>
+                G H I J K L<br>
+                M N O P Q R<br>
+                <span style="color:var(--teal-dark)">↑ Spaces between letters</span>
+              </div>
+            </div>
+            <div class="sidebar-card">
+              <h4>🧭 Searches All 8 Directions</h4>
+              <div class="directions-grid">
+                <div class="dir-item"><div class="dir-arrow">→</div><span>Right</span></div>
+                <div class="dir-item"><div class="dir-arrow">←</div><span>Left</span></div>
+                <div class="dir-item"><div class="dir-arrow">↓</div><span>Down</span></div>
+                <div class="dir-item"><div class="dir-arrow">↑</div><span>Up</span></div>
+                <div class="dir-item"><div class="dir-arrow">↘</div><span>Down-Right</span></div>
+                <div class="dir-item"><div class="dir-arrow">↙</div><span>Down-Left</span></div>
+                <div class="dir-item"><div class="dir-arrow">↗</div><span>Up-Right</span></div>
+                <div class="dir-item"><div class="dir-arrow">↖</div><span>Up-Left</span></div>
+              </div>
+            </div>
+            <div class="sidebar-card">
+              <h4>💡 Tips</h4>
+              <ul style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--text-muted);">
+                <li>• Letters are case-insensitive</li>
+                <li>• Words can overlap each other</li>
+                <li>• Hover a result to focus it in grid</li>
+                <li>• Use "Load Sample" to try it out</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Results render here -->
+        <div id="results-section" role="region" aria-live="polite" aria-label="Solver results"></div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         SECTION 4 — HOW IT WORKS
+    ================================================ -->
+    <section id="how-it-works" class="section" aria-labelledby="hiw-heading">
+      <div class="section-inner">
+        <header style="text-align:center;">
+          <span class="section-label animate-on-scroll">The Process</span>
+          <h2 id="hiw-heading" class="section-title animate-on-scroll">How the Word Search Solver Works</h2>
+          <p class="section-desc animate-on-scroll" style="margin:0 auto;">
+            Our solver uses a systematic grid-scanning algorithm to locate every hidden word — no guesswork, just pure logic and speed.
+          </p>
+        </header>
+        <div class="steps-grid">
+          <article class="step-card animate-on-scroll">
+            <span class="step-number">1</span>
+            <div class="step-icon amber">📋</div>
+            <h3>Paste Your Grid</h3>
+            <p>Copy your word search puzzle into the grid input. Each row goes on a new line, with spaces between individual letters. The solver automatically detects your grid dimensions.</p>
+          </article>
+          <article class="step-card animate-on-scroll">
+            <span class="step-number">2</span>
+            <div class="step-icon teal">🔤</div>
+            <h3>Enter Target Words</h3>
+            <p>Type or paste the words you need to find, one per line or comma-separated. You can search for as many words as you like in a single solve — the solver processes them all simultaneously.</p>
+          </article>
+          <article class="step-card animate-on-scroll">
+            <span class="step-number">3</span>
+            <div class="step-icon coral">🎯</div>
+            <h3>Instant Visual Results</h3>
+            <p>Click "Find All Words" and within milliseconds, the solver highlights every match directly on the grid using distinct colors, and lists each word's exact starting position and direction.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         SECTION 5 — DIRECTIONS EXPLAINED
+    ================================================ -->
+    <section id="directions" class="section" aria-labelledby="dir-heading">
+      <div class="section-inner">
+        <header style="text-align:center;">
+          <span class="section-label animate-on-scroll">Coverage</span>
+          <h2 id="dir-heading" class="section-title animate-on-scroll">All 8 Search Directions</h2>
+          <p class="section-desc animate-on-scroll" style="margin:0 auto;">
+            Traditional word searches hide words in 8 possible orientations. Our solver checks every single one, so nothing slips past it.
+          </p>
+        </header>
+        <div class="directions-cards">
+          <div class="dir-card animate-on-scroll">
+            <span class="dir-emoji">→</span>
+            <h4>Left to Right</h4>
+            <p>The most common direction — words reading normally across the grid.</p>
+          </div>
+          <div class="dir-card animate-on-scroll">
+            <span class="dir-emoji">←</span>
+            <h4>Right to Left</h4>
+            <p>Words spelled backwards horizontally, a classic trick in harder puzzles.</p>
+          </div>
+          <div class="dir-card animate-on-scroll">
+            <span class="dir-emoji">↓</span>
+            <h4>Top to Bottom</h4>
+            <p>Words running straight down through the grid columns.</p>
+          </div>
+          <div class="dir-card animate-on-scroll">
+            <span class="dir-emoji">↑</span>
+            <h4>Bottom to Top</h4>
+            <p>Words running upward — commonly missed when solving by eye.</p>
+          </div>
+          <div class="dir-card animate-on-scroll">
+            <span class="dir-emoji">↘</span>
+            <h4>Diagonal Down-Right</h4>
+            <p>Words angled toward the bottom-right corner of the grid.</p>
+          </div>
+          <div class="dir-card animate-on-scroll">
+            <span class="dir-emoji">↙</span>
+            <h4>Diagonal Down-Left</h4>
+            <p>Words angled toward the bottom-left, the trickiest to spot manually.</p>
+          </div>
+          <div class="dir-card animate-on-scroll">
+            <span class="dir-emoji">↗</span>
+            <h4>Diagonal Up-Right</h4>
+            <p>Words traveling up and to the right simultaneously.</p>
+          </div>
+          <div class="dir-card animate-on-scroll">
+            <span class="dir-emoji">↖</span>
+            <h4>Diagonal Up-Left</h4>
+            <p>The reverse diagonal — reads up and to the left of the start cell.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         SECTION 6 — FEATURES
+    ================================================ -->
+    <section id="features" class="section" aria-labelledby="feat-heading">
+      <div class="section-inner">
+        <header>
+          <span class="section-label animate-on-scroll">Why Use It</span>
+          <h2 id="feat-heading" class="section-title animate-on-scroll">Powerful Features Built for Every User</h2>
+          <p class="section-desc animate-on-scroll">From students checking homework to teachers verifying puzzle designs — our solver is packed with smart features.</p>
+        </header>
+        <div class="features-grid">
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">🎨</span>
+            <h3>Color-Coded Highlights</h3>
+            <p>Each word gets a unique color on the visual grid, making it instantly obvious where every word is hidden. Hover a result to isolate it.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">⚡</span>
+            <h3>Instant Search Algorithm</h3>
+            <p>Our engine scans the entire grid in milliseconds using an efficient position-by-position directional matching algorithm.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">📍</span>
+            <h3>Exact Coordinates</h3>
+            <p>Every found word displays its starting row, starting column, and precise direction — perfect for checking answers.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">🔁</span>
+            <h3>Multiple Occurrences</h3>
+            <p>Some puzzles hide the same word multiple times or in different directions. Our solver finds every single instance.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">📋</span>
+            <h3>Copy Results</h3>
+            <p>Copy all word locations to your clipboard in a clean, readable format for sharing or pasting into documents.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">📱</span>
+            <h3>Mobile Friendly</h3>
+            <p>Works seamlessly on phones and tablets. Paste a grid from your phone's camera or scan app and solve it instantly.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">🔤</span>
+            <h3>Case Insensitive</h3>
+            <p>Type words in upper or lower case — the solver normalizes everything automatically, so you never need to reformat.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">🆓</span>
+            <h3>Completely Free</h3>
+            <p>No account, no login, no payment. Open the page and start solving. No ads clutter the tool area, ever.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">🖥️</span>
+            <h3>No Install Required</h3>
+            <p>Runs entirely in your browser using vanilla JavaScript. Nothing to download, install, or update.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         SECTION 7 — USE CASES
+    ================================================ -->
+    <section id="use-cases" class="section" aria-labelledby="uc-heading">
+      <div class="section-inner">
+        <header>
+          <span class="section-label animate-on-scroll">Who Uses It</span>
+          <h2 id="uc-heading" class="section-title animate-on-scroll">Built for Students, Teachers &amp; Puzzle Fans</h2>
+          <p class="section-desc animate-on-scroll">Whether you're stuck on a classroom puzzle or designing one, the Word Search Solver fits your workflow.</p>
+        </header>
+        <div class="use-cases-grid">
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">🎒</div>
+            <div>
+              <h3>Students</h3>
+              <p>Stuck on a word search for class? Paste the grid, enter the word list, and verify your answers in seconds. Great for checking your work before submitting homework or participating in classroom activities.</p>
+            </div>
+          </article>
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">📚</div>
+            <div>
+              <h3>Teachers &amp; Educators</h3>
+              <p>Created a word search puzzle for your class? Use the solver to generate an answer key quickly. Verify that every word you included is actually findable before distributing to students.</p>
+            </div>
+          </article>
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">👪</div>
+            <div>
+              <h3>Parents</h3>
+              <p>Helping your child with a word search book or printed puzzle? Simply type out the grid and let the solver do the heavy lifting so you can explain the answers clearly and educationally.</p>
+            </div>
+          </article>
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">🧩</div>
+            <div>
+              <h3>Puzzle Enthusiasts</h3>
+              <p>Working through a challenging puzzle book and got genuinely stuck? Use the solver as a last resort or to verify a specific word you've been hunting for ages.</p>
+            </div>
+          </article>
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">🏥</div>
+            <div>
+              <h3>Seniors &amp; Therapists</h3>
+              <p>Word searches are popular cognitive exercises for older adults. Therapists and caregivers can use this tool to quickly prepare answer keys for activity sessions.</p>
+            </div>
+          </article>
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">💼</div>
+            <div>
+              <h3>Puzzle Designers</h3>
+              <p>Verify your custom word search puzzles before publishing. Confirm each word is hidden correctly and no words accidentally overlap in confusing ways.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         SECTION 8 — TIPS & TRICKS
+    ================================================ -->
+    <section id="tips" class="section" aria-labelledby="tips-heading">
+      <div class="section-inner">
+        <header>
+          <span class="section-label animate-on-scroll">Pro Advice</span>
+          <h2 id="tips-heading" class="section-title animate-on-scroll">Tips for Better Results</h2>
+          <p class="section-desc animate-on-scroll">Get the most out of the solver and improve your manual puzzle-solving skills at the same time.</p>
+        </header>
+        <div class="tips-grid">
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">1</div>
+            <div>
+              <h4>Format Your Grid Carefully</h4>
+              <p>Each row on a new line, letters separated by single spaces. Consistent spacing is key — extra spaces or commas will cause parsing errors. Use the sample puzzle to see the correct format.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">2</div>
+            <div>
+              <h4>Enter All Words at Once</h4>
+              <p>Don't solve one word at a time. Enter your entire word list in the second box and solve everything in a single click for a complete color-coded answer key.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">3</div>
+            <div>
+              <h4>Hover to Focus Words</h4>
+              <p>Once results appear, hover your mouse over any word result in the list to dim all other cells and focus exclusively on that word's path through the grid.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">4</div>
+            <div>
+              <h4>Check "Not Found" Words</h4>
+              <p>If a word appears in the "Not Found" list, double-check your grid input for typos. A single wrong letter will cause a mismatch between the grid and the word list.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">5</div>
+            <div>
+              <h4>Use Copy to Document Results</h4>
+              <p>Hit the "Copy Results" button to get a plain-text list of all word coordinates. Paste this into a document, email, or study guide for reference.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">6</div>
+            <div>
+              <h4>Manual Tip: Start with Rare Letters</h4>
+              <p>When solving manually, start by scanning for rare letters like Q, Z, X, or J rather than scanning for common letters like E or A — it drastically narrows your search area.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">7</div>
+            <div>
+              <h4>Manual Tip: Scan Diagonals Last</h4>
+              <p>Horizontal and vertical words are easier to spot. Solve those first, then switch focus to diagonals. Tilting your head or the paper can make diagonal words pop out visually.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">8</div>
+            <div>
+              <h4>Load Sample to Learn the Format</h4>
+              <p>Not sure how to format your grid? Click "Load Sample" to see a perfectly formatted 10×10 animals puzzle. You can study the format and then replace it with your own grid.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         SECTION 9 — ABOUT WORD SEARCHES
+    ================================================ -->
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <div class="about-inner">
+        <div class="about-content animate-on-scroll">
+          <span class="section-label">Background</span>
+          <h2 id="about-heading" class="section-title">What Is a Word Search Puzzle?</h2>
+          <p>A word search puzzle (also called a word find, word seek, or word sleuth) is a word game where letters are arranged in a rectangular grid. A list of hidden words accompanies the grid, and the goal is to locate each word within the jumble of letters.</p>
+          <p>Words can be hidden horizontally, vertically, or diagonally, and may read forwards or backwards. The remaining letter spaces are filled with random letters to disguise the hidden words.</p>
+          <p>Word searches have been a staple of educational and recreational puzzles since the late 1960s. They are used in classrooms to reinforce vocabulary, in therapy to improve cognitive engagement, and in newspapers and magazines as casual entertainment.</p>
+          <p>Our <strong>Word Search Solver</strong> automates the manual scanning process using a precise algorithmic search, scanning every cell in every direction to guarantee complete accuracy.</p>
+        </div>
+        <div class="about-visual animate-on-scroll">
+          <h3 style="margin-bottom:20px;">Related Terms</h3>
+          <div class="keyword-cloud">
+            <span class="kw-tag" style="background:rgba(42,157,143,.1);color:var(--teal-dark);border-color:rgba(42,157,143,.2)">Word Search Solver</span>
+            <span class="kw-tag" style="background:rgba(244,162,97,.1);color:var(--amber-dark);border-color:rgba(244,162,97,.25)">Word Search Finder</span>
+            <span class="kw-tag" style="background:rgba(38,70,83,.08);color:var(--navy);border-color:rgba(38,70,83,.15)">Word Puzzle Solver</span>
+            <span class="kw-tag" style="background:rgba(231,111,81,.1);color:var(--coral);border-color:rgba(231,111,81,.2)">Find Words in Grid</span>
+            <span class="kw-tag" style="background:rgba(42,157,143,.1);color:var(--teal-dark);border-color:rgba(42,157,143,.2)">Word Search Helper</span>
+            <span class="kw-tag" style="background:rgba(244,162,97,.1);color:var(--amber-dark);border-color:rgba(244,162,97,.25)">Hidden Word Finder</span>
+            <span class="kw-tag" style="background:rgba(38,70,83,.08);color:var(--navy);border-color:rgba(38,70,83,.15)">Word Search Answer Key</span>
+            <span class="kw-tag" style="background:rgba(231,111,81,.1);color:var(--coral);border-color:rgba(231,111,81,.2)">Word Search Generator</span>
+            <span class="kw-tag" style="background:rgba(42,157,143,.1);color:var(--teal-dark);border-color:rgba(42,157,143,.2)">Puzzle Solver Online</span>
+            <span class="kw-tag" style="background:rgba(244,162,97,.1);color:var(--amber-dark);border-color:rgba(244,162,97,.25)">Free Word Search Tool</span>
+            <span class="kw-tag" style="background:rgba(38,70,83,.08);color:var(--navy);border-color:rgba(38,70,83,.15)">Word Seek Solver</span>
+            <span class="kw-tag" style="background:rgba(231,111,81,.1);color:var(--coral);border-color:rgba(231,111,81,.2)">Educational Puzzle Tool</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         SECTION 10 — FAQ
+    ================================================ -->
+    <section id="faq" class="section" aria-labelledby="faq-heading">
+      <div class="section-inner">
+        <header style="text-align:center;">
+          <span class="section-label animate-on-scroll">Help</span>
+          <h2 id="faq-heading" class="section-title animate-on-scroll">Frequently Asked Questions</h2>
+          <p class="section-desc animate-on-scroll" style="margin:0 auto;">Everything you need to know about using the Word Search Solver.</p>
+        </header>
+        <div class="faq-list" role="list">
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              How do I format my word search grid?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Enter one row per line in the grid box, with individual letters separated by spaces. For example: "A B C D E". You don't need punctuation or commas. The solver auto-detects rows and columns. Use the "Load Sample" button to see a perfectly formatted example.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              What directions does the solver search?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              The solver checks all 8 possible directions: left-to-right, right-to-left, top-to-bottom, bottom-to-top, and all four diagonal orientations (down-right, down-left, up-right, up-left). This covers every way a word can be hidden in a standard word search puzzle.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Is the Word Search Solver free to use?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Yes, completely free. No account, no login, no credit card, no subscription. Simply open the page and start solving. The tool runs entirely in your browser and requires no data to be sent to a server.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              A word isn't being found — what's wrong?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              The most common cause is a typo in either the grid or the word list. Check that the grid letters exactly match your physical puzzle. Also verify there are no extra spaces within a row. The solver is case-insensitive, so that shouldn't be an issue. If the word genuinely doesn't exist in the grid, it will appear in the "Not Found" list.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Can it find words that appear more than once?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Yes. The solver finds every single occurrence of each word, including duplicates in different directions. Results for words found more than once will show multiple entries, each with its own unique start position and direction.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              How large of a grid can the solver handle?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              The solver can handle grids of any practical size — from small 5×5 educational puzzles to large 25×25 or bigger competition-level grids. Performance stays near-instant because the algorithm runs in your browser rather than on a remote server.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Does it work offline?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Once the page has loaded, the core solving algorithm runs entirely client-side in JavaScript. However, fonts and the page itself require an internet connection on the first load. For offline use, you can save the HTML file locally.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Can I use this as a teacher to create answer keys?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Absolutely. Teachers frequently use this tool to quickly verify their word search puzzles and generate answer keys. Enter your puzzle grid and word list, solve, then use "Copy Results" to export all coordinates into a document or spreadsheet.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         CTA SECTION
+    ================================================ -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+      <h2 id="cta-heading">Ready to Solve Your Puzzle?</h2>
+      <p>No sign-up. No download. Just paste, search, and see every hidden word revealed instantly.</p>
+      <a href="#solver" class="cta-btn">
+        🔍 Start Solving Now
+      </a>
+    </section>
+
+  </main>
+
+  <!-- Footer Mount Point -->
+  <div id="footer-mount"></div>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="js/header.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/solver.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Demo Grid Generator -->
+  <script>
+  (function() {
+    const DEMO_DATA = {
+      letters: [
+        ['A','N','I','M','A','L','S','F','R','T'],
+        ['C','A','T','S','O','O','G','B','R','U'],
+        ['D','O','G','E','F','O','X','H','I','R'],
+        ['B','E','A','R','W','O','L','F','J','T'],
+        ['L','I','O','N','X','E','P','Z','K','L'],
+        ['T','I','G','E','R','Q','R','A','M','E'],
+        ['E','L','E','P','H','A','N','T','S','D'],
+        ['M','O','N','K','E','Y','B','A','T','S'],
+        ['H','O','R','S','E','C','O','W','H','I'],
+        ['S','H','A','R','K','W','H','A','L','E'],
+      ],
+      words: [
+        { word: 'CAT', cells: [[1,0],[1,1],[1,2]], color: '#e63946' },
+        { word: 'DOG', cells: [[2,0],[2,1],[2,2]], color: '#f4a261' },
+        { word: 'FOX', cells: [[2,4],[2,5],[2,6]], color: '#2a9d8f' },
+        { word: 'BEAR', cells: [[3,0],[3,1],[3,2],[3,3]], color: '#457b9d' },
+        { word: 'LION', cells: [[4,0],[4,1],[4,2],[4,3]], color: '#9c27b0' },
+        { word: 'TIGER', cells: [[5,0],[5,1],[5,2],[5,3],[5,4]], color: '#e76f51' },
+        { word: 'HORSE', cells: [[8,0],[8,1],[8,2],[8,3],[8,4]], color: '#06a77d' },
+        { word: 'SHARK', cells: [[9,0],[9,1],[9,2],[9,3],[9,4]], color: '#3a86ff' },
+      ]
+    };
+
+    const litCells = new Set();
+    const cellColors = {};
+    DEMO_DATA.words.forEach(w => {
+      w.cells.forEach(([r,c]) => {
+        litCells.add(`${r},${c}`);
+        cellColors[`${r},${c}`] = w.color;
+      });
+    });
+
+    const grid = document.getElementById('demo-grid');
+    const wordsDiv = document.getElementById('demo-words');
+    if (!grid || !wordsDiv) return;
+
+    DEMO_DATA.letters.forEach((row, r) => {
+      row.forEach((cell, c) => {
+        const key = `${r},${c}`;
+        const el = document.createElement('span');
+        el.className = 'demo-cell' + (litCells.has(key) ? ' lit' : '');
+        if (litCells.has(key)) {
+          el.style.background = cellColors[key];
+          el.style.animationDelay = `${Math.random()*2}s`;
+        }
+        el.textContent = cell;
+        grid.appendChild(el);
+      });
+    });
+
+    DEMO_DATA.words.forEach(w => {
+      const el = document.createElement('span');
+      el.className = 'demo-word';
+      el.style.background = w.color;
+      el.textContent = w.word;
+      wordsDiv.appendChild(el);
+    });
+  })();
+  </script>
+
+</body>
+</html>

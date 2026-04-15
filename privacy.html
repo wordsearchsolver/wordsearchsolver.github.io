@@ -176,13 +176,25 @@
   <!-- ===== SCRIPTS ===== -->
   <script src="js/header.js"></script>
   <script src="js/footer.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('header-root').innerHTML = Header.render();
-    Header.init();
-    document.getElementById('footer-root').innerHTML = Footer.render();
-    Footer.init();
-  });
-</script>
+
+  <!-- Simple fallback if header/footer scripts are missing -->
+  <script>
+    (function() {
+      // Wait for header and footer to load, provide minimal fallback display
+      function waitForElements() {
+        const headerMount = document.getElementById('site-header');
+        const footerMount = document.getElementById('site-footer');
+        if (headerMount && headerMount.children.length === 0) {
+          // Fallback header if header.js didn't load
+          headerMount.innerHTML = '<div style="position:fixed;top:0;left:0;right:0;height:72px;background:rgba(253,246,236,0.95);backdrop-filter:blur(12px);z-index:1000;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #e8d9c4;"><span style="font-weight:600;">Word Search Solver</span></div>';
+          document.querySelector('main').style.paddingTop = '72px';
+        }
+        if (footerMount && footerMount.children.length === 0) {
+          footerMount.innerHTML = '<div style="background:#264653;padding:40px 24px;text-align:center;color:rgba(255,255,255,0.6);font-size:14px;">© 2026 Word Search Solver — Free word search tool for everyone</div>';
+        }
+      }
+      setTimeout(waitForElements, 100);
+    })();
+  </script>
 </body>
 </html>

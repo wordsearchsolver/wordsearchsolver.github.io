@@ -1191,8 +1191,7 @@ textarea::placeholder { color: var(--text-light); }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-  .hero-visual { order: -1; }
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; }  
   .solver-layout { grid-template-columns: 1fr; }
   .solver-sidebar { display: grid; grid-template-columns: 1fr 1fr; }
   .results-body { grid-template-columns: 1fr; }

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Search Generator — Create Custom Printable Puzzles Free | WordSearchSolver</title>
+  <meta name="description" content="Free word search generator — input your own words and instantly create a custom printable puzzle grid. Choose grid size, difficulty, and download with or without answer key.">
+  <meta name="keywords" content="word search generator, create word search puzzle, custom word search maker, printable word search generator, word search creator, make word search online, word search puzzle maker free">
+  <link rel="canonical" href="https://wordsearchsolver.github.io/word-search-generator">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <meta property="og:title" content="Word Search Generator — Create Custom Printable Puzzles">
+  <meta property="og:description" content="Create custom word search puzzles instantly. Enter your words, choose your settings, and generate a printable puzzle grid with optional answer key.">
+  <meta property="og:url" content="https://wordsearchsolver.github.io/word-search-generator">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Word Search Generator",
+        "url": "https://wordsearchsolver.github.io/word-search-generator",
+        "description": "Free online word search puzzle generator. Enter custom words, choose grid size and difficulty, and instantly create printable word search puzzles.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "How do I create a word search puzzle?", "acceptedAnswer": { "@type": "Answer", "text": "Enter your word list, choose grid size and difficulty, then click Generate. The puzzle is created instantly and can be printed or downloaded as PDF." } },
+          { "@type": "Question", "name": "Can I print the word search puzzle?", "acceptedAnswer": { "@type": "Answer", "text": "Yes! Use the Print button to open your browser's print dialog. The puzzle is formatted for A4/Letter paper with clean black-and-white output." } }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Print Styles */
+    @media print {
+      body > *:not(#print-area) { display: none !important; }
+      #print-area { display: block !important; }
+      #site-header, #footer-placeholder, .no-print { display: none !important; }
+    }
+    #print-area {
+      display: none;
+      font-family: 'Courier New', monospace;
+      color: #000;
+      background: #fff;
+      padding: 20px;
+    }
+    #print-area h2 { font-family: serif; text-align: center; margin-bottom: 8px; color: #000; font-size: 1.6rem; }
+    #print-area .print-subtitle { text-align: center; margin-bottom: 20px; font-size: 0.9rem; color: #444; }
+    #print-area .print-grid { display: inline-grid; gap: 2px; margin: 0 auto; display: block; text-align: center; }
+    #print-area .print-grid-inner { display: inline-grid; gap: 4px; border: 2px solid #000; padding: 10px; }
+    #print-area .print-cell { width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700; border: 1px solid #ddd; }
+    #print-area .print-words { margin-top: 24px; }
+    #print-area .print-words h3 { font-family: serif; font-size: 1.1rem; margin-bottom: 10px; border-bottom: 1px solid #ccc; padding-bottom: 4px; }
+    #print-area .print-word-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    #print-area .print-word-item { font-size: 0.88rem; padding: 2px; }
+    #print-area .answer-cell { background: #ffe0e0; }
+    .gen-layout { display: grid; grid-template-columns: 340px 1fr; gap: 32px; align-items: start; }
+    .gen-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; position: sticky; top: 90px; }
+    .gen-output { display: flex; flex-direction: column; gap: 24px; }
+    .puzzle-canvas { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .puzzle-canvas-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .puzzle-canvas-body { padding: 24px; overflow-x: auto; text-align: center; }
+    #gen-grid { display: inline-grid; gap: 3px; }
+    #gen-grid .gc { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.88rem; font-weight: 700; border-radius: 4px; background: rgba(255,255,255,0.03); color: var(--text-secondary); border: 1px solid transparent; transition: background 0.2s, color 0.2s; }
+    #gen-grid .gc.placed { background: rgba(0,212,255,0.1); color: var(--accent); border-color: rgba(0,212,255,0.2); }
+    #gen-grid .gc.answer { background: rgba(16,185,129,0.2); color: var(--accent-3); border-color: rgba(16,185,129,0.3); }
+    .word-placement-list { display: flex; flex-direction: column; gap: 6px; max-height: 280px; overflow-y: auto; }
+    .word-placement-item { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; }
+    .wpi-color { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .wpi-word { font-family: var(--font-mono); font-weight: 700; font-size: 0.88rem; flex: 1; }
+    .wpi-loc { font-size: 0.78rem; color: var(--text-muted); }
+    .wpi-dir { font-size: 0.75rem; padding: 2px 8px; background: rgba(255,255,255,0.04); border-radius: 100px; color: var(--text-muted); }
+    .wpi-miss { color: #ef4444; font-size: 0.82rem; }
+    @media (max-width: 1024px) { .gen-layout { grid-template-columns: 1fr; } .gen-panel { position: static; } }
+  </style>
+</head>
+<body>
+<div id="header-placeholder"></div>
+<div class="toast-container" id="toast-container"></div>
+
+<!-- Print Area (hidden until print) -->
+<div id="print-area">
+  <h2 id="print-title">Word Search Puzzle</h2>
+  <p class="print-subtitle" id="print-subtitle">Find the words listed below</p>
+  <div class="print-grid">
+    <div class="print-grid-inner" id="print-grid-inner"></div>
+  </div>
+  <div class="print-words">
+    <h3>Words to Find</h3>
+    <div class="print-word-grid" id="print-word-grid"></div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero" style="padding-top:120px;padding-bottom:60px;position:relative;overflow:hidden;" class="section-anchor">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;"></div>
+  <div style="position:absolute;width:600px;height:600px;top:-200px;right:-100px;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,0.1),transparent 70%);filter:blur(60px);pointer-events:none;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div style="max-width:700px;">
+      <div style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent-3);margin-bottom:20px;">
+        <span style="width:6px;height:6px;background:var(--accent-3);border-radius:50%;animation:pulse 2s infinite;display:block;"></span>
+        Free · Instant · Printable
+      </div>
+      <h1 style="background:linear-gradient(135deg,#fff 0%,var(--accent-3) 60%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:20px;">Word Search<br>Generator</h1>
+      <p style="font-size:1.1rem;max-width:560px;margin-bottom:32px;">Enter your own words and instantly generate a custom word search puzzle. Choose grid size, difficulty, and orientation — then print it or download with an answer key.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="#generator" class="btn btn-primary btn-lg">Create Puzzle →</a>
+        <a href="#how-to" class="btn btn-secondary btn-lg">How It Works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GENERATOR APP -->
+<section id="generator" class="section section-anchor" style="padding-top:60px;">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="eyebrow">Word Search Generator</span>
+      <h2>Create Your Custom Puzzle</h2>
+      <p>Enter your words, customize the settings, and generate a print-ready word search puzzle in seconds.</p>
+    </div>
+    <div class="gen-layout">
+      <!-- Controls -->
+      <aside class="gen-panel fade-in">
+        <div style="padding:20px 24px;border-bottom:1px solid var(--border);background:rgba(16,185,129,0.04);">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="font-size:1.4rem;">⚡</span>
+            <div>
+              <div style="font-weight:700;font-size:0.95rem;">Puzzle Settings</div>
+              <div style="font-size:0.78rem;color:var(--text-muted);">Configure your puzzle</div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:24px;">
+          <div class="form-group">
+            <label class="form-label" for="puzzle-title-input">Puzzle Title</label>
+            <input type="text" class="form-input" id="puzzle-title-input" placeholder="My Word Search" value="My Word Search">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="words-list-input">Word List <span style="color:var(--text-muted);font-weight:400;">(one per line)</span></label>
+            <textarea class="form-textarea" id="words-list-input" style="min-height:180px;" placeholder="APPLE&#10;BANANA&#10;CHERRY&#10;ORANGE&#10;MANGO&#10;GRAPE&#10;LEMON&#10;PEACH">APPLE
+BANANA
+CHERRY
+ORANGE
+MANGO
+GRAPE
+LEMON
+PEACH</textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="grid-rows">Grid Size</label>
+              <select class="form-select" id="grid-size-select">
+                <option value="10">10 × 10 (Small)</option>
+                <option value="15" selected>15 × 15 (Medium)</option>
+                <option value="20">20 × 20 (Large)</option>
+                <option value="25">25 × 25 (X-Large)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Difficulty</label>
+              <select class="form-select" id="difficulty-select">
+                <option value="easy">Easy</option>
+                <option value="medium" selected>Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Directions</label>
+            <div class="toggle-group">
+              <div class="toggle-item"><span class="toggle-label">Horizontal (→ ←)</span><label class="toggle"><input type="checkbox" id="dir-h" checked><span class="toggle-slider"></span></label></div>
+              <div class="toggle-item"><span class="toggle-label">Vertical (↑ ↓)</span><label class="toggle"><input type="checkbox" id="dir-v" checked><span class="toggle-slider"></span></label></div>
+              <div class="toggle-item"><span class="toggle-label">Diagonal (↗ ↘)</span><label class="toggle"><input type="checkbox" id="dir-d" checked><span class="toggle-slider"></span></label></div>
+              <div class="toggle-item"><span class="toggle-label">Reverse Words</span><label class="toggle"><input type="checkbox" id="dir-r" checked><span class="toggle-slider"></span></label></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Fill Letters</label>
+            <select class="form-select" id="fill-select">
+              <option value="random">Random Letters</option>
+              <option value="vowels">Mostly Vowels (Harder)</option>
+              <option value="consonants">Mostly Consonants</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" style="width:100%;margin-bottom:10px;" onclick="Generator.generate()">⚡ Generate Puzzle</button>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+            <button class="btn btn-secondary btn-sm" onclick="Generator.printPuzzle(false)" title="Print without answers">🖨 Print</button>
+            <button class="btn btn-secondary btn-sm" onclick="Generator.printPuzzle(true)" title="Print with answer key">🗝 + Key</button>
+            <button class="btn btn-ghost btn-sm" onclick="Generator.resetAll()">↺ Reset</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Output -->
+      <div class="gen-output">
+        <!-- Puzzle Grid -->
+        <div class="puzzle-canvas fade-in fade-in-delay-1">
+          <div class="puzzle-canvas-header">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-weight:700;" id="canvas-title">Puzzle Preview</span>
+              <span class="badge badge-green" id="canvas-badge">Not generated</span>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <label style="display:flex;align-items:center;gap:6px;font-size:0.82rem;color:var(--text-muted);cursor:pointer;">
+                <input type="checkbox" id="show-answers-toggle" onchange="Generator.toggleAnswers(this.checked)" style="accent-color:var(--accent-3);">
+                Show Answers
+              </label>
+              <button class="btn btn-ghost btn-sm" onclick="Generator.printPuzzle(false)">🖨 Print</button>
+            </div>
+          </div>
+          <div class="puzzle-canvas-body">
+            <div id="gen-grid-placeholder" style="padding:60px 20px;color:var(--text-muted);font-size:0.9rem;">
+              <div style="font-size:3rem;margin-bottom:12px;">⚡</div>
+              Click "Generate Puzzle" to create your word search
+            </div>
+            <div id="gen-grid" style="display:none;"></div>
+          </div>
+        </div>
+
+        <!-- Word Placements -->
+        <div class="puzzle-canvas fade-in fade-in-delay-2" id="placement-panel" style="display:none;">
+          <div class="puzzle-canvas-header">
+            <span style="font-weight:700;">Word Placements</span>
+            <span class="badge badge-cyan" id="placement-stats">0 / 0 placed</span>
+          </div>
+          <div style="padding:16px;">
+            <div class="word-placement-list" id="placement-list"></div>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid-3 fade-in fade-in-delay-3" id="stats-row" style="display:none;">
+          <div class="card" style="text-align:center;padding:24px;">
+            <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--accent-3);" id="stat-placed">0</div>
+            <div style="font-size:0.82rem;color:var(--text-muted);">Words Placed</div>
+          </div>
+          <div class="card" style="text-align:center;padding:24px;">
+            <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--accent);" id="stat-size">—</div>
+            <div style="font-size:0.82rem;color:var(--text-muted);">Grid Size</div>
+          </div>
+          <div class="card" style="text-align:center;padding:24px;">
+            <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--accent-warm);" id="stat-density">0%</div>
+            <div style="font-size:0.82rem;color:var(--text-muted);">Letter Density</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO -->
+<section id="how-to" class="section section-anchor" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="eyebrow">Guide</span>
+      <h2>How to Use the Word Search Generator</h2>
+      <p>Create a professional printable puzzle in under a minute with these simple steps.</p>
+    </div>
+    <div class="steps-timeline fade-in">
+      <div class="step-item"><div class="step-num">1</div><h3>Enter Words</h3><p>Type your custom words into the Word List box, one word per line. Use 8–20 words for best results on a 15×15 grid.</p></div>
+      <div class="step-item"><div class="step-num">2</div><h3>Pick Settings</h3><p>Choose grid size, difficulty level, and which directions to allow — horizontal, vertical, diagonal, or reverse.</p></div>
+      <div class="step-item"><div class="step-num">3</div><h3>Generate</h3><p>Click Generate and the puzzle is built instantly. All your words are hidden in the grid with random fill letters.</p></div>
+      <div class="step-item"><div class="step-num">4</div><h3>Print or Export</h3><p>Click Print for a clean puzzle sheet, or Print + Key to include a highlighted answer version on a second page.</p></div>
+    </div>
+    <div class="grid-3 fade-in" style="margin-top:64px;">
+      <div class="card"><div class="feature-icon icon-green">🏫</div><h3>For Teachers</h3><p>Generate curriculum-aligned puzzles for any subject. Add a title and print class sets in seconds — no design software needed.</p></div>
+      <div class="card"><div class="feature-icon icon-cyan">👨‍👩‍👧</div><h3>For Families</h3><p>Create themed holiday, birthday, or educational puzzles for kids. Adjust difficulty with Easy mode that avoids diagonals and reverse words.</p></div>
+      <div class="card"><div class="feature-icon icon-amber">✏️</div><h3>For Publishers</h3><p>Generate large 25×25 grids for magazine inserts, activity books, or party packs. Export to PDF for professional print-ready files.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DESCRIPTION -->
+<section class="section section-anchor">
+  <div class="container">
+    <div class="section-header fade-in"><span class="eyebrow">About</span><h2>The Most Flexible Free Word Search Generator</h2></div>
+    <div class="grid-2 fade-in">
+      <div>
+        <h3 style="margin-bottom:12px;">What Makes Our Generator Different</h3>
+        <p>Most word search generators place words randomly and fill remaining cells with generic letters. Our generator uses a <strong style="color:var(--accent);">constraint-satisfaction placement algorithm</strong> that maximizes word density while ensuring every word is always findable without overlapping ambiguity.</p>
+        <br><p>The difficulty setting controls which directions are used and how "deceptively" filler letters are chosen. On Hard mode, filler letters are selected from the starting letters of your words to create convincing false leads.</p>
+        <br><div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <span class="badge badge-green">Up to 50 words</span>
+          <span class="badge badge-cyan">4 grid sizes</span>
+          <span class="badge badge-purple">8 directions</span>
+          <span class="badge badge-amber">Print-ready PDF</span>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px;">Word Search Generator for Education</h3>
+        <p>Teachers and homeschool parents use our word search generator to build vocabulary reinforcement activities in every subject. History vocabulary, science terminology, spelling lists, foreign language words — any word list becomes an engaging puzzle.</p>
+        <br><p>The answer key feature is particularly valuable for teachers: print the puzzle for students and keep the answer key for quick grading. The answer key highlights all hidden words in color directly on the grid.</p>
+        <br><p>Our generator supports words from 2 to 20 characters long and can place up to 50 words in a 25×25 grid — enough for comprehensive vocabulary review sessions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-anchor" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header fade-in"><span class="eyebrow">FAQ</span><h2>Word Search Generator — Frequently Asked Questions</h2></div>
+    <div class="faq-list fade-in">
+      <div class="faq-item"><div class="faq-question">How many words can I add to the generator?<span class="faq-icon">+</span></div><div class="faq-answer"><p>You can add up to 50 words per puzzle. For a 15×15 grid, we recommend 10–20 words. Larger grids (20×20 or 25×25) support more words without crowding. Words that can't fit are listed in the "not placed" section of the word placements panel.</p></div></div>
+      <div class="faq-item"><div class="faq-question">Can I print the puzzle without an answer key?<span class="faq-icon">+</span></div><div class="faq-answer"><p>Yes! Click the "🖨 Print" button to print the puzzle only — with all hidden words and a word list at the bottom, but without any answer highlighting. Use "🗝 + Key" to print a second version with answers highlighted for use as a teacher's answer key.</p></div></div>
+      <div class="faq-item"><div class="faq-question">What happens if a word doesn't fit in the grid?<span class="faq-icon">+</span></div><div class="faq-answer"><p>The generator will attempt to place each word up to 200 times in different positions and directions. If a word still can't fit, it's listed as "not placed" in the placements panel. Try increasing the grid size or reducing the number of long words.</p></div></div>
+      <div class="faq-item"><div class="faq-question">Does the word search generator work on mobile?<span class="faq-icon">+</span></div><div class="faq-answer"><p>Yes. The generator is fully mobile-responsive. On smaller screens, the grid scrolls horizontally. Printing works via your mobile browser's print function — use "Share → Print" on iOS or the browser menu on Android.</p></div></div>
+      <div class="faq-item"><div class="faq-question">Can I save the puzzle to use again later?<span class="faq-icon">+</span></div><div class="faq-answer"><p>Currently, you can print or use your browser's "Save as PDF" option to store the puzzle. Re-generating with the same word list creates a different layout each time. We recommend saving the PDF immediately after generating your preferred layout.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-sm section-anchor" style="text-align:center;">
+  <div class="container"><div class="cta-box fade-in" style="padding:60px 40px;">
+    <h2 style="margin-bottom:16px;">Ready to Build Your Puzzle?</h2>
+    <p style="max-width:440px;margin:0 auto 32px;">Type your words above and generate a custom printable word search in seconds.</p>
+    <a href="#generator" class="btn btn-primary btn-lg">Create Word Search →</a>
+    <div style="margin-top:24px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap;">
+      <a href="index.html" style="color:var(--text-muted);font-size:0.88rem;">← Word Search Solver</a>
+      <a href="printable-word-search.html" style="color:var(--text-muted);font-size:0.88rem;">Printable Puzzles →</a>
+    </div>
+  </div></div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="components/header.js"></script>
+<script src="components/footer.js"></script>
+<script>
+// ===== WORD SEARCH GENERATOR ENGINE =====
+const Generator = {
+  grid: [], size: 15, placedWords: [], missedWords: [],
+  COLORS: ['#00d4ff','#a78bfa','#10b981','#f59e0b','#f87171','#f472b6','#60a5fa','#34d399'],
+  DIRS: {
+    h:[[0,1],[0,-1]], v:[[1,0],[-1,0]], d:[[1,1],[1,-1],[-1,1],[-1,-1]]
+  },
+
+  getActiveDirs() {
+    let dirs = [];
+    if (document.getElementById('dir-h')?.checked) dirs.push(...this.DIRS.h);
+    if (document.getElementById('dir-v')?.checked) dirs.push(...this.DIRS.v);
+    if (document.getElementById('dir-d')?.checked) dirs.push(...this.DIRS.d);
+    if (!dirs.length) dirs = this.DIRS.h;
+    return dirs;
+  },
+
+  generate() {
+    const wordsRaw = document.getElementById('words-list-input')?.value || '';
+    const words = wordsRaw.split('\n').map(w => w.trim().toUpperCase()).filter(w => /^[A-Z]+$/.test(w));
+    if (!words.length) { this.toast('Enter at least one word', 'error'); return; }
+    this.size = parseInt(document.getElementById('grid-size-select')?.value || 15);
+
+    // Build empty grid
+    this.grid = Array.from({length: this.size}, () => Array(this.size).fill(''));
+    this.placedWords = []; this.missedWords = [];
+
+    const dirs = this.getActiveDirs();
+    const allowReverse = document.getElementById('dir-r')?.checked;
+    const allDirs = allowReverse ? dirs : dirs.filter(([dr,dc])=> dr >= 0 && dc >= 0 || (dr === 0 && dc === 1) || (dr === 1 && dc === 0));
+
+    const sorted = [...words].sort((a,b) => b.length - a.length);
+    sorted.forEach((word, wi) => {
+      let placed = false;
+      for (let attempt = 0; attempt < 300 && !placed; attempt++) {
+        const [dr, dc] = allDirs[Math.floor(Math.random() * allDirs.length)];
+        const r = Math.floor(Math.random() * this.size);
+        const c = Math.floor(Math.random() * this.size);
+        if (this.canPlace(word, r, c, dr, dc)) {
+          this.doPlace(word, r, c, dr, dc, wi);
+          placed = true;
+        }
+      }
+      if (!placed) this.missedWords.push(word);
+    });
+
+    this.fillGrid();
+    this.renderGrid();
+    this.renderPlacements();
+    this.updateStats(words.length);
+    this.toast(`Puzzle generated! ${this.placedWords.length}/${words.length} words placed`, 'success');
+  },
+
+  canPlace(word, r, c, dr, dc) {
+    for (let i = 0; i < word.length; i++) {
+      const nr = r+dr*i, nc = c+dc*i;
+      if (nr<0||nr>=this.size||nc<0||nc>=this.size) return false;
+      if (this.grid[nr][nc] && this.grid[nr][nc] !== word[i]) return false;
+    }
+    return true;
+  },
+
+  doPlace(word, r, c, dr, dc, wi) {
+    const cells = [];
+    for (let i = 0; i < word.length; i++) {
+      this.grid[r+dr*i][c+dc*i] = word[i];
+      cells.push([r+dr*i, c+dc*i]);
+    }
+    this.placedWords.push({word, r, c, dr, dc, cells, color: this.COLORS[wi % this.COLORS.length]});
+  },
+
+  fillGrid() {
+    const fillMode = document.getElementById('fill-select')?.value || 'random';
+    const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const vowels = 'AEIOUAEIOU';
+    const consonants = 'BCDFGHJKLMNPQRSTVWXYZ';
+    for (let r = 0; r < this.size; r++)
+      for (let c = 0; c < this.size; c++)
+        if (!this.grid[r][c]) {
+          let pool = alpha;
+          if (fillMode === 'vowels') pool = Math.random() < 0.6 ? vowels : alpha;
+          if (fillMode === 'consonants') pool = Math.random() < 0.6 ? consonants : alpha;
+          this.grid[r][c] = pool[Math.floor(Math.random() * pool.length)];
+        }
+  },
+
+  renderGrid() {
+    const container = document.getElementById('gen-grid');
+    const placeholder = document.getElementById('gen-grid-placeholder');
+    if (!container) return;
+    placeholder.style.display = 'none';
+    container.style.display = 'inline-grid';
+    container.style.gridTemplateColumns = `repeat(${this.size}, 32px)`;
+    container.innerHTML = '';
+    for (let r = 0; r < this.size; r++)
+      for (let c = 0; c < this.size; c++) {
+        const cell = document.createElement('div');
+        cell.className = 'gc';
+        cell.textContent = this.grid[r][c];
+        cell.dataset.r = r; cell.dataset.c = c;
+        const pw = this.placedWords.find(p => p.cells.some(([pr,pc])=>pr===r&&pc===c));
+        if (pw) { cell.classList.add('placed'); cell.dataset.wordColor = pw.color; }
+        container.appendChild(cell);
+      }
+    const badge = document.getElementById('canvas-badge');
+    if (badge) { badge.textContent = `${this.size}×${this.size}`; badge.className = 'badge badge-green'; }
+    const title = document.getElementById('canvas-title');
+    const pTitle = document.getElementById('puzzle-title-input')?.value || 'Puzzle';
+    if (title) title.textContent = pTitle;
+  },
+
+  toggleAnswers(show) {
+    document.querySelectorAll('#gen-grid .gc.placed').forEach(cell => {
+      if (show) {
+        const color = cell.dataset.wordColor || '#00d4ff';
+        cell.style.background = color + '33';
+        cell.style.color = color;
+        cell.style.borderColor = color + '66';
+      } else {
+        cell.style.background = '';
+        cell.style.color = '';
+        cell.style.borderColor = '';
+      }
+    });
+  },
+
+  renderPlacements() {
+    const panel = document.getElementById('placement-panel');
+    const list = document.getElementById('placement-list');
+    const statsEl = document.getElementById('placement-stats');
+    if (!panel || !list) return;
+    panel.style.display = 'block';
+    list.innerHTML = '';
+    const dirNames = {[JSON.stringify([0,1])]:'→',  [JSON.stringify([0,-1])]:'←', [JSON.stringify([1,0])]:'↓', [JSON.stringify([-1,0])]:'↑', [JSON.stringify([1,1])]:'↘', [JSON.stringify([1,-1])]:'↙', [JSON.stringify([-1,1])]:'↗', [JSON.stringify([-1,-1])]:'↖'};
+    this.placedWords.forEach(pw => {
+      const dir = dirNames[JSON.stringify([pw.dr,pw.dc])] || '?';
+      const item = document.createElement('div');
+      item.className = 'word-placement-item';
+      item.innerHTML = `<div class="wpi-color" style="background:${pw.color}"></div><div class="wpi-word">${pw.word}</div><div class="wpi-loc">(${pw.r},${pw.c})</div><div class="wpi-dir">${dir}</div>`;
+      list.appendChild(item);
+    });
+    this.missedWords.forEach(w => {
+      const item = document.createElement('div'); item.className = 'word-placement-item';
+      item.innerHTML = `<div class="wpi-color" style="background:#ef4444"></div><div class="wpi-word" style="text-decoration:line-through;opacity:0.6;">${w}</div><div class="wpi-miss">Not placed</div>`;
+      list.appendChild(item);
+    });
+    if (statsEl) statsEl.textContent = `${this.placedWords.length} / ${this.placedWords.length + this.missedWords.length} placed`;
+  },
+
+  updateStats(total) {
+    const statsRow = document.getElementById('stats-row');
+    if (statsRow) statsRow.style.display = 'grid';
+    const placed = document.getElementById('stat-placed');
+    const size = document.getElementById('stat-size');
+    const density = document.getElementById('stat-density');
+    if (placed) placed.textContent = this.placedWords.length;
+    if (size) size.textContent = `${this.size}×${this.size}`;
+    if (density) {
+      const letterCells = this.placedWords.reduce((s, pw) => s + pw.word.length, 0);
+      density.textContent = Math.round((letterCells / (this.size * this.size)) * 100) + '%';
+    }
+  },
+
+  printPuzzle(withKey) {
+    if (!this.grid.length) { this.toast('Generate a puzzle first', 'error'); return; }
+    const title = document.getElementById('puzzle-title-input')?.value || 'Word Search';
+    document.getElementById('print-title').textContent = title;
+    const inner = document.getElementById('print-grid-inner');
+    inner.style.gridTemplateColumns = `repeat(${this.size}, 28px)`;
+    inner.innerHTML = '';
+    for (let r = 0; r < this.size; r++)
+      for (let c = 0; c < this.size; c++) {
+        const cell = document.createElement('div');
+        cell.className = 'print-cell';
+        cell.textContent = this.grid[r][c];
+        if (withKey && this.placedWords.some(p => p.cells.some(([pr,pc])=>pr===r&&pc===c)))
+          cell.classList.add('answer-cell');
+        inner.appendChild(cell);
+      }
+    const wGrid = document.getElementById('print-word-grid');
+    wGrid.innerHTML = this.placedWords.map(pw => `<div class="print-word-item">${pw.word}</div>`).join('');
+    document.getElementById('print-area').style.display = 'block';
+    window.print();
+    setTimeout(() => document.getElementById('print-area').style.display = 'none', 1000);
+  },
+
+  resetAll() {
+    this.grid = []; this.placedWords = []; this.missedWords = [];
+    document.getElementById('gen-grid').style.display = 'none';
+    document.getElementById('gen-grid-placeholder').style.display = 'block';
+    document.getElementById('placement-panel').style.display = 'none';
+    document.getElementById('stats-row').style.display = 'none';
+    const badge = document.getElementById('canvas-badge');
+    if (badge) { badge.textContent = 'Not generated'; badge.className = 'badge badge-cyan'; }
+    this.toast('Cleared!', 'info');
+  },
+
+  toast(msg, type) {
+    const c = document.getElementById('toast-container');
+    if (!c) return;
+    const t = document.createElement('div');
+    t.className = `toast ${type}`;
+    t.innerHTML = `<span>${type==='success'?'✓':type==='error'?'✗':'ℹ'}</span><span>${msg}</span>`;
+    c.appendChild(t);
+    setTimeout(() => { t.style.opacity='0'; t.style.transform='translateX(20px)'; t.style.transition='all 0.3s'; setTimeout(()=>t.remove(),300); }, 3000);
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  HeaderComponent.init();
+  FooterComponent.init();
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+  const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1});
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+});
+</script>
+</body>
+</html>

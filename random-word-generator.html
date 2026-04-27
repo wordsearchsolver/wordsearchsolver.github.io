@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LDX5SDDNPD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LDX5SDDNPD');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Word Generator — Generate Random English Words Instantly | WordSearchSolver</title>
+  <meta name="description" content="Free random word generator — instantly generate random English words by length, category, starting letter, or part of speech. Perfect for word games, writing prompts, vocabulary practice, and word searches.">
+  <meta name="keywords" content="random word generator, random word, generate random words, random english word, random word picker, random vocabulary generator, word generator, random word list generator">
+  <link rel="canonical" href="https://wordsearchsolver.github.io/random-word-generator">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <meta property="og:title" content="Random Word Generator — Generate Words Instantly">
+  <meta property="og:description" content="Generate random English words instantly. Filter by length, category, letter, and more. Perfect for word games, writing prompts, and puzzles.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Random Word Generator",
+        "url": "https://wordsearchsolver.github.io/random-word-generator",
+        "description": "Free online random word generator. Generate random English words filtered by length, category, starting letter, or part of speech.",
+        "applicationCategory": "UtilitiesApplication",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "What is a random word generator?", "acceptedAnswer": { "@type": "Answer", "text": "A random word generator is a tool that produces random words from a dictionary. It can be filtered by word length, starting letter, category, or part of speech, making it useful for word games, writing prompts, and educational activities." } }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .rw-app { display: grid; grid-template-columns: 320px 1fr; gap: 32px; align-items: start; }
+    .rw-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; position: sticky; top: 90px; }
+    .big-word { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; text-align: center; padding: 40px 20px; line-height: 1.1; cursor: pointer; transition: var(--transition); background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); position: relative; overflow: hidden; }
+    .big-word:hover { border-color: var(--border-hover); box-shadow: var(--glow); }
+    .big-word .bw-hint { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); margin-top: 8px; display: block; }
+    .big-word.flipping { animation: flipWord 0.3s ease; }
+    @keyframes flipWord { 0%{opacity:1;transform:scale(1)} 50%{opacity:0;transform:scale(0.95)} 100%{opacity:1;transform:scale(1)} }
+    .word-history { display: flex; flex-direction: column; gap: 8px; max-height: 400px; overflow-y: auto; }
+    .wh-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; transition: var(--transition); gap: 10px; }
+    .wh-item:hover { border-color: var(--border-hover); }
+    .wh-word { font-family: var(--font-mono); font-weight: 700; font-size: 0.95rem; }
+    .wh-meta { font-size: 0.75rem; color: var(--text-muted); }
+    .wh-len { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); background: rgba(0,212,255,0.08); padding: 2px 6px; border-radius: 4px; }
+    .wh-copy { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.85rem; padding: 4px; border-radius: 4px; transition: var(--transition); }
+    .wh-copy:hover { color: var(--accent); background: rgba(0,212,255,0.08); }
+    .word-grid-display { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+    .wgd-item { padding: 12px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); font-family: var(--font-mono); font-weight: 700; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: space-between; }
+    .wgd-item:hover { border-color: var(--accent); color: var(--accent); }
+    .wgd-len { font-size: 0.72rem; color: var(--text-muted); }
+    .category-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cat-pill { padding: 6px 14px; border-radius: 100px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: var(--transition); background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text-secondary); }
+    .cat-pill.active { background: rgba(245,158,11,0.15); border-color: rgba(245,158,11,0.4); color: var(--accent-warm); }
+    .letter-picker { display: grid; grid-template-columns: repeat(9, 1fr); gap: 4px; }
+    .lp-btn { padding: 6px 4px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 5px; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: var(--transition); text-align: center; }
+    .lp-btn.active { background: rgba(245,158,11,0.15); border-color: rgba(245,158,11,0.4); color: var(--accent-warm); }
+    .lp-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
+    @media (max-width: 1024px) { .rw-app { grid-template-columns: 1fr; } .rw-panel { position: static; } }
+  </style>
+</head>
+<body>
+<div id="header-placeholder"></div>
+<div class="toast-container" id="toast-container"></div>
+
+<!-- HERO -->
+<section id="hero" style="padding-top:120px;padding-bottom:60px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(245,158,11,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(245,158,11,0.03) 1px,transparent 1px);background-size:55px 55px;pointer-events:none;"></div>
+  <div style="position:absolute;width:500px;height:500px;bottom:-100px;right:-50px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,0.1),transparent 70%);filter:blur(60px);pointer-events:none;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div style="max-width:700px;">
+      <div style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent-warm);margin-bottom:20px;"><span style="width:6px;height:6px;background:var(--accent-warm);border-radius:50%;display:block;"></span>Instant · Filtered · Free</div>
+      <h1 style="background:linear-gradient(135deg,#fff 0%,var(--accent-warm) 50%,#f87171 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:20px;">Random Word<br>Generator</h1>
+      <p style="font-size:1.1rem;max-width:560px;margin-bottom:32px;">Instantly generate random English words filtered by length, starting letter, category, or count. Perfect for word games, writing prompts, vocabulary building, and puzzle creation.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="#generator" class="btn btn-lg" style="background:var(--accent-warm);color:#000;box-shadow:0 0 20px rgba(245,158,11,0.3);">Generate Words →</a>
+        <a href="#how-to" class="btn btn-secondary btn-lg">How It Works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GENERATOR -->
+<section id="generator" class="section section-anchor" style="padding-top:60px;">
+  <div class="container">
+    <div class="section-header fade-in"><span class="eyebrow" style="color:var(--accent-warm);background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.2);">Random Word Generator</span><h2>Generate Your Random Words</h2><p>Click generate for a random word, or refine results with length, letter, and category filters.</p></div>
+    <div class="rw-app">
+      <!-- Controls -->
+      <aside class="rw-panel fade-in">
+        <div style="padding:20px 24px;border-bottom:1px solid var(--border);background:rgba(245,158,11,0.04);">
+          <div style="font-weight:700;">🎲 Generator Settings</div>
+          <div style="font-size:0.78rem;color:var(--text-muted);">Filter your random words</div>
+        </div>
+        <div style="padding:24px;">
+          <div class="form-group">
+            <label class="form-label">Number of Words</label>
+            <div class="range-wrapper"><input type="range" id="word-count" min="1" max="50" value="10"><span class="range-val" id="word-count-val">10</span></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Word Length</label>
+            <div class="form-row">
+              <div><label class="form-label" style="font-size:0.75rem;">Min</label><input type="number" class="form-input" id="min-len" value="3" min="2" max="20" style="text-align:center;"></div>
+              <div><label class="form-label" style="font-size:0.75rem;">Max</label><input type="number" class="form-input" id="max-len" value="12" min="2" max="25" style="text-align:center;"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Starting Letter <span style="color:var(--text-muted);font-weight:400;">(tap to filter)</span></label>
+            <div class="letter-picker" id="letter-picker">
+              <div class="lp-btn active" data-letter="any" onclick="RWG.setLetter('any',this)">Any</div>
+              <div class="lp-btn" data-letter="A" onclick="RWG.setLetter('A',this)">A</div>
+              <div class="lp-btn" data-letter="B" onclick="RWG.setLetter('B',this)">B</div>
+              <div class="lp-btn" data-letter="C" onclick="RWG.setLetter('C',this)">C</div>
+              <div class="lp-btn" data-letter="D" onclick="RWG.setLetter('D',this)">D</div>
+              <div class="lp-btn" data-letter="E" onclick="RWG.setLetter('E',this)">E</div>
+              <div class="lp-btn" data-letter="F" onclick="RWG.setLetter('F',this)">F</div>
+              <div class="lp-btn" data-letter="G" onclick="RWG.setLetter('G',this)">G</div>
+              <div class="lp-btn" data-letter="H" onclick="RWG.setLetter('H',this)">H</div>
+              <div class="lp-btn" data-letter="I" onclick="RWG.setLetter('I',this)">I</div>
+              <div class="lp-btn" data-letter="J" onclick="RWG.setLetter('J',this)">J</div>
+              <div class="lp-btn" data-letter="K" onclick="RWG.setLetter('K',this)">K</div>
+              <div class="lp-btn" data-letter="L" onclick="RWG.setLetter('L',this)">L</div>
+              <div class="lp-btn" data-letter="M" onclick="RWG.setLetter('M',this)">M</div>
+              <div class="lp-btn" data-letter="N" onclick="RWG.setLetter('N',this)">N</div>
+              <div class="lp-btn" data-letter="O" onclick="RWG.setLetter('O',this)">O</div>
+              <div class="lp-btn" data-letter="P" onclick="RWG.setLetter('P',this)">P</div>
+              <div class="lp-btn" data-letter="Q" onclick="RWG.setLetter('Q',this)">Q</div>
+              <div class="lp-btn" data-letter="R" onclick="RWG.setLetter('R',this)">R</div>
+              <div class="lp-btn" data-letter="S" onclick="RWG.setLetter('S',this)">S</div>
+              <div class="lp-btn" data-letter="T" onclick="RWG.setLetter('T',this)">T</div>
+              <div class="lp-btn" data-letter="U" onclick="RWG.setLetter('U',this)">U</div>
+              <div class="lp-btn" data-letter="V" onclick="RWG.setLetter('V',this)">V</div>
+              <div class="lp-btn" data-letter="W" onclick="RWG.setLetter('W',this)">W</div>
+              <div class="lp-btn" data-letter="X" onclick="RWG.setLetter('X',this)">X</div>
+              <div class="lp-btn" data-letter="Y" onclick="RWG.setLetter('Y',this)">Y</div>
+              <div class="lp-btn" data-letter="Z" onclick="RWG.setLetter('Z',this)">Z</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <div class="category-pills" id="cat-pills">
+              <div class="cat-pill active" data-cat="all" onclick="RWG.setCat('all',this)">All Words</div>
+              <div class="cat-pill" data-cat="animals" onclick="RWG.setCat('animals',this)">🐾 Animals</div>
+              <div class="cat-pill" data-cat="nature" onclick="RWG.setCat('nature',this)">🌿 Nature</div>
+              <div class="cat-pill" data-cat="food" onclick="RWG.setCat('food',this)">🍎 Food</div>
+              <div class="cat-pill" data-cat="colors" onclick="RWG.setCat('colors',this)">🎨 Colors</div>
+              <div class="cat-pill" data-cat="verbs" onclick="RWG.setCat('verbs',this)">⚡ Verbs</div>
+              <div class="cat-pill" data-cat="adjectives" onclick="RWG.setCat('adjectives',this)">✨ Adjectives</div>
+              <div class="cat-pill" data-cat="places" onclick="RWG.setCat('places',this)">🌍 Places</div>
+              <div class="cat-pill" data-cat="tech" onclick="RWG.setCat('tech',this)">💻 Tech</div>
+              <div class="cat-pill" data-cat="emotions" onclick="RWG.setCat('emotions',this)">💛 Emotions</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Display Mode</label>
+            <select class="form-select" id="display-mode">
+              <option value="grid">Grid Cards</option>
+              <option value="list">Detailed List</option>
+              <option value="big">Big Word (1 at a time)</option>
+            </select>
+          </div>
+          <button class="btn btn-lg" style="width:100%;background:var(--accent-warm);color:#000;box-shadow:0 0 20px rgba(245,158,11,0.2);margin-bottom:10px;" onclick="RWG.generate()">🎲 Generate Words</button>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <button class="btn btn-ghost btn-sm" onclick="RWG.copyAll()">📋 Copy All</button>
+            <button class="btn btn-ghost btn-sm" onclick="RWG.sendToGenerator()">→ Word Search</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Output -->
+      <div class="fade-in fade-in-delay-1">
+        <!-- Big word mode -->
+        <div id="big-word-mode" style="display:none;margin-bottom:24px;">
+          <div class="big-word" id="big-word-display" onclick="RWG.generateOne()">
+            <div id="big-word-text" style="background:linear-gradient(135deg,#fff,var(--accent-warm));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">CLICK TO</div>
+            <div id="big-word-sub" style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-muted);margin-top:8px;">Generate a random word</div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:16px;justify-content:center;">
+            <button class="btn btn-secondary" onclick="RWG.generateOne()">🎲 New Word</button>
+            <button class="btn btn-ghost" onclick="RWG.copyBigWord()">📋 Copy</button>
+            <button class="btn btn-ghost" onclick="RWG.addBigWordToList()">+ Save</button>
+          </div>
+          <div id="saved-words-section" style="margin-top:24px;display:none;">
+            <div style="font-weight:700;margin-bottom:12px;font-size:0.9rem;">Saved Words</div>
+            <div id="saved-words-list" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
+          </div>
+        </div>
+
+        <!-- Grid/List Output -->
+        <div id="main-output">
+          <div id="output-grid" style="display:none;" class="word-grid-display"></div>
+          <div id="output-list" style="display:none;" class="word-history"></div>
+          <div id="output-placeholder" style="padding:60px 20px;text-align:center;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);">
+            <div style="font-size:3rem;margin-bottom:12px;">🎲</div>
+            <p>Configure your filters and click Generate Words</p>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid-4 fade-in" style="margin-top:24px;" id="rw-stats-row">
+          <div class="card" style="text-align:center;padding:20px;"><div style="font-size:1.5rem;font-weight:800;color:var(--accent-warm);font-family:var(--font-display);" id="rw-stat-count">0</div><div style="font-size:0.78rem;color:var(--text-muted);">Generated</div></div>
+          <div class="card" style="text-align:center;padding:20px;"><div style="font-size:1.5rem;font-weight:800;color:var(--accent);font-family:var(--font-display);" id="rw-stat-avg">0</div><div style="font-size:0.78rem;color:var(--text-muted);">Avg Length</div></div>
+          <div class="card" style="text-align:center;padding:20px;"><div style="font-size:1.5rem;font-weight:800;color:var(--accent-3);font-family:var(--font-display);" id="rw-stat-short">—</div><div style="font-size:0.78rem;color:var(--text-muted);">Shortest</div></div>
+          <div class="card" style="text-align:center;padding:20px;"><div style="font-size:1.5rem;font-weight:800;color:#a78bfa;font-family:var(--font-display);" id="rw-stat-long">—</div><div style="font-size:0.78rem;color:var(--text-muted);">Longest</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO -->
+<section id="how-to" class="section section-anchor" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header fade-in"><span class="eyebrow">Guide</span><h2>How to Use the Random Word Generator</h2></div>
+    <div class="steps-timeline fade-in">
+      <div class="step-item"><div class="step-num" style="color:var(--accent-warm);border-color:rgba(245,158,11,0.3);">1</div><h3>Set Your Filters</h3><p>Choose how many words you need, set minimum and maximum word lengths, pick a starting letter, or select a category like Animals, Food, or Tech.</p></div>
+      <div class="step-item"><div class="step-num" style="color:var(--accent-warm);border-color:rgba(245,158,11,0.3);">2</div><h3>Choose Display Mode</h3><p>View results as a grid for bulk generation, a detailed list showing word length, or "Big Word" mode for one random word at a time — great for games.</p></div>
+      <div class="step-item"><div class="step-num" style="color:var(--accent-warm);border-color:rgba(245,158,11,0.3);">3</div><h3>Generate</h3><p>Click Generate Words and your filtered random word list appears instantly. Click any word to copy it, or use Copy All for the full list.</p></div>
+      <div class="step-item"><div class="step-num" style="color:var(--accent-warm);border-color:rgba(245,158,11,0.3);">4</div><h3>Use Your Words</h3><p>Copy your words for games, writing prompts, or vocabulary lists. Click "→ Word Search" to send the list directly to our word search generator.</p></div>
+    </div>
+    <div class="grid-3 fade-in" style="margin-top:60px;">
+      <div class="card"><div class="feature-icon icon-amber">🎮</div><h3>Word Games</h3><p>Use random words for Scrabble practice, vocabulary quizzes, spelling bees, or as starting points for word association games.</p></div>
+      <div class="card"><div class="feature-icon icon-cyan">✍️</div><h3>Writing Prompts</h3><p>Generate 3–5 random words and use them as the basis for a short story, poem, or creative writing exercise. The constraint sparks creativity.</p></div>
+      <div class="card"><div class="feature-icon icon-green">📚</div><h3>Vocabulary Building</h3><p>Challenge yourself to learn 10 new random words per day. Use length filters to target words appropriate for your level.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DESCRIPTION -->
+<section class="section section-anchor">
+  <div class="container">
+    <div class="section-header fade-in"><span class="eyebrow">About</span><h2>The Most Flexible Free Random Word Generator</h2></div>
+    <div class="grid-2 fade-in">
+      <div><h3 style="margin-bottom:12px;">Random Word Generator for Word Games</h3><p>Whether you're playing Scrabble, Words With Friends, or creating a custom quiz, our random word generator gives you a fresh set of words in seconds. The starting letter filter is especially useful for games that require words beginning with a specific letter.</p><br><p>The "Big Word" display mode is designed for live game use — tap the screen to reveal one word at a time, making it perfect for flashcard-style vocabulary games, pub quizzes, or classroom spelling challenges.</p></div>
+      <div><h3 style="margin-bottom:12px;">Random Word Generator for Puzzle Creators</h3><p>Creating word search puzzles, crosswords, or anagram challenges requires consistent word lists. Our generator produces themed word sets across 9 categories, letting puzzle makers quickly assemble content without manually curating word lists.</p><br><p>The "→ Word Search" button sends your generated word list directly to the Word Search Generator, creating a complete workflow: generate words → auto-build puzzle → print with answer key. All without leaving the site.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-anchor" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header fade-in"><span class="eyebrow">FAQ</span><h2>Random Word Generator — Frequently Asked Questions</h2></div>
+    <div class="faq-list fade-in">
+      <div class="faq-item"><div class="faq-question">How random are the generated words?<span class="faq-icon">+</span></div><div class="faq-answer"><p>Words are selected using JavaScript's Math.random(), which provides cryptographically-sufficient randomness for word generation. Each click produces a statistically independent random selection from the filtered word pool, so you'll rarely see the same word twice in a row for large categories.</p></div></div>
+      <div class="faq-item"><div class="faq-question">Can I generate words for specific school grade levels?<span class="faq-icon">+</span></div><div class="faq-answer"><p>Yes — use the word length filter. Elementary school words are typically 3–6 letters; middle school 5–9 letters; high school and above 8–15 letters. Combined with category filters (like "adjectives" or "nature"), you can generate grade-appropriate vocabulary lists quickly.</p></div></div>
+      <div class="faq-item"><div class="faq-question">Can I use the words directly in the Word Search Generator?<span class="faq-icon">+</span></div><div class="faq-answer"><p>Yes! After generating your word list, click the "→ Word Search" button. This stores your words in the browser's session and automatically populates the Word Search Generator's word list input — taking you directly from word generation to puzzle creation.</p></div></div>
+      <div class="faq-item"><div class="faq-question">How many words can I generate at once?<span class="faq-icon">+</span></div><div class="faq-answer"><p>The slider goes up to 50 words per generation. For bulk word lists, you can generate multiple batches and copy-paste them together. There's no daily limit — generate as many times as you like.</p></div></div>
+      <div class="faq-item"><div class="faq-question">Does the generator work with the 450K word dictionary?<span class="faq-icon">+</span></div><div class="faq-answer"><p>Yes! If you have the words.txt file loaded (the 450K dictionary from the main solver), the random word generator draws from that full database. Without it, it uses a built-in curated word list of ~2,000 common English words per category.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-sm" style="text-align:center;"><div class="container"><div class="cta-box fade-in" style="padding:60px 40px;">
+  <h2 style="margin-bottom:16px;">Generate Your Random Words</h2>
+  <p style="max-width:420px;margin:0 auto 32px;">Pick your filters and get a fresh word list instantly — for games, writing, learning, or puzzles.</p>
+  <a href="#generator" class="btn btn-lg" style="background:var(--accent-warm);color:#000;">Generate Words Now →</a>
+  <div style="margin-top:24px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap;">
+    <a href="printable-word-search.html" style="color:var(--text-muted);font-size:0.88rem;">← Printable Puzzles</a>
+    <a href="crossword-solver.html" style="color:var(--text-muted);font-size:0.88rem;">Crossword Solver →</a>
+  </div>
+</div></div></section>
+
+<div id="footer-placeholder"></div>
+<script src="components/header.js"></script>
+<script src="components/footer.js"></script>
+<script>
+const RWG = {
+  selectedLetter: 'any', selectedCat: 'all', savedWords: [], wordList450k: [],
+  CATEGORIES: {
+    all: ['APPLE','BRAVE','CLOUD','DELTA','EAGLE','FLAME','GRACE','HAPPY','INDEX','JUMBO','KNEEL','LEMON','MAGIC','NIGHT','OCEAN','PIANO','QUEST','RIVER','SOLAR','TIGER','ULTRA','VIVID','WATER','XENON','YACHT','ZEBRA','CRISP','DAILY','ELDER','FROST','GLOBE','HOUSE','IVORY','JOINT','KNIFE','LIGHT','MOUNT','NOBLE','ORBIT','PRIME','QUEEN','RAPID','STONE','TRUST','UNION','VALOR','WHOLE','EXTRA','YOUNG','BASIC','CHAIN','DREAM','EMPTY','FIXED','GREAT','HEAVY','IDEAL','JUDGE','KNOWN','LARGE','MAJOR','NORTH','OFTEN','PLACE','QUIET','ROUGH','SMALL','THICK','UPPER','VALID','WASTE','EXACT','YIELD','ZEROS','ABOUT','BELOW','CATCH','DRIVE','EARLY','FAITH','GIANT','HONOR','IMAGE','JEWEL','KNOCK','LOCAL','MODEL','NERVE','OTHER','PANEL','ROYAL','SHARE','TOWER','UNDER','VOICE','WORLD','CROSS','FORCE','GUARD','HEART','INPUT','LEVEL','METAL','NOVEL','OFFER','POWER','SUGAR','THINK','ULTRA','VALUE','WRITE'],
+    animals: ['TIGER','EAGLE','SHARK','PANDA','COBRA','BISON','HYENA','MOOSE','HIPPO','LLAMA','ZEBRA','RHINO','OTTER','VIPER','CRANE','STORK','BISON','DINGO','FINCH','GECKO','HERON','IGUANA','JACKAL','KOALA','LEMUR','MAMBA','NEWT','OKAPI','PUFFIN','QUAIL','RAVEN','SLOTH','TAPIR','URIAL','VOLE','WOMBAT','XENOPS','YABBY','ZORILLA'],
+    nature: ['CLOUD','OCEAN','RIVER','STORM','FROST','CEDAR','MAPLE','BIRCH','CORAL','DELTA','FJORD','GLADE','HAVEN','INLET','JUNGLE','KARST','LAGOON','MEADOW','NIMBUS','OASIS','PRAIRIE','QUARTZ','RAVINE','SAVANNA','TUNDRA','VALLEY','MARSH','BROOK','CLIFF','DUNES'],
+    food: ['APPLE','MANGO','GRAPE','PEACH','LEMON','MELON','BERRY','GUAVA','PAPAYA','PLUM','PIZZA','PASTA','BREAD','CREAM','HONEY','BACON','SUSHI','CURRY','SALAD','TACOS','BAGEL','DONUT','FUDGE','LATTE','MOCHA','NAAN','OLIVE','PESTO','RAMEN','STEAK','THYME','UMAMI','WAFFLE'],
+    colors: ['AMBER','AZURE','BEIGE','CORAL','CREAM','EBONY','FAWN','GOLD','IVORY','JADE','KHAKI','LILAC','MAROON','NAVY','OCHRE','PEARL','RUBY','SAGE','TEAL','UMBER','VIOLET','WHITE','YELLOW','SCARLET','INDIGO','TURQUOISE','CRIMSON','MAGENTA'],
+    verbs: ['CHASE','BUILD','CRAFT','DANCE','EXCEL','FORGE','GRASP','HOVER','INFER','JUMP','KNEEL','LAUNCH','MORPH','NUDGE','ORBIT','PIVOT','QUEST','REACH','SURGE','THRIVE','UPEND','VAULT','WIELD','YEARN','ZOOMS','BLEND','CLIMB','DRIVE','EXPAND','FILTER'],
+    adjectives: ['AGILE','BRAVE','CRISP','DENSE','EAGER','FLUID','GIANT','HARDY','IDEAL','JOVIAL','KEEN','LUCID','MUTED','NOBLE','OVERT','PRIME','QUIET','RIGID','SWIFT','TENSE','VIVID','WARM','EXACT','YOUNG','ZESTY','BOLD','CLEAR','DARK','EPIC','FAIR'],
+    places: ['PARIS','TOKYO','CAIRO','DELHI','OSLO','ROME','LIMA','BERN','DUBAI','ACCRA','KABUL','LISBON','MADRID','NAIROBI','OTTAWA','PRAGUE','QUITO','RIGA','SOFIA','TUNIS','VIENNA','WARSAW','BERLIN','ATHENS','BOGOTA','DUBLIN','GENEVA','HAVANA'],
+    tech: ['CLOUD','PIXEL','CACHE','CODEC','DEBUG','PROXY','TOKEN','ARRAY','QUEUE','STACK','BINARY','CIPHER','DATA','EPOCH','FRAME','GRAPH','HASH','INDEX','LOGIC','MODEL','NODE','PARSE','REGEX','SHARD','TABLE','UTF','VECTOR','WIDGET','XPATH'],
+    emotions: ['HAPPY','CALM','BRAVE','EAGER','PROUD','JOYFUL','SERENE','ELATED','CONTENT','HOPEFUL','ANXIOUS','WISTFUL','TENDER','FIERCE','BOLD','CURIOUS','HUMBLE','LOYAL','MELLOW','NOBLE','PENSIVE','RADIANT','SINCERE','WARM','ZEALOUS']
+  },
+
+  setLetter(l, el) {
+    this.selectedLetter = l;
+    document.querySelectorAll('.lp-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+  },
+  setCat(c, el) {
+    this.selectedCat = c;
+    document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+  },
+
+  getPool() {
+    let pool = this.wordList450k.length > 0 ? this.wordList450k.map(w=>w.toUpperCase()) : (this.CATEGORIES[this.selectedCat] || this.CATEGORIES.all);
+    if (this.selectedCat !== 'all' && this.wordList450k.length === 0) pool = this.CATEGORIES[this.selectedCat] || this.CATEGORIES.all;
+    const minLen = parseInt(document.getElementById('min-len')?.value || 3);
+    const maxLen = parseInt(document.getElementById('max-len')?.value || 12);
+    pool = pool.filter(w => w.length >= minLen && w.length <= maxLen);
+    if (this.selectedLetter !== 'any') pool = pool.filter(w => w.startsWith(this.selectedLetter));
+    return pool;
+  },
+
+  generate() {
+    const mode = document.getElementById('display-mode')?.value || 'grid';
+    const count = parseInt(document.getElementById('word-count')?.value || 10);
+    const pool = this.getPool();
+    if (!pool.length) { this.toast('No words match your filters. Try adjusting length or letter.', 'error'); return; }
+    const words = [];
+    const used = new Set();
+    let attempts = 0;
+    while (words.length < Math.min(count, pool.length) && attempts < 1000) {
+      const w = pool[Math.floor(Math.random() * pool.length)];
+      if (!used.has(w)) { used.add(w); words.push(w); }
+      attempts++;
+    }
+
+    document.getElementById('big-word-mode').style.display = mode === 'big' ? 'block' : 'none';
+    document.getElementById('main-output').style.display = mode !== 'big' ? 'block' : 'none';
+
+    if (mode === 'big') { this.currentPool = words; this.generateOne(); return; }
+    if (mode === 'grid') this.renderGrid(words);
+    if (mode === 'list') this.renderList(words);
+    this.updateStats(words);
+  },
+
+  renderGrid(words) {
+    const g = document.getElementById('output-grid');
+    const l = document.getElementById('output-list');
+    const p = document.getElementById('output-placeholder');
+    g.style.display = 'grid'; l.style.display = 'none'; p.style.display = 'none';
+    g.innerHTML = words.map(w => `<div class="wgd-item" onclick="navigator.clipboard?.writeText('${w}');this.style.borderColor='var(--accent-3)';setTimeout(()=>this.style.borderColor='',1000);"><span>${w}</span><span class="wgd-len">${w.length}</span></div>`).join('');
+  },
+
+  renderList(words) {
+    const g = document.getElementById('output-grid');
+    const l = document.getElementById('output-list');
+    const p = document.getElementById('output-placeholder');
+    l.style.display = 'flex'; g.style.display = 'none'; p.style.display = 'none';
+    l.innerHTML = words.map((w,i) => `<div class="wh-item"><span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);">${String(i+1).padStart(2,'0')}</span><span class="wh-word">${w}</span><span class="wh-meta">${w.length} letters</span><span class="wh-len">${w.length}</span><button class="wh-copy" onclick="navigator.clipboard?.writeText('${w}');this.textContent='✓';setTimeout(()=>this.textContent='📋',1000);">📋</button></div>`).join('');
+  },
+
+  generateOne() {
+    const pool = this.currentPool || this.getPool();
+    if (!pool.length) return;
+    const word = pool[Math.floor(Math.random() * pool.length)];
+    const el = document.getElementById('big-word-text');
+    const sub = document.getElementById('big-word-sub');
+    const bwd = document.getElementById('big-word-display');
+    bwd.classList.add('flipping');
+    setTimeout(() => {
+      if (el) el.textContent = word;
+      if (sub) sub.textContent = `${word.length} letters`;
+      bwd.classList.remove('flipping');
+    }, 150);
+    this.currentBigWord = word;
+  },
+
+  copyBigWord() {
+    if (this.currentBigWord) { navigator.clipboard?.writeText(this.currentBigWord); this.toast(`Copied "${this.currentBigWord}"`, 'success'); }
+  },
+
+  addBigWordToList() {
+    if (!this.currentBigWord) return;
+    this.savedWords.push(this.currentBigWord);
+    const sec = document.getElementById('saved-words-section');
+    const list = document.getElementById('saved-words-list');
+    if (sec) sec.style.display = 'block';
+    if (list) list.innerHTML = this.savedWords.map(w => `<span class="badge badge-amber" style="cursor:pointer;" onclick="navigator.clipboard?.writeText('${w}')">${w}</span>`).join('');
+    this.toast(`Saved "${this.currentBigWord}"`, 'success');
+  },
+
+  copyAll() {
+    const words = [...document.querySelectorAll('.wgd-item span:first-child, .wh-word')].map(el => el.textContent);
+    if (!words.length) { this.toast('Generate words first', 'error'); return; }
+    navigator.clipboard?.writeText(words.join('\n'));
+    this.toast(`Copied ${words.length} words`, 'success');
+  },
+
+  sendToGenerator() {
+    const words = [...document.querySelectorAll('.wgd-item span:first-child, .wh-word')].map(el => el.textContent);
+    if (!words.length) { this.toast('Generate words first', 'error'); return; }
+    sessionStorage.setItem('rwg_words', words.join('\n'));
+    window.location.href = 'word-search-generator.html#generator';
+  },
+
+  updateStats(words) {
+    document.getElementById('rw-stat-count').textContent = words.length;
+    const avg = words.reduce((s,w)=>s+w.length,0)/words.length;
+    document.getElementById('rw-stat-avg').textContent = avg.toFixed(1);
+    const sorted = [...words].sort((a,b)=>a.length-b.length);
+    document.getElementById('rw-stat-short').textContent = sorted[0] || '—';
+    document.getElementById('rw-stat-long').textContent = sorted[sorted.length-1] || '—';
+  },
+
+  toast(msg, type) {
+    const c = document.getElementById('toast-container'); if(!c) return;
+    const t = document.createElement('div'); t.className=`toast ${type}`;
+    t.innerHTML=`<span>${type==='success'?'✓':'✗'}</span><span>${msg}</span>`;
+    c.appendChild(t); setTimeout(()=>{t.style.opacity='0';t.style.transition='all 0.3s';setTimeout(()=>t.remove(),300);},3000);
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  HeaderComponent.init(); FooterComponent.init();
+  // Try to load sessionStorage words from RWG
+  const storedWords = sessionStorage.getItem('rwg_words');
+  if (storedWords) { document.getElementById('words-list-input') && (document.getElementById('words-list-input').value = storedWords); sessionStorage.removeItem('rwg_words'); }
+  // Range display
+  const wc = document.getElementById('word-count');
+  const wcv = document.getElementById('word-count-val');
+  if(wc&&wcv) wc.addEventListener('input', ()=>wcv.textContent=wc.value);
+  // FAQ
+  document.querySelectorAll('.faq-question').forEach(q => { q.addEventListener('click', () => { const item=q.closest('.faq-item'),isOpen=item.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open')); if(!isOpen) item.classList.add('open'); }); });
+  const obs = new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.1});
+  document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+});
+</script>
+</body>
+</html>

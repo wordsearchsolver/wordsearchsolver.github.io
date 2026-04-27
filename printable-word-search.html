@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LDX5SDDNPD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LDX5SDDNPD');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Printable Word Search with Answer Key — Free PDF Download | WordSearchSolver</title>
+  <meta name="description" content="Create and print word search puzzles with answer keys instantly. One-click PDF export for clean black-and-white grids with optional highlighted solution pages. Free, no sign-up.">
+  <meta name="keywords" content="printable word search, word search answer key, word search PDF, printable word search puzzle, word search with answers, print word search free, word search worksheet">
+  <link rel="canonical" href="https://wordsearchsolver.github.io/printable-word-search">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <meta property="og:title" content="Printable Word Search with Answer Key — Free PDF">
+  <meta property="og:description" content="Generate and print professional word search puzzles with answer keys. Perfect for classrooms, activity books, and party packs.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Printable Word Search with Answer Key",
+        "url": "https://wordsearchsolver.github.io/printable-word-search",
+        "description": "Free printable word search puzzle creator with answer key. Export to PDF for classrooms, homeschooling, and activity books.",
+        "applicationCategory": "UtilitiesApplication",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "How do I print a word search with an answer key?", "acceptedAnswer": { "@type": "Answer", "text": "Generate your puzzle, then click 'Print with Key'. This opens a print dialog with both the puzzle page and a color-highlighted answer page ready to print." } }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    @media print {
+      body * { visibility: hidden; }
+      #print-zone, #print-zone * { visibility: visible; }
+      #print-zone { position: fixed; top: 0; left: 0; right: 0; background: #fff; padding: 24px; }
+    }
+    #print-zone { display: none; }
+    .print-layout { font-family: 'Courier New', monospace; color: #000; background: #fff; }
+    .print-page { page-break-after: always; padding: 20px; }
+    .print-page h2 { font-family: Georgia, serif; text-align: center; font-size: 1.8rem; margin-bottom: 4px; }
+    .print-page .pt-sub { text-align: center; font-size: 0.85rem; color: #666; margin-bottom: 16px; }
+    .print-page .pt-name { border-bottom: 1px solid #ccc; width: 200px; display: inline-block; margin-left: 8px; }
+    .print-meta { display: flex; justify-content: space-between; font-size: 0.82rem; color: #555; margin-bottom: 16px; padding: 6px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+    .print-grid-wrap { text-align: center; margin-bottom: 16px; }
+    .print-grid-tbl { display: inline-grid; gap: 3px; border: 2px solid #333; padding: 8px; }
+    .pg-cell { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 700; border: 1px solid #eee; }
+    .pg-cell.ans { background: #ffd700; color: #000; }
+    .pw-section { margin-top: 12px; }
+    .pw-section h3 { font-family: Georgia, serif; border-bottom: 2px solid #333; padding-bottom: 4px; margin-bottom: 10px; }
+    .pw-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+    .pw-item { font-size: 0.82rem; padding: 3px; }
+    /* App Styles */
+    .print-app { display: grid; grid-template-columns: 360px 1fr; gap: 32px; align-items: start; }
+    .template-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+    .template-card { padding: 16px; background: var(--bg-card); border: 2px solid var(--border); border-radius: var(--radius); cursor: pointer; text-align: center; transition: var(--transition); }
+    .template-card:hover, .template-card.active { border-color: var(--accent); background: rgba(0,212,255,0.05); }
+    .template-card .tc-icon { font-size: 1.6rem; margin-bottom: 6px; }
+    .template-card .tc-name { font-size: 0.82rem; font-weight: 600; }
+    .preview-area { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .preview-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .preview-body { padding: 24px; }
+    /* Printable grid preview */
+    #preview-grid { display: inline-grid; gap: 2px; }
+    #preview-grid .pvc { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; border-radius: 3px; background: rgba(255,255,255,0.03); color: var(--text-secondary); border: 1px solid rgba(255,255,255,0.06); }
+    #preview-grid .pvc.w { background: rgba(0,212,255,0.12); color: var(--accent); }
+    .export-btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+    @media (max-width: 1024px) { .print-app { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .template-cards { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+<div id="header-placeholder"></div>
+<div class="toast-container" id="toast-container"></div>
+<div id="print-zone"><div class="print-layout" id="print-layout-content"></div></div>
+
+<!-- HERO -->
+<section id="hero" style="padding-top:120px;padding-bottom:60px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(124,58,237,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,0.04) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;"></div>
+  <div style="position:absolute;width:500px;height:500px;top:-150px;left:-100px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.12),transparent 70%);filter:blur(60px);pointer-events:none;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div style="max-width:700px;">
+      <div style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:#a78bfa;margin-bottom:20px;"><span style="width:6px;height:6px;background:#a78bfa;border-radius:50%;display:block;"></span>Print · PDF · Answer Key</div>
+      <h1 style="background:linear-gradient(135deg,#fff 0%,#a78bfa 50%,var(--accent-2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:20px;">Printable Word Search<br>with Answer Key</h1>
+      <p style="font-size:1.1rem;max-width:560px;margin-bottom:32px;">Generate print-perfect word search puzzles with a one-click PDF export. Choose a template, enter your words, and get a professional puzzle sheet with a separate answer key page.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="#print-app" class="btn btn-lg" style="background:#a78bfa;color:#000;box-shadow:0 0 20px rgba(167,139,250,0.3);">Create Printable Puzzle →</a>
+        <a href="#how-to" class="btn btn-secondary btn-lg">How It Works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINT APP -->
+<section id="print-app" class="section section-anchor" style="padding-top:60px;">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="eyebrow" style="color:#a78bfa;background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2);">Print Studio</span>
+      <h2>Design Your Printable Puzzle</h2>
+      <p>Choose a template, customize your content, and export a print-ready PDF with an optional answer key.</p>
+    </div>
+    <div class="print-app">
+      <!-- Controls -->
+      <aside class="fade-in" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;position:sticky;top:90px;">
+        <div style="padding:20px 24px;border-bottom:1px solid var(--border);background:rgba(124,58,237,0.06);">
+          <div style="font-weight:700;">🖨 Print Settings</div>
+          <div style="font-size:0.78rem;color:var(--text-muted);">Customize your printable puzzle</div>
+        </div>
+        <div style="padding:24px;">
+          <div class="form-group">
+            <label class="form-label">Layout Template</label>
+            <div class="template-cards">
+              <div class="template-card active" onclick="PrintTool.setTemplate('classic',this)" data-template="classic"><div class="tc-icon">📄</div><div class="tc-name">Classic</div></div>
+              <div class="template-card" onclick="PrintTool.setTemplate('compact',this)" data-template="compact"><div class="tc-icon">📰</div><div class="tc-name">Compact</div></div>
+              <div class="template-card" onclick="PrintTool.setTemplate('large',this)" data-template="large"><div class="tc-icon">🗞</div><div class="tc-name">Large</div></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pt-title">Puzzle Title</label>
+            <input type="text" class="form-input" id="pt-title" value="Word Search Puzzle" placeholder="Your puzzle title">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pt-subtitle">Subtitle / Instructions</label>
+            <input type="text" class="form-input" id="pt-subtitle" value="Find all the hidden words below" placeholder="Instructions line">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Student Name Line</label>
+            <label class="toggle-item" style="cursor:pointer;">
+              <span class="toggle-label">Show "Name: ___" line</span>
+              <label class="toggle"><input type="checkbox" id="pt-name-line" checked><span class="toggle-slider"></span></label>
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pt-words">Words to Hide</label>
+            <textarea class="form-textarea" id="pt-words" style="min-height:160px;" placeholder="PUZZLE&#10;PRINT&#10;WORDS&#10;SEARCH&#10;SOLVE&#10;FIND&#10;GRID&#10;LETTERS">PUZZLE
+PRINT
+WORDS
+SEARCH
+SOLVE
+FIND
+GRID
+LETTERS</textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Grid Size</label>
+              <select class="form-select" id="pt-size">
+                <option value="12">12×12</option>
+                <option value="15" selected>15×15</option>
+                <option value="20">20×20</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Paper Size</label>
+              <select class="form-select" id="pt-paper">
+                <option value="a4">A4</option>
+                <option value="letter" selected>Letter</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn btn-lg" style="width:100%;background:#a78bfa;color:#000;margin-bottom:10px;" onclick="PrintTool.generate()">⚡ Generate Preview</button>
+          <div class="export-btn-row">
+            <button class="btn btn-secondary" onclick="PrintTool.doPrint(false)">🖨 Print Puzzle</button>
+            <button class="btn btn-secondary" onclick="PrintTool.doPrint(true)">🗝 Print + Key</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Preview -->
+      <div class="fade-in fade-in-delay-1">
+        <div class="preview-area">
+          <div class="preview-header">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-weight:700;">Print Preview</span>
+              <span class="badge badge-purple" id="preview-badge">Not generated</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <label style="font-size:0.82rem;color:var(--text-muted);display:flex;align-items:center;gap:6px;cursor:pointer;">
+                <input type="checkbox" id="preview-show-answers" onchange="PrintTool.togglePreviewAnswers(this.checked)" style="accent-color:#a78bfa;">
+                Preview Answers
+              </label>
+            </div>
+          </div>
+          <div class="preview-body" style="text-align:center;">
+            <div id="preview-placeholder" style="padding:60px 20px;color:var(--text-muted);">
+              <div style="font-size:3rem;margin-bottom:12px;">🖨</div>
+              <p>Configure your puzzle and click Generate Preview</p>
+            </div>
+            <div id="preview-content" style="display:none;">
+              <div style="background:#fff;border-radius:12px;padding:20px;box-shadow:0 4px 32px rgba(0,0,0,0.3);">
+                <div style="text-align:center;margin-bottom:12px;">
+                  <div id="preview-title" style="font-family:Georgia,serif;font-size:1.4rem;color:#000;font-weight:700;"></div>
+                  <div id="preview-subtitle" style="font-size:0.82rem;color:#555;margin:4px 0;"></div>
+                  <div id="preview-name-line" style="font-size:0.82rem;color:#333;margin-top:8px;border-top:1px solid #ddd;padding-top:8px;">Name: <span style="display:inline-block;width:180px;border-bottom:1px solid #333;">&nbsp;</span></div>
+                </div>
+                <div style="overflow-x:auto;">
+                  <div id="preview-grid" style="display:inline-grid;gap:2px;"></div>
+                </div>
+                <div style="margin-top:16px;text-align:left;">
+                  <div style="font-size:0.78rem;color:#333;font-weight:700;margin-bottom:8px;font-family:Georgia,serif;border-bottom:1px solid #ccc;padding-bottom:4px;">WORD LIST</div>
+                  <div id="preview-wordlist" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="grid-3 fade-in" style="margin-top:24px;" id="print-stats" style="display:none;">
+          <div class="card" style="text-align:center;padding:20px;"><div style="font-size:1.6rem;font-weight:800;color:#a78bfa;font-family:var(--font-display);" id="ps-words">0</div><div style="font-size:0.8rem;color:var(--text-muted);">Words Hidden</div></div>
+          <div class="card" style="text-align:center;padding:20px;"><div style="font-size:1.6rem;font-weight:800;color:var(--accent);font-family:var(--font-display);" id="ps-cells">0</div><div style="font-size:0.8rem;color:var(--text-muted);">Total Cells</div></div>
+          <div class="card" style="text-align:center;padding:20px;"><div style="font-size:1.6rem;font-weight:800;color:var(--accent-3);font-family:var(--font-display);">PDF</div><div style="font-size:0.8rem;color:var(--text-muted);">Export Ready</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO -->
+<section id="how-to" class="section section-anchor" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header fade-in"><span class="eyebrow">Guide</span><h2>How to Print a Word Search with Answer Key</h2><p>Professional print-ready puzzles in four steps — no software required.</p></div>
+    <div class="steps-timeline fade-in">
+      <div class="step-item"><div class="step-num" style="color:#a78bfa;border-color:rgba(167,139,250,0.3);">1</div><h3>Choose a Template</h3><p>Pick Classic, Compact, or Large layout. Each template is optimized for standard A4 or Letter-size paper printing.</p></div>
+      <div class="step-item"><div class="step-num" style="color:#a78bfa;border-color:rgba(167,139,250,0.3);">2</div><h3>Enter Your Content</h3><p>Add a puzzle title, optional subtitle or student name line, and the words to hide in the grid.</p></div>
+      <div class="step-item"><div class="step-num" style="color:#a78bfa;border-color:rgba(167,139,250,0.3);">3</div><h3>Generate Preview</h3><p>See your print-ready puzzle instantly. Toggle "Preview Answers" to verify all words are correctly placed.</p></div>
+      <div class="step-item"><div class="step-num" style="color:#a78bfa;border-color:rgba(167,139,250,0.3);">4</div><h3>Print or Save PDF</h3><p>Click "Print Puzzle" for students or "Print + Key" for teachers. Use "Save as PDF" in print dialog to create a file.</p></div>
+    </div>
+    <div class="grid-3 fade-in" style="margin-top:60px;">
+      <div class="card"><div class="feature-icon icon-purple">📋</div><h3>Clean Print Output</h3><p>All headers, navigation, and decorative elements are hidden during printing. Only the puzzle and answer key appear on paper.</p></div>
+      <div class="card"><div class="feature-icon icon-cyan">🗝</div><h3>Separate Answer Key</h3><p>The answer key prints as a second page with all hidden words highlighted in yellow on the same grid for easy checking.</p></div>
+      <div class="card"><div class="feature-icon icon-green">📐</div><h3>Optimized for Paper</h3><p>Font sizes, grid spacing, and layout are tuned for A4 and US Letter paper. No manual formatting adjustments needed.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DESCRIPTION -->
+<section class="section section-anchor">
+  <div class="container">
+    <div class="section-header fade-in"><span class="eyebrow">About</span><h2>Professional Printable Word Searches — Free</h2></div>
+    <div class="grid-2 fade-in">
+      <div>
+        <h3 style="margin-bottom:12px;">Printable Word Search Puzzles for Classrooms</h3>
+        <p>Teachers need reliable tools that produce clean, professional-looking worksheets without requiring design skills or expensive software. Our printable word search tool generates classroom-ready puzzles that look like they came from a published workbook.</p>
+        <br><p>The optional student name line, professional title layout, and word list formatting are all designed around standard classroom worksheet conventions. Teachers can print class sets in minutes and retain the answer key for grading reference.</p>
+        <br><div style="display:flex;gap:8px;flex-wrap:wrap;"><span class="badge badge-purple">Classroom ready</span><span class="badge badge-cyan">Answer key included</span><span class="badge badge-green">A4 & Letter size</span></div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px;">Printable Word Searches for Activity Books</h3>
+        <p>Content creators producing activity books, party packs, or puzzle collections can use our tool to rapidly generate unique word search pages. Each generation produces a different grid layout — so generating 20 unique puzzles for a book takes minutes, not hours.</p>
+        <br><p>The three layout templates (Classic, Compact, Large) let you match your publication style. Classic is ideal for standard activity books; Compact fits more puzzles per page; Large is optimized for primary-school and large-print audiences.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-anchor" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header fade-in"><span class="eyebrow">FAQ</span><h2>Printable Word Search — Frequently Asked Questions</h2></div>
+    <div class="faq-list fade-in">
+      <div class="faq-item"><div class="faq-question">How do I save the puzzle as a PDF?<span class="faq-icon">+</span></div><div class="faq-answer"><p>Click "Print Puzzle" or "Print + Key" to open your browser's print dialog. In the dialog, change the destination to "Save as PDF" (Chrome/Edge) or select "PDF" from the printer dropdown (Safari/Firefox). The resulting file will be a clean, paper-optimized PDF.</p></div></div>
+      <div class="faq-item"><div class="faq-question">Will the answer key print on a separate page?<span class="faq-icon">+</span></div><div class="faq-answer"><p>Yes. When you click "Print + Key", the print output includes two pages: page 1 is the clean puzzle for students, and page 2 is an identical grid with all hidden words highlighted in yellow — the teacher's answer key. These print as separate sheets.</p></div></div>
+      <div class="faq-item"><div class="faq-question">Can I customize the puzzle title and instructions?<span class="faq-icon">+</span></div><div class="faq-answer"><p>Absolutely. You can set a custom puzzle title (e.g., "Chapter 5 Vocabulary") and a subtitle/instruction line (e.g., "Find all the science terms below"). These appear prominently on the printed puzzle sheet.</p></div></div>
+      <div class="faq-item"><div class="faq-question">What paper sizes does the print tool support?<span class="faq-icon">+</span></div><div class="faq-answer"><p>The tool supports both A4 (international standard) and US Letter (8.5×11 inch) paper sizes. Select your paper size in the settings before generating. The grid layout scales appropriately for each format.</p></div></div>
+      <div class="faq-item"><div class="faq-question">Is this free for commercial use in activity books?<span class="faq-icon">+</span></div><div class="faq-answer"><p>The puzzles you generate are yours to use freely — including in commercial activity books, worksheets for sale, or educational materials. We only ask that you don't resell access to the tool itself.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-sm" style="text-align:center;">
+  <div class="container"><div class="cta-box fade-in" style="padding:60px 40px;">
+    <h2 style="margin-bottom:16px;">Create Your Printable Puzzle Now</h2>
+    <p style="max-width:420px;margin:0 auto 32px;">Generate a professional word search with answer key in under a minute.</p>
+    <a href="#print-app" class="btn btn-lg" style="background:#a78bfa;color:#000;">Design & Print →</a>
+    <div style="margin-top:24px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap;">
+      <a href="word-search-generator.html" style="color:var(--text-muted);font-size:0.88rem;">← Generator</a>
+      <a href="random-word-generator.html" style="color:var(--text-muted);font-size:0.88rem;">Random Words →</a>
+    </div>
+  </div></div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="components/header.js"></script>
+<script src="components/footer.js"></script>
+<script>
+const PrintTool = {
+  grid: [], size: 15, placedWords: [], template: 'classic',
+  DIRS: [[0,1],[0,-1],[1,0],[-1,0],[1,1],[1,-1],[-1,1],[-1,-1]],
+  COLORS_HEX: ['ffd700','ffa500','90ee90','87ceeb','dda0dd','f0e68c'],
+
+  setTemplate(t, el) {
+    this.template = t;
+    document.querySelectorAll('.template-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  },
+
+  generate() {
+    const wordsRaw = document.getElementById('pt-words')?.value || '';
+    const words = wordsRaw.split('\n').map(w => w.trim().toUpperCase()).filter(w => /^[A-Z]+$/.test(w));
+    if (!words.length) { this.toast('Enter words first', 'error'); return; }
+    this.size = parseInt(document.getElementById('pt-size')?.value || 15);
+    this.grid = Array.from({length: this.size}, () => Array(this.size).fill(''));
+    this.placedWords = [];
+    const sorted = [...words].sort((a,b) => b.length - a.length);
+    sorted.forEach((word, wi) => {
+      for (let att = 0; att < 300; att++) {
+        const [dr,dc] = this.DIRS[Math.floor(Math.random()*this.DIRS.length)];
+        const r = Math.floor(Math.random()*this.size), c = Math.floor(Math.random()*this.size);
+        if (this.canPlace(word,r,c,dr,dc)) { this.doPlace(word,r,c,dr,dc,wi); break; }
+      }
+    });
+    this.fillGrid();
+    this.renderPreview();
+    this.toast('Preview ready!', 'success');
+  },
+
+  canPlace(w,r,c,dr,dc) {
+    for (let i=0;i<w.length;i++) { const nr=r+dr*i,nc=c+dc*i; if(nr<0||nr>=this.size||nc<0||nc>=this.size) return false; if(this.grid[nr][nc]&&this.grid[nr][nc]!==w[i]) return false; } return true;
+  },
+  doPlace(w,r,c,dr,dc,wi) {
+    const cells=[]; for(let i=0;i<w.length;i++){this.grid[r+dr*i][c+dc*i]=w[i];cells.push([r+dr*i,c+dc*i]);} this.placedWords.push({word:w,cells,color:'#'+this.COLORS_HEX[wi%this.COLORS_HEX.length]});
+  },
+  fillGrid() {
+    const a='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    for(let r=0;r<this.size;r++) for(let c=0;c<this.size;c++) if(!this.grid[r][c]) this.grid[r][c]=a[Math.floor(Math.random()*26)];
+  },
+
+  renderPreview() {
+    const ph = document.getElementById('preview-placeholder');
+    const pc = document.getElementById('preview-content');
+    if (ph) ph.style.display = 'none';
+    if (pc) pc.style.display = 'block';
+    document.getElementById('preview-title').textContent = document.getElementById('pt-title')?.value || 'Word Search';
+    document.getElementById('preview-subtitle').textContent = document.getElementById('pt-subtitle')?.value || '';
+    const nameLine = document.getElementById('preview-name-line');
+    if (nameLine) nameLine.style.display = document.getElementById('pt-name-line')?.checked ? 'block' : 'none';
+    // Grid
+    const g = document.getElementById('preview-grid');
+    g.style.gridTemplateColumns = `repeat(${this.size},28px)`;
+    g.innerHTML = '';
+    for(let r=0;r<this.size;r++) for(let c=0;c<this.size;c++) {
+      const cell = document.createElement('div');
+      cell.className='pvc'; cell.textContent=this.grid[r][c]; cell.dataset.r=r; cell.dataset.c=c;
+      const pw = this.placedWords.find(p=>p.cells.some(([pr,pc])=>pr===r&&pc===c));
+      if(pw){ cell.classList.add('w'); cell.dataset.wcolor=pw.color; }
+      g.appendChild(cell);
+    }
+    // Word list
+    const wl = document.getElementById('preview-wordlist');
+    wl.innerHTML = this.placedWords.map(pw=>`<span style="font-size:0.78rem;padding:3px 8px;background:#f5f5f5;color:#333;border-radius:4px;font-family:monospace;">${pw.word}</span>`).join('');
+    // Badge
+    const badge = document.getElementById('preview-badge');
+    if (badge) { badge.textContent = `${this.size}×${this.size} · ${this.placedWords.length} words`; badge.className = 'badge badge-purple'; }
+    // Stats
+    const ps = document.getElementById('print-stats');
+    if(ps) { ps.style.display='grid'; document.getElementById('ps-words').textContent=this.placedWords.length; document.getElementById('ps-cells').textContent=this.size*this.size; }
+  },
+
+  togglePreviewAnswers(show) {
+    document.querySelectorAll('#preview-grid .pvc.w').forEach(cell => {
+      cell.style.background = show ? (cell.dataset.wcolor+'33') : '';
+      cell.style.color = show ? cell.dataset.wcolor : '';
+    });
+  },
+
+  doPrint(withKey) {
+    if (!this.grid.length) { this.toast('Generate puzzle first', 'error'); return; }
+    const title = document.getElementById('pt-title')?.value || 'Word Search';
+    const subtitle = document.getElementById('pt-subtitle')?.value || 'Find all the hidden words below';
+    const showName = document.getElementById('pt-name-line')?.checked;
+
+    let html = `<div class="print-page"><h2>${title}</h2><p class="pt-sub">${subtitle}</p>`;
+    if (showName) html += `<p style="font-size:0.82rem;margin-bottom:12px;">Name: <span class="pt-name">&nbsp;</span> &nbsp;&nbsp; Date: <span class="pt-name">&nbsp;</span></p>`;
+    html += `<div class="print-grid-wrap"><div class="print-grid-tbl" style="grid-template-columns:repeat(${this.size},26px);">`;
+    for(let r=0;r<this.size;r++) for(let c=0;c<this.size;c++) html += `<div class="pg-cell">${this.grid[r][c]}</div>`;
+    html += `</div></div><div class="pw-section"><h3>Words to Find</h3><div class="pw-grid">${this.placedWords.map(pw=>`<div class="pw-item">${pw.word}</div>`).join('')}</div></div></div>`;
+
+    if (withKey) {
+      html += `<div class="print-page"><h2>${title} — Answer Key</h2><p class="pt-sub">Solution</p>`;
+      html += `<div class="print-grid-wrap"><div class="print-grid-tbl" style="grid-template-columns:repeat(${this.size},26px);">`;
+      for(let r=0;r<this.size;r++) for(let c=0;c<this.size;c++) {
+        const isWord = this.placedWords.some(p=>p.cells.some(([pr,pc])=>pr===r&&pc===c));
+        html += `<div class="pg-cell${isWord?' ans':''}">${this.grid[r][c]}</div>`;
+      }
+      html += `</div></div></div>`;
+    }
+
+    const zone = document.getElementById('print-layout-content');
+    zone.innerHTML = html;
+    document.getElementById('print-zone').style.display = 'block';
+    window.print();
+    setTimeout(() => { document.getElementById('print-zone').style.display = 'none'; }, 1200);
+  },
+
+  toast(msg, type) {
+    const c = document.getElementById('toast-container'); if(!c) return;
+    const t = document.createElement('div'); t.className=`toast ${type}`;
+    t.innerHTML=`<span>${type==='success'?'✓':'✗'}</span><span>${msg}</span>`;
+    c.appendChild(t); setTimeout(()=>{t.style.opacity='0';t.style.transition='all 0.3s';setTimeout(()=>t.remove(),300);},3000);
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  HeaderComponent.init(); FooterComponent.init();
+  document.querySelectorAll('.faq-question').forEach(q => { q.addEventListener('click', () => { const item=q.closest('.faq-item'),isOpen=item.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open')); if(!isOpen) item.classList.add('open'); }); });
+  const obs = new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.1});
+  document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+});
+</script>
+</body>
+</html>

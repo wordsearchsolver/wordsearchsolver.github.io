@@ -270,8 +270,8 @@
   <p style="max-width:420px;margin:0 auto 32px;">Pick your filters and get a fresh word list instantly — for games, writing, learning, or puzzles.</p>
   <a href="#generator" class="btn btn-lg" style="background:var(--accent-warm);color:#000;">Generate Words Now →</a>
   <div style="margin-top:24px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap;">
-    <a href="printable-word-search.html" style="color:var(--text-muted);font-size:0.88rem;">← Printable Puzzles</a>
-    <a href="crossword-solver.html" style="color:var(--text-muted);font-size:0.88rem;">Crossword Solver →</a>
+    <a href="printable-word-search" style="color:var(--text-muted);font-size:0.88rem;">← Printable Puzzles</a>
+    <a href="crossword-solver" style="color:var(--text-muted);font-size:0.88rem;">Crossword Solver →</a>
   </div>
 </div></div></section>
 
@@ -399,7 +399,7 @@ const RWG = {
     const words = [...document.querySelectorAll('.wgd-item span:first-child, .wh-word')].map(el => el.textContent);
     if (!words.length) { this.toast('Generate words first', 'error'); return; }
     sessionStorage.setItem('rwg_words', words.join('\n'));
-    window.location.href = 'word-search-generator.html#generator';
+    window.location.href = 'word-search-generator#generator';
   },
 
   updateStats(words) {

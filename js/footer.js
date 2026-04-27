@@ -24,12 +24,13 @@ const Footer = {
 
           <div class="footer-links-grid">
             <div class="footer-col">
-              <h4>Tool</h4>
+              <h4>Tools</h4>
               <ul>
-                <li><a href="#solver">Word Search Solver</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#solver">Try the Solver</a></li>
+                <li><a href="/#solver">Word Search Solver</a></li>
+                <li><a href="crossword-solver">Crossword Solver</a></li>
+                <li><a href="printable-word-search">Printable Word Search</a></li>
+                <li><a href="random-word-generator">Random Word Generator</a></li>
+                <li><a href="word-search-generator">Word Search Generator</a></li>
               </ul>
             </div>
             <div class="footer-col">

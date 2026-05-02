@@ -14,15 +14,15 @@ const Header = {
         </a>
         <nav class="main-nav" id="main-nav" role="navigation" aria-label="Main navigation">
           <ul>
-            <li><a href="#solver">Solver</a></li>
-            <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#tips">Tips & Tricks</a></li>
-            <li><a href="#faq">FAQ</a></li>
+            <li><a href="/#solver">Solver</a></li>
+            <li><a href="/crossword-solver">Crossword Solver</a></li>
+            <li><a href="/printable-word-search">Printable Word</a></li>
+            <li><a href="/random-word-generator">Random Word</a></li>
+            <li><a href="/word-search-generator">Word Search Generator</a></li>
           </ul>
         </nav>
         <div class="header-actions">
-          <a href="#solver" class="btn-solve-now">Try Solver Free</a>
+          <a href="/#solver" class="btn-solve-now">Try Solver Free</a>
           <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
             <span></span><span></span><span></span>
           </button>
@@ -30,11 +30,11 @@ const Header = {
       </div>
       <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
         <ul>
-          <li><a href="#solver">Solver</a></li>
-          <li><a href="#how-it-works">How It Works</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#tips">Tips & Tricks</a></li>
-          <li><a href="#faq">FAQ</a></li>
+          <li><a href="/#solver">Solver</a></li>
+          <li><a href="/crossword-solver">Crossword Solver</a></li>
+          <li><a href="/printable-word-search">Printable Word</a></li>
+          <li><a href="/random-word-generator">Random Word</a></li>
+          <li><a href="/word-search-generator">Word Search Generator</a></li>
         </ul>
       </div>
     </header>`;

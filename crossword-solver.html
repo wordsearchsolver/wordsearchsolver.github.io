@@ -12,494 +12,719 @@
 </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crossword Solver — Find Crossword Answers by Pattern & Clue | WordSearchSolver</title>
-  <meta name="description" content="Free crossword solver — enter a pattern with known letters and wildcards to find matching words instantly. Solve crossword clues with our 450,000+ word dictionary. Filter by length, known letters, and position.">
-  <meta name="keywords" content="crossword solver, crossword answer finder, crossword puzzle solver, crossword helper, crossword clue solver, crossword pattern solver, find crossword answers, crossword word finder, solve crossword online">
+
+  <!-- ===== SEO META TAGS ===== -->
+  <title>Crossword Solver Online — Free Crossword Puzzle &amp; Clue Solver</title>
+  <meta name="description" content="Free online Crossword Solver. Enter a pattern with blanks (like C_T or CRO__WORD) and instantly get every matching word from our 60,000+ word dictionary. The fastest crossword helper for stuck puzzlers.">
+  <meta name="keywords" content="crossword solver, crossword puzzle solver, crossword clue solver, crossword helper, crossword answers, solve crossword clue, crossword word finder, crossword solver with clues, crossword solver with letters">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="WordSearch Solver">
   <link rel="canonical" href="https://wordsearchsolver.github.io/crossword-solver">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-  <meta property="og:title" content="Crossword Solver — Find Answers by Pattern & Clue">
-  <meta property="og:description" content="Free crossword puzzle solver. Enter known letters and wildcards to find matching words. 450,000+ word dictionary, instant results.">
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:title" content="Crossword Solver — Free Crossword Puzzle &amp; Clue Solver">
+  <meta property="og:description" content="Enter a letter pattern with blanks and instantly find every matching crossword answer. Free, instant, works on any device.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wordsearchsolver.github.io/crossword-solver">
+  <meta property="og:site_name" content="WordSearch Solver">
+  <meta property="og:locale" content="en_US">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Crossword Solver — Free Crossword Puzzle &amp; Clue Solver">
+  <meta name="twitter:description" content="Paste a pattern with blanks and instantly reveal every matching crossword word. Free, fast, no sign-up.">
+
+  <!-- ===== SCHEMA MARKUP ===== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebApplication",
+        "@id": "https://wordsearchsolver.github.io/crossword-solver#app",
         "name": "Crossword Solver",
         "url": "https://wordsearchsolver.github.io/crossword-solver",
-        "description": "Free online crossword puzzle solver. Enter patterns with known letters and wildcards to find matching answers from a 450,000+ word dictionary.",
-        "applicationCategory": "UtilitiesApplication",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+        "description": "Free online tool that solves crossword clues from a letter pattern. Enter known letters and blanks to instantly find every matching word from a 60,000+ word dictionary.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Pattern-based crossword clue solving",
+          "Must-contain and must-exclude letter filters",
+          "60,000+ word dictionary",
+          "Instant results",
+          "Copy results to clipboard",
+          "Mobile compatible"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://wordsearchsolver.github.io/#website",
+        "url": "https://wordsearchsolver.github.io/",
+        "name": "Word Search Solver",
+        "description": "Free word puzzle solvers for students, teachers, and puzzle enthusiasts",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://wordsearchsolver.github.io/crossword-solver#solver"
+        }
       },
       {
         "@type": "FAQPage",
+        "@id": "https://wordsearchsolver.github.io/crossword-solver#faq",
         "mainEntity": [
-          { "@type": "Question", "name": "How do I use the crossword solver?", "acceptedAnswer": { "@type": "Answer", "text": "Enter a pattern using letters you know and question marks (?) or dots (.) for unknown letters. For example, 'C?T' finds all 3-letter words starting with C and ending in T. The solver searches a 450,000+ word dictionary for matching answers." } },
-          { "@type": "Question", "name": "What does the wildcard symbol mean in crossword solver?", "acceptedAnswer": { "@type": "Answer", "text": "A question mark (?) or dot (.) represents any single unknown letter in your crossword pattern. Use as many wildcards as you need for unknown positions. For example, '??PLY' finds 5-letter words ending in PLY." } }
+          {
+            "@type": "Question",
+            "name": "How do I solve crossword clues with this tool?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Type the letters you already know and use a question mark or underscore for every blank square, for example CR?SS??RD. Click Find Matching Words and the solver instantly returns every dictionary word that fits that exact pattern and length."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use the crossword solver with letters I already have?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Enter the known letters in their correct positions within the pattern box and leave every unknown square as a blank. You can also add 'must contain' letters if you know a letter appears somewhere but not exactly where."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is the crossword solver free to use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, the Crossword Solver is completely free with no account, download, or subscription required. It runs entirely in your browser."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the solver work for cryptic crossword clues?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "This tool matches letter patterns rather than interpreting wordplay, so it works best once you know the answer length and a few letters. For cryptic clues, use it after decoding the wordplay to confirm which dictionary word fits the grid."
+            }
+          }
         ]
       }
     ]
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/crossword-solver.css">
-  <style>
-    .cw-app { display: grid; grid-template-columns: 380px 1fr; gap: 32px; align-items: start; }
-    .cw-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; position: sticky; top: 90px; }
-    /* Pattern Input */
-    .pattern-builder { display: flex; gap: 4px; flex-wrap: wrap; padding: 16px; background: rgba(255,255,255,0.02); border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 16px; min-height: 60px; align-items: center; }
-    .pb-cell { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; font-family: var(--font-mono); font-size: 1rem; font-weight: 700; cursor: pointer; transition: var(--transition); user-select: none; position: relative; }
-    .pb-cell.known { background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.4); color: var(--accent-3); }
-    .pb-cell.wild { background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.3); color: #f87171; }
-    .pb-cell:hover { border-color: var(--border-hover); }
-    .pb-empty { color: var(--text-muted); font-size: 0.82rem; font-family: var(--font-mono); }
-    /* Results */
-    .cw-results { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
-    .cw-results-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
-    .cw-result-item { padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.03); display: flex; align-items: center; gap: 12px; cursor: pointer; transition: var(--transition); }
-    .cw-result-item:hover { background: rgba(255,255,255,0.03); }
-    .cw-result-word { font-family: var(--font-mono); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.1em; flex: 1; }
-    .cw-result-len { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); background: rgba(0,212,255,0.08); padding: 2px 8px; border-radius: 4px; }
-    .cw-result-copy { background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; transition: var(--transition); }
-    .cw-result-copy:hover { color: var(--accent); background: rgba(0,212,255,0.08); }
-    .match-letter { color: var(--accent-3); font-weight: 900; }
-    .wild-letter { color: var(--text-primary); }
-    /* Pattern display */
-    .pattern-display { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); background: rgba(0,212,255,0.06); padding: 12px 20px; border-radius: var(--radius); border: 1px solid rgba(0,212,255,0.2); text-align: center; margin-bottom: 16px; min-height: 56px; display: flex; align-items: center; justify-content: center; }
-    /* Letter keyboard */
-    .letter-kb { display: grid; grid-template-columns: repeat(13, 1fr); gap: 4px; margin-bottom: 8px; }
-    .lk-btn { padding: 8px 4px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 5px; color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: var(--transition); text-align: center; }
-    .lk-btn:hover { background: rgba(0,212,255,0.1); border-color: var(--accent); color: var(--accent); }
-    .lk-btn.wild-btn { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.2); color: #f87171; }
-    .lk-btn.del-btn { background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.2); color: var(--accent-warm); }
-    /* Filter tags */
-    .filter-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .ftag { padding: 5px 12px; border-radius: 100px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition); background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text-secondary); }
-    .ftag.active { background: rgba(99,102,241,0.15); border-color: rgba(99,102,241,0.4); color: #818cf8; }
-    /* Solver history sidebar */
-    .history-item { padding: 8px 12px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 6px; cursor: pointer; transition: var(--transition); }
-    .history-item:hover { border-color: var(--border-hover); }
-    .hi-pattern { font-family: var(--font-mono); font-size: 0.88rem; font-weight: 700; color: var(--accent); }
-    .hi-count { font-size: 0.75rem; color: var(--text-muted); }
-    @media (max-width: 1100px) { .cw-app { grid-template-columns: 1fr; } .cw-panel { position: static; } .letter-kb { grid-template-columns: repeat(9, 1fr); } }
-  </style>
+
+  <!-- ===== STYLES ===== -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/crossword-solver.css">
 </head>
 <body>
-<!-- Header Mount Point -->
+
+  <!-- Header Mount Point -->
   <div id="header-mount"></div>
-<div class="toast-container" id="toast-container"></div>
 
-<!-- HERO -->
-<section id="hero" style="padding-top:120px;padding-bottom:60px;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(99,102,241,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,0.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;"></div>
-  <div style="position:absolute;width:600px;height:600px;top:-200px;right:-100px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,0.1),transparent 70%);filter:blur(60px);pointer-events:none;"></div>
-  <div class="container" style="position:relative;z-index:1;">
-    <div style="max-width:720px;">
-      <div style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:#818cf8;margin-bottom:20px;"><span style="width:6px;height:6px;background:#818cf8;border-radius:50%;display:block;"></span>Pattern · Wildcard · Dictionary</div>
-      <h1 style="background:linear-gradient(135deg,#fff 0%,#818cf8 50%,var(--accent-2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:20px;">Crossword<br>Solver</h1>
-      <p style="font-size:1.1rem;max-width:580px;margin-bottom:32px;">Stuck on a crossword clue? Enter the letters you know with wildcards (?) for blanks — and our solver instantly finds every matching word from a 450,000+ word dictionary.</p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px;">
-        <a href="#solver" class="btn btn-lg" style="background:#818cf8;color:#000;box-shadow:0 0 20px rgba(99,102,241,0.3);">Start Solving →</a>
-        <a href="#how-to" class="btn btn-secondary btn-lg">How It Works</a>
-      </div>
-      <!-- Pattern Examples -->
-      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-        <span style="font-size:0.82rem;color:var(--text-muted);">Try:</span>
-        <button class="btn btn-ghost btn-sm" onclick="CWS.loadExample('C?T')">C?T</button>
-        <button class="btn btn-ghost btn-sm" onclick="CWS.loadExample('??IGHT')">??IGHT</button>
-        <button class="btn btn-ghost btn-sm" onclick="CWS.loadExample('W??LD')">W??LD</button>
-        <button class="btn btn-ghost btn-sm" onclick="CWS.loadExample('?L??ER')">?L??ER</button>
-        <button class="btn btn-ghost btn-sm" onclick="CWS.loadExample('CROSS????D')">CROSS????D</button>
-      </div>
-    </div>
-  </div>
-</section>
+  <main id="main-content">
 
-<!-- SOLVER -->
-<section id="solver" class="section section-anchor" style="padding-top:60px;">
-  <div class="container">
-    <div class="section-header fade-in"><span class="eyebrow" style="color:#818cf8;background:rgba(99,102,241,0.08);border-color:rgba(99,102,241,0.2);">Crossword Solver</span><h2>Enter Your Pattern</h2><p>Use letters for known positions and <kbd class="kbd">?</kbd> for unknowns. Click letters below or type directly in the input.</p></div>
-    <div class="cw-app">
-      <!-- Controls -->
-      <aside class="cw-panel fade-in">
-        <div style="padding:20px 24px;border-bottom:1px solid var(--border);background:rgba(99,102,241,0.05);">
-          <div style="font-weight:700;">✏️ Solver Input</div>
-          <div style="font-size:0.78rem;color:var(--text-muted);">Build your crossword pattern</div>
-        </div>
-        <div style="padding:24px;">
-          <!-- Direct Input -->
-          <div class="form-group">
-            <label class="form-label">Pattern <span style="color:var(--text-muted);font-weight:400;">( ? = any letter )</span></label>
-            <input type="text" class="form-input" id="pattern-input" placeholder="e.g. C?T or ??IGHT or W??LD"
-              style="font-family:var(--font-mono);font-size:1.1rem;letter-spacing:0.15em;text-transform:uppercase;"
-              oninput="CWS.onPatternInput(this.value)" onkeydown="if(event.key==='Enter')CWS.solve()">
-            <div class="pattern-display" id="pattern-display">
-              <span style="color:var(--text-muted);font-size:0.82rem;">Enter a pattern above</span>
-            </div>
+    <!-- ================================================
+         SECTION 1 — HERO
+    ================================================ -->
+    <section class="hero" id="home" aria-labelledby="hero-heading">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="dot"></span>
+            Free &amp; Instant — No Sign-up Required
           </div>
-
-          <!-- Letter Keyboard -->
-          <div class="form-group">
-            <label class="form-label">Quick Letter Insert</label>
-            <div class="letter-kb" id="letter-kb">
-              <div class="lk-btn wild-btn" onclick="CWS.insertChar('?')" title="Unknown letter">?</div>
-              <div class="lk-btn" onclick="CWS.insertChar('A')">A</div><div class="lk-btn" onclick="CWS.insertChar('B')">B</div><div class="lk-btn" onclick="CWS.insertChar('C')">C</div><div class="lk-btn" onclick="CWS.insertChar('D')">D</div><div class="lk-btn" onclick="CWS.insertChar('E')">E</div><div class="lk-btn" onclick="CWS.insertChar('F')">F</div><div class="lk-btn" onclick="CWS.insertChar('G')">G</div><div class="lk-btn" onclick="CWS.insertChar('H')">H</div><div class="lk-btn" onclick="CWS.insertChar('I')">I</div><div class="lk-btn" onclick="CWS.insertChar('J')">J</div><div class="lk-btn" onclick="CWS.insertChar('K')">K</div><div class="lk-btn" onclick="CWS.insertChar('L')">L</div><div class="lk-btn" onclick="CWS.insertChar('M')">M</div><div class="lk-btn" onclick="CWS.insertChar('N')">N</div><div class="lk-btn" onclick="CWS.insertChar('O')">O</div><div class="lk-btn" onclick="CWS.insertChar('P')">P</div><div class="lk-btn" onclick="CWS.insertChar('Q')">Q</div><div class="lk-btn" onclick="CWS.insertChar('R')">R</div><div class="lk-btn" onclick="CWS.insertChar('S')">S</div><div class="lk-btn" onclick="CWS.insertChar('T')">T</div><div class="lk-btn" onclick="CWS.insertChar('U')">U</div><div class="lk-btn" onclick="CWS.insertChar('V')">V</div><div class="lk-btn" onclick="CWS.insertChar('W')">W</div><div class="lk-btn" onclick="CWS.insertChar('X')">X</div><div class="lk-btn" onclick="CWS.insertChar('Y')">Y</div>
-              <div class="lk-btn" onclick="CWS.insertChar('Z')">Z</div>
-              <div class="lk-btn del-btn" onclick="CWS.deleteChar()">⌫</div>
-            </div>
+          <h1 id="hero-heading">
+            Solve Any<br>
+            <em>Crossword Clue</em><br>
+            <span class="highlight">In Seconds</span>
+          </h1>
+          <p class="hero-desc">
+            Stuck on a crossword? Type the letters you know, use blanks for the rest, and our crossword solver instantly matches your pattern against a 60,000+ word dictionary — no wordplay guessing required.
+          </p>
+          <div class="hero-actions">
+            <a href="#solver" class="btn-primary">
+              🧩 Solve a Clue
+            </a>
+            <a href="#how-it-works" class="btn-secondary">
+              How It Works
+            </a>
           </div>
-
-          <!-- Filters -->
-          <div class="form-group">
-            <label class="form-label">Must Contain Letters</label>
-            <input type="text" class="form-input" id="must-contain" placeholder="e.g. E, R (comma separated)"
-              style="font-family:var(--font-mono);text-transform:uppercase;" oninput="this.value=this.value.toUpperCase()">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Must NOT Contain</label>
-            <input type="text" class="form-input" id="must-not-contain" placeholder="e.g. X, Z (comma separated)"
-              style="font-family:var(--font-mono);text-transform:uppercase;" oninput="this.value=this.value.toUpperCase()">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Word Type Filter</label>
-            <div class="filter-tags" id="type-filters">
-              <div class="ftag active" data-type="all" onclick="CWS.setType('all',this)">All</div>
-              <div class="ftag" data-type="common" onclick="CWS.setType('common',this)">Common</div>
-              <div class="ftag" data-type="noun" onclick="CWS.setType('noun',this)">Nouns</div>
-              <div class="ftag" data-type="verb" onclick="CWS.setType('verb',this)">Verbs</div>
-              <div class="ftag" data-type="adj" onclick="CWS.setType('adj',this)">Adjectives</div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Max Results</label>
-            <select class="form-select" id="max-results">
-              <option value="20">20 results</option>
-              <option value="50" selected>50 results</option>
-              <option value="100">100 results</option>
-              <option value="999">All results</option>
-            </select>
-          </div>
-          <button class="btn btn-lg" style="width:100%;background:#818cf8;color:#000;margin-bottom:10px;" onclick="CWS.solve()">✏️ Find Answers</button>
-          <button class="btn btn-ghost btn-sm" style="width:100%;" onclick="CWS.clearAll()">↺ Clear</button>
-
-          <!-- Search History -->
-          <div style="margin-top:24px;" id="history-section" style="display:none;">
-            <div style="font-size:0.82rem;font-weight:700;color:var(--text-muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em;">Recent Searches</div>
-            <div id="search-history"></div>
-          </div>
-        </div>
-      </aside>
-
-      <!-- Results -->
-      <div class="fade-in fade-in-delay-1">
-        <div class="cw-results">
-          <div class="cw-results-header">
-            <div style="display:flex;align-items:center;gap:12px;">
-              <span style="font-weight:700;">Results</span>
-              <span class="badge" style="background:rgba(99,102,241,0.1);color:#818cf8;border:1px solid rgba(99,102,241,0.25);" id="result-badge">Waiting for input</span>
-            </div>
-            <div style="display:flex;gap:8px;">
-              <button class="btn btn-ghost btn-sm" onclick="CWS.sortBy('alpha')" id="sort-alpha">A–Z</button>
-              <button class="btn btn-ghost btn-sm" onclick="CWS.sortBy('length')" id="sort-len">By Length</button>
-              <button class="btn btn-ghost btn-sm" onclick="CWS.copyAllResults()">📋 Copy</button>
-            </div>
-          </div>
-          <div id="results-container" style="max-height:600px;overflow-y:auto;">
-            <div style="padding:60px 20px;text-align:center;color:var(--text-muted);">
-              <div style="font-size:3rem;margin-bottom:12px;">✏️</div>
-              <p>Enter a pattern like <kbd class="kbd">C?T</kbd> or <kbd class="kbd">??IGHT</kbd> to find matching words</p>
-              <p style="margin-top:8px;font-size:0.85rem;">Use <kbd class="kbd">?</kbd> for each unknown letter</p>
+          <div class="hero-trust">
+            <div class="trust-items">
+              <span class="trust-item">✅ Pattern &amp; blank support</span>
+              <span class="trust-item">✅ Letter filters</span>
+              <span class="trust-item">✅ 60,000+ word dictionary</span>
             </div>
           </div>
         </div>
-
-        <!-- Stats -->
-        <div class="grid-4 fade-in" style="margin-top:24px;" id="cw-stats">
-          <div class="card" style="text-align:center;padding:20px;"><div style="font-size:1.5rem;font-weight:800;color:#818cf8;font-family:var(--font-display);" id="cw-stat-matches">0</div><div style="font-size:0.78rem;color:var(--text-muted);">Matches Found</div></div>
-          <div class="card" style="text-align:center;padding:20px;"><div style="font-size:1.5rem;font-weight:800;color:var(--accent);font-family:var(--font-display);" id="cw-stat-length">—</div><div style="font-size:0.78rem;color:var(--text-muted);">Word Length</div></div>
-          <div class="card" style="text-align:center;padding:20px;"><div style="font-size:1.5rem;font-weight:800;color:var(--accent-3);font-family:var(--font-display);" id="cw-stat-known">0</div><div style="font-size:0.78rem;color:var(--text-muted);">Known Letters</div></div>
-          <div class="card" style="text-align:center;padding:20px;"><div style="font-size:1.5rem;font-weight:800;color:var(--accent-warm);font-family:var(--font-display);" id="cw-stat-wild">0</div><div style="font-size:0.78rem;color:var(--text-muted);">Wildcards</div></div>
+        <div class="hero-visual">
+          <div class="demo-grid-wrap">
+            <p style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-light);margin-bottom:14px;">Try a pattern</p>
+            <div class="cw-pattern-preview" id="cw-hero-preview" aria-hidden="true"></div>
+            <div class="demo-words" style="margin-top:20px;">
+              <span class="demo-word" style="background:#2a9d8f;">CROSSWORD</span>
+              <span class="demo-word" style="background:#f4a261;">PUZZLE</span>
+              <span class="demo-word" style="background:#e76f51;">CLUE</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- HOW TO -->
-<section id="how-to" class="section section-anchor" style="background:var(--bg-secondary);">
-  <div class="container">
-    <div class="section-header fade-in"><span class="eyebrow">Guide</span><h2>How to Use the Crossword Solver</h2><p>Three ways to find your crossword answer — from simple pattern matching to advanced filtered search.</p></div>
-    <div class="steps-timeline fade-in">
-      <div class="step-item"><div class="step-num" style="color:#818cf8;border-color:rgba(99,102,241,0.3);">1</div><h3>Enter Your Pattern</h3><p>Type your pattern using capital letters for known positions and <kbd class="kbd">?</kbd> for unknown letters. For a 5-letter word starting with S: <kbd class="kbd">S????</kbd></p></div>
-      <div class="step-item"><div class="step-num" style="color:#818cf8;border-color:rgba(99,102,241,0.3);">2</div><h3>Add Constraints</h3><p>Optionally add letters the word must contain or must not contain. This narrows results when you have crossing letter clues from other answers.</p></div>
-      <div class="step-item"><div class="step-num" style="color:#818cf8;border-color:rgba(99,102,241,0.3);">3</div><h3>Find Answers</h3><p>Click "Find Answers" to search the dictionary. Results are highlighted to show which letters match your known positions.</p></div>
-      <div class="step-item"><div class="step-num" style="color:#818cf8;border-color:rgba(99,102,241,0.3);">4</div><h3>Refine & Solve</h3><p>Sort by length or alphabetically. Click any result to copy it. Use recent searches to quickly revisit previous patterns as you work through the puzzle.</p></div>
-    </div>
-
-    <!-- Pattern guide -->
-    <div class="card fade-in" style="margin-top:60px;">
-      <h3 style="margin-bottom:24px;">Pattern Examples</h3>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" class="pattern-guide-grid">
-        <div style="padding:16px;background:rgba(255,255,255,0.02);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-family:var(--font-mono);font-size:1.1rem;font-weight:700;color:var(--accent);margin-bottom:8px;">C?T</div>
-          <p style="font-size:0.85rem;">3-letter word starting with C, ending in T. Finds: CAT, CUT, COT, CIT, etc.</p>
+    <!-- ================================================
+         SECTION 2 — STATS
+    ================================================ -->
+    <section class="stats-section" aria-label="Statistics">
+      <div class="stats-grid">
+        <div class="stat-card animate-on-scroll">
+          <span class="counter-num" data-target="60" data-suffix="K+">0</span>
+          <p class="stat-label">Word Dictionary</p>
         </div>
-        <div style="padding:16px;background:rgba(255,255,255,0.02);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-family:var(--font-mono);font-size:1.1rem;font-weight:700;color:var(--accent);margin-bottom:8px;">??IGHT</div>
-          <p style="font-size:0.85rem;">6-letter words ending in IGHT. Finds: FLIGHT, BLIGHT, SLIGHT, PLIGHT, etc.</p>
+        <div class="stat-card animate-on-scroll">
+          <span class="counter-num" data-target="20" data-suffix="">0</span>
+          <p class="stat-label">Max Pattern Length</p>
         </div>
-        <div style="padding:16px;background:rgba(255,255,255,0.02);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-family:var(--font-mono);font-size:1.1rem;font-weight:700;color:var(--accent);margin-bottom:8px;">W??LD</div>
-          <p style="font-size:0.85rem;">5-letter word starting with W, ending in LD. Finds: WORLD, WOULD, WIELD, WULD.</p>
+        <div class="stat-card animate-on-scroll">
+          <span class="counter-num" data-target="100" data-suffix="%">0</span>
+          <p class="stat-label">Free — No Cost, No Account</p>
         </div>
-        <div style="padding:16px;background:rgba(255,255,255,0.02);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-family:var(--font-mono);font-size:1.1rem;font-weight:700;color:var(--accent);margin-bottom:8px;">?L??ER</div>
-          <p style="font-size:0.85rem;">6-letter word with L as 2nd letter, ER ending. Finds: PLAYER, FLOWER, CLEVER, etc.</p>
-        </div>
-        <div style="padding:16px;background:rgba(255,255,255,0.02);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-family:var(--font-mono);font-size:1.1rem;font-weight:700;color:var(--accent);margin-bottom:8px;">?????TION</div>
-          <p style="font-size:0.85rem;">9-letter words ending in TION. Finds: INVENTION, ATTENTION, DIRECTION, etc.</p>
-        </div>
-        <div style="padding:16px;background:rgba(255,255,255,0.02);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-family:var(--font-mono);font-size:1.1rem;font-weight:700;color:var(--accent);margin-bottom:8px;">?????????</div>
-          <p style="font-size:0.85rem;">Nine wildcards = all 9-letter words. Combine with "Must Contain" to narrow down by crossing letters.</p>
+        <div class="stat-card animate-on-scroll">
+          <span class="counter-num" data-target="0" data-suffix="s">0</span>
+          <p class="stat-label">Seconds to Get Results</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- DESCRIPTION -->
-<section class="section section-anchor">
-  <div class="container">
-    <div class="section-header fade-in"><span class="eyebrow">About</span><h2>The Most Powerful Free Crossword Solver Online</h2></div>
-    <div class="grid-2 fade-in">
-      <div>
-        <h3 style="margin-bottom:12px;">How Crossword Pattern Matching Works</h3>
-        <p>Our crossword solver uses regex-style pattern matching against a comprehensive English word dictionary. When you enter a pattern like <code style="color:var(--accent);background:rgba(0,212,255,0.08);padding:2px 6px;border-radius:4px;">C??SS</code>, the solver constructs a regular expression that matches any 5-letter word starting with C and ending in SS — returning results like CROSS, CLASS, CHESS, and CRASS in milliseconds.</p>
-        <br><p>The "Must Contain" and "Must Not Contain" filters add additional constraints beyond the positional pattern. This is especially powerful when you've already solved crossing answers in the grid and know which letters must appear in the unknown word.</p>
-        <br><div style="display:flex;gap:8px;flex-wrap:wrap;"><span class="badge" style="background:rgba(99,102,241,0.1);color:#818cf8;border:1px solid rgba(99,102,241,0.25);">Pattern matching</span><span class="badge badge-cyan">Regex engine</span><span class="badge badge-green">450K+ dictionary</span></div>
+    <!-- ================================================
+         SECTION 3 — SOLVER TOOL
+    ================================================ -->
+    <section id="solver" aria-labelledby="solver-heading">
+      <div class="solver-inner">
+        <header class="solver-header">
+          <span class="section-label">The Tool</span>
+          <h2 id="solver-heading" class="section-title">Crossword Puzzle Solver</h2>
+          <p class="section-desc" style="margin:0 auto;">Enter your pattern below — use <strong>?</strong> or <strong>_</strong> for every blank square — and the crossword clue solver instantly finds every matching word.</p>
+        </header>
+        <div class="solver-layout">
+          <div class="solver-main">
+            <div class="input-group">
+              <label for="cw-pattern" class="input-label">
+                🧩 Letter Pattern
+                <span class="input-label-hint">— e.g. C?T or CRO??WORD</span>
+              </label>
+              <input
+                type="text"
+                id="cw-pattern"
+                name="cw-pattern"
+                class="cw-text-input"
+                placeholder="e.g. CR?SS??RD"
+                autocomplete="off"
+                spellcheck="false"
+                maxlength="20"
+                aria-label="Crossword letter pattern"
+              >
+              <div class="cw-pattern-preview" id="cw-pattern-preview" aria-hidden="true"></div>
+              <span class="cw-length-tag" id="cw-length-tag"></span>
+            </div>
+
+            <div class="cw-filters-row">
+              <div class="input-group">
+                <label for="cw-contains" class="input-label">
+                  ➕ Must Contain
+                  <span class="input-label-hint">— optional, comma separated</span>
+                </label>
+                <input
+                  type="text"
+                  id="cw-contains"
+                  name="cw-contains"
+                  class="cw-text-input"
+                  placeholder="e.g. S, T"
+                  autocomplete="off"
+                  spellcheck="false"
+                  aria-label="Letters the word must contain"
+                >
+              </div>
+              <div class="input-group">
+                <label for="cw-exclude" class="input-label">
+                  ➖ Must Exclude
+                  <span class="input-label-hint">— optional, comma separated</span>
+                </label>
+                <input
+                  type="text"
+                  id="cw-exclude"
+                  name="cw-exclude"
+                  class="cw-text-input"
+                  placeholder="e.g. Q, Z"
+                  autocomplete="off"
+                  spellcheck="false"
+                  aria-label="Letters the word must not contain"
+                >
+              </div>
+            </div>
+
+            <div class="error-box" id="cw-error-box" style="display:none;" role="alert"></div>
+
+            <div class="solver-actions">
+              <button id="cw-solve-btn" class="btn-solve" aria-label="Find matching crossword words">
+                <span class="btn-text">🔍 Find Matching Words</span>
+              </button>
+              <button id="cw-sample-btn" class="btn-sample" aria-label="Load sample pattern">
+                📄 Load Sample
+              </button>
+              <button id="cw-clear-btn" class="btn-clear" aria-label="Clear all inputs">
+                🗑 Clear
+              </button>
+            </div>
+          </div>
+
+          <aside class="solver-sidebar" aria-label="Solver help">
+            <div class="sidebar-card">
+              <h4>📐 Pattern Format</h4>
+              <div class="format-example">
+                C R ? S S ? ? R D<br>
+                <span style="color:var(--teal-dark)">↑ ? or _ = unknown letter</span>
+              </div>
+            </div>
+            <div class="sidebar-card">
+              <h4>🧭 Optional Filters</h4>
+              <ul style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--text-muted);">
+                <li>• <strong>Must Contain</strong> — narrows results to words with certain letters anywhere</li>
+                <li>• <strong>Must Exclude</strong> — removes words containing certain letters</li>
+              </ul>
+            </div>
+            <div class="sidebar-card">
+              <h4>💡 Tips</h4>
+              <ul style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--text-muted);">
+                <li>• Pattern length = answer length</li>
+                <li>• Case doesn't matter</li>
+                <li>• Click any result to copy it</li>
+                <li>• Use "Load Sample" to try it out</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Results render here -->
+        <div id="cw-results-section" role="region" aria-live="polite" aria-label="Solver results"></div>
       </div>
-      <div>
-        <h3 style="margin-bottom:12px;">Crossword Solver vs Crossword Cheat</h3>
-        <p>There's a meaningful difference between solving a crossword and cheating at one. Our tool is designed as a <em style="color:var(--accent-3);">learning aid and accessibility tool</em> — not just an answer machine. Results show all possible words matching your pattern, requiring you to use context clues, crossing letters, and puzzle theme knowledge to choose the right answer.</p>
-        <br><p>For crossword constructors and puzzle editors, the solver doubles as a <strong style="color:var(--accent);">fill finder</strong> — quickly identifying which words fit a given slot length and pattern during grid construction. This is the same technique used by professional crossword constructors.</p>
+    </section>
+
+    <!-- ================================================
+         SECTION 4 — HOW IT WORKS
+    ================================================ -->
+    <section id="how-it-works" class="section" aria-labelledby="hiw-heading">
+      <div class="section-inner">
+        <header style="text-align:center;">
+          <span class="section-label animate-on-scroll">The Process</span>
+          <h2 id="hiw-heading" class="section-title animate-on-scroll">How the Crossword Solver Online Works</h2>
+          <p class="section-desc animate-on-scroll" style="margin:0 auto;">
+            Our crossword helper matches your pattern against a full dictionary in milliseconds — no wordplay knowledge needed.
+          </p>
+        </header>
+        <div class="steps-grid">
+          <article class="step-card animate-on-scroll">
+            <span class="step-number">1</span>
+            <div class="step-icon amber">🧩</div>
+            <h3>Enter Your Pattern</h3>
+            <p>Type the letters you already have from the grid and use a question mark or underscore for every empty square. The pattern's length becomes the answer's length automatically.</p>
+          </article>
+          <article class="step-card animate-on-scroll">
+            <span class="step-number">2</span>
+            <div class="step-icon teal">🔤</div>
+            <h3>Add Optional Filters</h3>
+            <p>Know a letter is somewhere in the word but not its position? Add it to "Must Contain." Want to rule out a letter entirely? Add it to "Must Exclude."</p>
+          </article>
+          <article class="step-card animate-on-scroll">
+            <span class="step-number">3</span>
+            <div class="step-icon coral">🎯</div>
+            <h3>Get Instant Matches</h3>
+            <p>Click "Find Matching Words" and every word in our dictionary that fits your exact pattern appears instantly, ready to copy straight into your puzzle.</p>
+          </article>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- FAQ -->
-<section class="section section-anchor" style="background:var(--bg-secondary);">
-  <div class="container">
-    <div class="section-header fade-in"><span class="eyebrow">FAQ</span><h2>Crossword Solver — Frequently Asked Questions</h2></div>
-    <div class="faq-list fade-in">
-      <div class="faq-item"><div class="faq-question">What does the ? wildcard mean in the crossword solver?<span class="faq-icon">+</span></div><div class="faq-answer"><p>A question mark (?) represents any single unknown letter. If you have a 6-letter clue and know the first letter is F and last is T, enter <code style="color:var(--accent);">F????T</code>. Use one ? for each blank square in the crossword grid. You can also use a dot (.) as an alternative wildcard character.</p></div></div>
-      <div class="faq-item"><div class="faq-question">How do I find a word when I only know some crossing letters?<span class="faq-icon">+</span></div><div class="faq-answer"><p>Use wildcards for unknown positions and enter known letters in their exact positions. If you know the word is 7 letters, the 3rd letter is E, and the 6th letter is T, enter <code style="color:var(--accent);">??E??T?</code>. Then add any crossing letters you know to the "Must Contain" field to narrow results further.</p></div></div>
-      <div class="faq-item"><div class="faq-question">How large is the crossword solver dictionary?<span class="faq-icon">+</span></div><div class="faq-answer"><p>The solver uses a built-in word list, and if you place a words.txt file in the same directory, it automatically loads the full 450,000+ word database. The larger database includes rare words, variant spellings, and obscure vocabulary often found in challenging crossword puzzles like the NYT or Times cryptic.</p></div></div>
-      <div class="faq-item"><div class="faq-question">Can I use the crossword solver for cryptic crosswords?<span class="faq-icon">+</span></div><div class="faq-answer"><p>Yes, with some adaptation. Cryptic crossword answers often have unusual or archaic words — the full 450K dictionary helps here. The pattern matcher works the same way: if you've worked out from the wordplay that the answer is a 7-letter word with certain letters, enter those positions and the solver will find candidates.</p></div></div>
-      <div class="faq-item"><div class="faq-question">Does the solver handle proper nouns and names?<span class="faq-icon">+</span></div><div class="faq-answer"><p>The built-in word list focuses on common vocabulary. With the full 450K words.txt file, coverage of proper nouns, place names, and personal names improves significantly. For specialized crosswords (geography, celebrity names, etc.), you may still need to verify answers against external sources.</p></div></div>
-    </div>
-  </div>
-</section>
+    <!-- ================================================
+         SECTION 5 — PATTERN SYMBOLS EXPLAINED
+    ================================================ -->
+    <section id="pattern-guide" class="section" aria-labelledby="pg-heading">
+      <div class="section-inner">
+        <header style="text-align:center;">
+          <span class="section-label animate-on-scroll">Coverage</span>
+          <h2 id="pg-heading" class="section-title animate-on-scroll">Pattern Symbols the Solver Understands</h2>
+          <p class="section-desc animate-on-scroll" style="margin:0 auto;">
+            Crossword answers are just letters and blanks. Here's exactly how to describe any grid entry to the solver.
+          </p>
+        </header>
+        <div class="cw-symbol-cards">
+          <div class="cw-symbol-card animate-on-scroll">
+            <div class="cw-symbol-glyph">A–Z</div>
+            <h4>Known Letters</h4>
+            <p>Type any letter exactly where it appears in the grid, upper or lower case — the solver treats both the same way.</p>
+          </div>
+          <div class="cw-symbol-card animate-on-scroll">
+            <div class="cw-symbol-glyph">?</div>
+            <h4>Question Mark Blank</h4>
+            <p>Use a question mark for any square you haven't filled in yet. It matches any single letter in that position.</p>
+          </div>
+          <div class="cw-symbol-card animate-on-scroll">
+            <div class="cw-symbol-glyph">_</div>
+            <h4>Underscore Blank</h4>
+            <p>Prefer underscores? They work identically to question marks, so use whichever feels more natural to type.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="section-sm" style="text-align:center;"><div class="container"><div class="cta-box fade-in" style="padding:60px 40px;">
-  <h2 style="margin-bottom:16px;">Solve Your Crossword Now</h2>
-  <p style="max-width:440px;margin:0 auto 32px;">Enter your pattern and let our dictionary find every possible matching answer.</p>
-  <a href="#solver" class="btn btn-lg" style="background:#818cf8;color:#000;">Open Solver →</a>
-  <div style="margin-top:24px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap;">
-    <a href="random-word-generator" style="color:var(--text-muted);font-size:0.88rem;">← Random Words</a>
-    <a href="/" style="color:var(--text-muted);font-size:0.88rem;">Word Search Solver →</a>
-  </div>
-</div></div></section>
+    <!-- ================================================
+         SECTION 6 — FEATURES
+    ================================================ -->
+    <section id="features" class="section" aria-labelledby="feat-heading">
+      <div class="section-inner">
+        <header>
+          <span class="section-label animate-on-scroll">Why Use It</span>
+          <h2 id="feat-heading" class="section-title animate-on-scroll">Powerful Features Built for Every Solver</h2>
+          <p class="section-desc animate-on-scroll">From daily crossword fans to puzzle constructors — our crossword solver is packed with smart features.</p>
+        </header>
+        <div class="features-grid">
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">🧩</span>
+            <h3>Pattern Matching</h3>
+            <p>Describe any grid entry with letters and blanks and get every word that fits, instantly, from a large dictionary.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">➕</span>
+            <h3>Must-Contain Filter</h3>
+            <p>Know a letter is hiding somewhere in the word? Filter results down to only words containing it.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">➖</span>
+            <h3>Must-Exclude Filter</h3>
+            <p>Rule out letters you know can't be part of the answer to shrink a long results list fast.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">⚡</span>
+            <h3>Instant Search Algorithm</h3>
+            <p>Results appear in milliseconds because the entire dictionary lookup runs locally in your browser.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">📋</span>
+            <h3>One-Click Copy</h3>
+            <p>Click any result to copy it instantly, or copy the whole results list at once for reference.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">📱</span>
+            <h3>Mobile Friendly</h3>
+            <p>Works seamlessly on phones and tablets — solve a clue on the couch or on your commute.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">🔤</span>
+            <h3>Case Insensitive</h3>
+            <p>Type in upper or lower case — the solver normalizes everything automatically.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">🆓</span>
+            <h3>Completely Free</h3>
+            <p>No account, no login, no payment. Open the page and start solving right away.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">🖥️</span>
+            <h3>No Install Required</h3>
+            <p>Runs entirely in your browser using vanilla JavaScript. Nothing to download or update.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<!-- Footer Mount Point -->
+    <!-- ================================================
+         SECTION 7 — USE CASES
+    ================================================ -->
+    <section id="use-cases" class="section" aria-labelledby="uc-heading">
+      <div class="section-inner">
+        <header>
+          <span class="section-label animate-on-scroll">Who Uses It</span>
+          <h2 id="uc-heading" class="section-title animate-on-scroll">Built for Every Kind of Crossword Fan</h2>
+          <p class="section-desc animate-on-scroll">Whether you're stuck on the daily puzzle or constructing one, the Crossword Solver fits your workflow.</p>
+        </header>
+        <div class="use-cases-grid">
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">☕</div>
+            <div>
+              <h3>Daily Puzzlers</h3>
+              <p>Stuck on your morning crossword with a coffee in hand? Paste in the letters you've got and finish the grid without losing your streak.</p>
+            </div>
+          </article>
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">🎓</div>
+            <div>
+              <h3>Students &amp; Word Learners</h3>
+              <p>Use the pattern solver to explore vocabulary, verify spelling, and discover new words that fit a given letter shape.</p>
+            </div>
+          </article>
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">🧩</div>
+            <div>
+              <h3>Puzzle Constructors</h3>
+              <p>Building your own crossword grid? Check which real words can fill a tricky intersection before finalizing your layout.</p>
+            </div>
+          </article>
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">🏥</div>
+            <div>
+              <h3>Seniors &amp; Therapists</h3>
+              <p>Crosswords are a popular cognitive exercise for older adults. Caregivers can use this tool to prepare answer keys quickly.</p>
+            </div>
+          </article>
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">📰</div>
+            <div>
+              <h3>Newspaper &amp; Magazine Readers</h3>
+              <p>Working through a print crossword and missing one last word? Type what you have and finish the grid in seconds.</p>
+            </div>
+          </article>
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">💼</div>
+            <div>
+              <h3>Editors &amp; Proofreaders</h3>
+              <p>Double-check that a published crossword's answers are valid, real dictionary words before it goes to print.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         SECTION 8 — TIPS & TRICKS
+    ================================================ -->
+    <section id="tips" class="section" aria-labelledby="tips-heading">
+      <div class="section-inner">
+        <header>
+          <span class="section-label animate-on-scroll">Pro Advice</span>
+          <h2 id="tips-heading" class="section-title animate-on-scroll">Tips for Better Results</h2>
+          <p class="section-desc animate-on-scroll">Get the most out of the crossword solver and sharpen your own solving skills at the same time.</p>
+        </header>
+        <div class="tips-grid">
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">1</div>
+            <div>
+              <h4>Count Your Squares First</h4>
+              <p>Before typing a pattern, count the exact number of squares in the grid entry — the pattern length must match the answer length exactly.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">2</div>
+            <div>
+              <h4>Fill In Every Known Letter</h4>
+              <p>Enter every letter you've already solved from crossing answers. The more letters you provide, the fewer — and more accurate — the matches.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">3</div>
+            <div>
+              <h4>Use "Must Contain" for Loose Clues</h4>
+              <p>If a clue hints at a specific letter without confirming its position, add it under "Must Contain" instead of guessing at a blank.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">4</div>
+            <div>
+              <h4>Too Many Results? Narrow the Pattern</h4>
+              <p>A pattern with many blanks can return hundreds of matches. Solve one or two crossing answers first to shrink the list.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">5</div>
+            <div>
+              <h4>Click to Copy Instantly</h4>
+              <p>Click any word chip in the results to copy just that word — handy when you've spotted the right answer in a long list.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">6</div>
+            <div>
+              <h4>Manual Tip: Solve Crossings First</h4>
+              <p>Fill in the answers you're most confident about first — their crossing letters often make neighboring clues far easier to crack.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">7</div>
+            <div>
+              <h4>Manual Tip: Watch for Plurals &amp; Tenses</h4>
+              <p>Clue tense and plurality usually match the answer — a clue ending in "-ed" often needs a past-tense word to fit the grid.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">8</div>
+            <div>
+              <h4>Load Sample to Learn the Format</h4>
+              <p>Not sure how to format a pattern? Click "Load Sample" to see a working example, then swap in your own letters and blanks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         SECTION 9 — ABOUT CROSSWORDS
+    ================================================ -->
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <div class="about-inner">
+        <div class="about-content animate-on-scroll">
+          <span class="section-label">Background</span>
+          <h2 id="about-heading" class="section-title">What Is a Crossword Puzzle?</h2>
+          <p>A crossword is a word puzzle made up of a grid of black and white squares. Clues are numbered and correspond to the "Across" and "Down" entries, and each answer intersects with others sharing common letters.</p>
+          <p>Solving a crossword clue usually means combining two things: the clue's wordplay or definition, and the letter pattern created by any answers you've already filled in around it.</p>
+          <p>Crosswords have been published since 1913 and remain one of the most popular word games in newspapers, magazines, and dedicated puzzle apps worldwide.</p>
+          <p>Our <strong>Crossword Solver</strong> handles the second half of that equation — given a pattern of known letters and blanks, it instantly returns every dictionary word that fits, so you can confirm your answer or get unstuck.</p>
+        </div>
+        <div class="about-visual animate-on-scroll">
+          <h3 style="margin-bottom:20px;">Related Terms</h3>
+          <div class="keyword-cloud">
+            <span class="kw-tag" style="background:rgba(42,157,143,.1);color:var(--teal-dark);border-color:rgba(42,157,143,.2)">Crossword Solver</span>
+            <span class="kw-tag" style="background:rgba(244,162,97,.1);color:var(--amber-dark);border-color:rgba(244,162,97,.25)">Crossword Puzzle Solver</span>
+            <span class="kw-tag" style="background:rgba(38,70,83,.08);color:var(--navy);border-color:rgba(38,70,83,.15)">Crossword Clue Solver</span>
+            <span class="kw-tag" style="background:rgba(231,111,81,.1);color:var(--coral);border-color:rgba(231,111,81,.2)">Crossword Helper</span>
+            <span class="kw-tag" style="background:rgba(42,157,143,.1);color:var(--teal-dark);border-color:rgba(42,157,143,.2)">Crossword Answers</span>
+            <span class="kw-tag" style="background:rgba(244,162,97,.1);color:var(--amber-dark);border-color:rgba(244,162,97,.25)">Solve Crossword Clue</span>
+            <span class="kw-tag" style="background:rgba(38,70,83,.08);color:var(--navy);border-color:rgba(38,70,83,.15)">Crossword Word Finder</span>
+            <span class="kw-tag" style="background:rgba(231,111,81,.1);color:var(--coral);border-color:rgba(231,111,81,.2)">Crossword Solver With Clues</span>
+            <span class="kw-tag" style="background:rgba(42,157,143,.1);color:var(--teal-dark);border-color:rgba(42,157,143,.2)">Crossword Solver With Letters</span>
+            <span class="kw-tag" style="background:rgba(244,162,97,.1);color:var(--amber-dark);border-color:rgba(244,162,97,.25)">Free Crossword Tool</span>
+            <span class="kw-tag" style="background:rgba(38,70,83,.08);color:var(--navy);border-color:rgba(38,70,83,.15)">Word Pattern Finder</span>
+            <span class="kw-tag" style="background:rgba(231,111,81,.1);color:var(--coral);border-color:rgba(231,111,81,.2)">Puzzle Solver Online</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         SECTION 10 — FAQ
+    ================================================ -->
+    <section id="faq" class="section" aria-labelledby="faq-heading">
+      <div class="section-inner">
+        <header style="text-align:center;">
+          <span class="section-label animate-on-scroll">Help</span>
+          <h2 id="faq-heading" class="section-title animate-on-scroll">Frequently Asked Questions</h2>
+          <p class="section-desc animate-on-scroll" style="margin:0 auto;">Everything you need to know about using the Crossword Solver.</p>
+        </header>
+        <div class="faq-list" role="list">
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              How to solve crossword clues with this tool?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Count the squares in the grid entry, type any letters you already know in their correct positions, and use a question mark or underscore for every blank. Click "Find Matching Words" and the solver returns every word in the dictionary that fits that exact pattern and length.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Crossword solver with letters — how does it work?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              If you know exact letters in exact positions, place them directly in the pattern box (e.g. C?T). If you only know a letter appears somewhere but not where, add it to the "Must Contain" field instead — the solver will only return words that include it anywhere.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Is the Crossword Solver free to use?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Yes, completely free. No account, no login, no credit card, no subscription. The tool runs entirely in your browser and requires no data to be sent to a server.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              What symbols can I use for blank letters?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Use a question mark (?) or an underscore (_) for any letter you don't know yet — both work identically. For example, "CR?SS??RD" and "CR_SS__RD" return the same results.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Why am I getting too many or too few results?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Too many results usually means your pattern has too many blanks — solve a crossing answer or two first to add more known letters. Too few or zero results often means a typo in a known letter, or the word you're after isn't in our dictionary.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Does the solver understand crossword clue wordplay?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              No — this tool matches letter patterns, not clue wordplay like anagrams or hidden words. It's designed to confirm which dictionary word fits the grid once you know (or partly know) the answer's letters and length.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              How large a word can the solver handle?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              The solver supports patterns from 2 to 20 letters long, covering virtually every crossword grid entry from short two-letter fills to long theme answers.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Does it work offline?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Once the page has loaded, including the word dictionary, the solving algorithm runs entirely client-side in JavaScript with no further internet connection required.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         CTA SECTION
+    ================================================ -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+      <h2 id="cta-heading">Ready to Solve Your Clue?</h2>
+      <p>No sign-up. No download. Just type your pattern and see every matching word revealed instantly.</p>
+      <a href="#solver" class="cta-btn">
+        🧩 Start Solving Now
+      </a>
+    </section>
+
+  </main>
+
+  <!-- Footer Mount Point -->
   <div id="footer-mount"></div>
 
   <!-- ===== SCRIPTS ===== -->
   <script src="js/header.js"></script>
-  <script src="js/footer.js"></script>  
+  <script src="js/footer.js"></script>
+  <script src="js/wordlist.js"></script>
+  <script src="js/crossword-solver.js"></script>
   <script src="js/app.js"></script>
-<script>
-// ===== CROSSWORD SOLVER ENGINE =====
-const CWS = {
-  currentResults: [], sortMode: 'alpha', wordType: 'all', searchHistory: [],
-  WORD_DB: ['CAT','CUT','COT','CIT','CANT','CART','COAT','CAST','CLOT','CULT','COLT','COST','CENT','CITY','CAVE','CAMP','COOL','CORK','CORN','CORD','CORE','COME','COLD','COAL','COIL','CODE','CURL','CURB','CURE','CUTE','CRY','CUP','CUB','CUE','CAB','CAD','CAN','CAP','CAR','CAW','CROSS','CLASS','CHESS','CRASS','CRASH','CLASH','CLASP','CLAMP','CLAIM','CLIMB','CRACK','CRANE','CRISP','CREST','CROWD','CROWN','CRAFT','CRAZY','CREAK','CREEK','CRIME','CRIMP','CHUNK','CHAIN','CHALK','CHARM','CHART','CHASE','CHEAP','CHEAT','CHECK','CHEEK','CHEER','CHEST','CHILD','CHILL','CHINA','CHIP','COPE','COPY','CORD','CORE','CORK','CORN','COST','COUGH','COULD','COUNT','COVER','CRACK','FLAME','FLIGHT','BLIGHT','SLIGHT','PLIGHT','FRIGHT','ALIGHT','BLIGHT','WORLD','WOULD','WIELD','YIELD','YELLS','YOUNG','YEARS','YARDS','YEARN','YEAST','YELPS','PLACE','PLANE','PLANE','PLANT','PLATE','PLAZA','PLEASE','PLEAD','PLEAT','FLESH','FLEET','FLEEK','FLECK','FLEAS','PLAYER','FLOWER','CLEVER','CLOVER','BLOWER','GLOWER','SLAVER','SHIVER','SILVER','RIVER','LIVER','GIVER','DIVER','SEVER','FEVER','NEVER','LEVER','REVEL','LEVEL','BEVEL','DEVIL','CIVIL','NOVEL','HOTEL','MODEL','VOWEL','JEWEL','PIXEL','ANGEL','CAMEL','LABEL','PANEL','EASEL','Basel','HAZEL','NASAL','LEGAL','REGAL','METAL','PETAL','TOTAL','LOCAL','VOCAL','FOCAL','MORAL','CORAL','VIRAL','TIDAL','FINAL','TRIAL','VITAL','RIVAL','SPIRAL','SIGNAL','GLOBAL','BRUTAL','RENTAL','DENTAL','MENTAL','GENTLE','TURTLE','CASTLE','HUSTLE','BUSTLE','MUSCLE','PUZZLE','NOZZLE','MUZZLE','BUCKLE','PICKLE','TICKLE','TACKLE','CACKLE','CRACKLE','FICKLE','TRICKLE','SPARKLE','WRINKLE','TWINKLE','EXAMPLE','EXPLAIN','EXPLORE','EXPRESS','EXPEND','EXCITE','EXAMINE','EXTRACT','EXTREME','EXTINCT','EXTEND','EXPERT','EXPECT','EXPORT','EXPOSE','EXCUSE','EXECUTE','EXHAUST','EXHIBIT','EXERT','EXCEL','EXCEED','EXCEPT','EXCESS','EXCUSE','EXILE','EXIST','EXIST','EXTRA','EVERY','NEVER','SEVEN','EVEN','EVENT','EVER','EVIL','EACH','EARN','EARL','EASY','EAST','EDGE','EGAD','ELSE','EMIT','EMPOWER','EMPTY','EMULATE','ENABLE','ENACT','ENCAMP','ENCLOSE','ENCODE','ENCOUNTER','ENCOURAGE','INVENT','INVEST','INVITE','INVOLVE','ISLAND','IVORY','ICING','IDEAL','IMAGE','IMBUE','IMPLY','IMPEDE','IMPOSE','IMPRESS','IMPROVE','IMPULSE','INBOX','INCITE','INCOME','INDEX','INDIE','INFANT','INJECT','INJURE','INPUT','INSIST','INSTALL','INSTANT','INTENSE','INTEND','INTEREST','INVENT','INVEST','IVORY','ISSUE','ISOLATION','INVENTION','ATTENTION','DIRECTION','INVENTION','PARTITION','SALVATION','REDUCTION','PROMOTION','FORMATION','EDUCATION','DETENTION','INTENTION','CONDITION','CONFUSION','REJECTION','SELECTION','RECESSION','ACCESSION','OBSESSION','DIMENSION','EXPANSION','EXTENSION','EXCEPTION','EXPLOSION','REVOLUTION','RESOLUTION','EVOLUTION','ABSOLUTION','CONVICTION','OPPOSITION','EXPRESSION','IMPRESSION','POSSESSION','PROFESSION','PERMISSION','DEFINITION','SUBMISSION','TRANSITION','ADMISSION','CONCLUSION','EXCLUSION'],
 
-  onPatternInput(val) {
-    const pattern = val.toUpperCase().replace(/[^A-Z?\.]/g,'');
-    const input = document.getElementById('pattern-input');
-    if (input && input.value !== pattern) input.value = pattern;
-    this.updatePatternDisplay(pattern);
-  },
-
-  updatePatternDisplay(pattern) {
-    const el = document.getElementById('pattern-display');
-    if (!el) return;
-    if (!pattern) { el.innerHTML = '<span style="color:var(--text-muted);font-size:0.82rem;">Enter a pattern above</span>'; return; }
-    const html = pattern.split('').map(c => c === '?' || c === '.'
-      ? `<span style="color:#f87171;font-size:1.4rem;letter-spacing:0.15em;">${c}</span>`
-      : `<span style="color:var(--accent-3);font-size:1.4rem;letter-spacing:0.15em;">${c}</span>`
-    ).join('');
-    el.innerHTML = html;
-    // Update stats
-    const known = pattern.split('').filter(c => c !== '?' && c !== '.').length;
-    const wild = pattern.split('').filter(c => c === '?' || c === '.').length;
-    document.getElementById('cw-stat-length').textContent = pattern.length || '—';
-    document.getElementById('cw-stat-known').textContent = known;
-    document.getElementById('cw-stat-wild').textContent = wild;
-  },
-
-  insertChar(c) {
-    const input = document.getElementById('pattern-input');
-    if (!input) return;
-    const pos = input.selectionStart;
-    const val = input.value;
-    input.value = val.slice(0,pos) + c + val.slice(pos);
-    input.selectionStart = input.selectionEnd = pos + 1;
-    input.focus();
-    this.onPatternInput(input.value);
-  },
-
-  deleteChar() {
-    const input = document.getElementById('pattern-input');
-    if (!input || !input.value) return;
-    input.value = input.value.slice(0,-1);
-    this.onPatternInput(input.value);
-    input.focus();
-  },
-
-  setType(t, el) {
-    this.wordType = t;
-    document.querySelectorAll('.ftag').forEach(f=>f.classList.remove('active'));
-    el.classList.add('active');
-  },
-
-  buildRegex(pattern) {
-    const p = pattern.toUpperCase();
-    const regStr = '^' + p.split('').map(c => (c === '?' || c === '.') ? '[A-Z]' : c).join('') + '$';
-    return new RegExp(regStr);
-  },
-
-  solve() {
-    const patternRaw = document.getElementById('pattern-input')?.value?.toUpperCase().trim();
-    if (!patternRaw) { this.toast('Enter a pattern first', 'error'); return; }
-    const mustHave = (document.getElementById('must-contain')?.value || '').toUpperCase().split(',').map(s=>s.trim()).filter(Boolean);
-    const mustNot = (document.getElementById('must-not-contain')?.value || '').toUpperCase().split(',').map(s=>s.trim()).filter(Boolean);
-    const maxRes = parseInt(document.getElementById('max-results')?.value || 50);
-
-    const regex = this.buildRegex(patternRaw);
-    const pool = this.WORD_DB;
-
-    let results = pool.filter(word => {
-      if (!regex.test(word)) return false;
-      if (mustHave.length && !mustHave.every(l => word.includes(l))) return false;
-      if (mustNot.length && mustNot.some(l => word.includes(l))) return false;
-      return true;
+  <!-- Hero Preview Generator -->
+  <script>
+  (function() {
+    const wrap = document.getElementById('cw-hero-preview');
+    if (!wrap) return;
+    const pattern = 'CR?SS??RD';
+    pattern.split('').forEach(ch => {
+      const cell = document.createElement('span');
+      cell.className = 'cw-cell' + (ch === '?' ? ' blank' : '');
+      cell.textContent = ch === '?' ? '' : ch;
+      wrap.appendChild(cell);
     });
+  })();
+  </script>
 
-    // Deduplicate
-    results = [...new Set(results)];
-    this.currentResults = results;
-    this.renderResults(results.slice(0, maxRes), patternRaw);
-    document.getElementById('cw-stat-matches').textContent = results.length;
-
-    // History
-    this.addHistory(patternRaw, results.length);
-    this.toast(`Found ${results.length} matching word${results.length !== 1 ? 's' : ''}`, results.length > 0 ? 'success' : 'info');
-  },
-
-  renderResults(results, pattern) {
-    const container = document.getElementById('results-container');
-    const badge = document.getElementById('result-badge');
-    if (!container) return;
-
-    if (badge) {
-      badge.textContent = `${results.length} match${results.length !== 1 ? 'es' : ''}`;
-      badge.style.cssText = results.length > 0
-        ? 'background:rgba(16,185,129,0.1);color:var(--accent-3);border:1px solid rgba(16,185,129,0.25);'
-        : 'background:rgba(239,68,68,0.1);color:#f87171;border:1px solid rgba(239,68,68,0.25);';
-    }
-
-    if (!results.length) {
-      container.innerHTML = `<div style="padding:48px 20px;text-align:center;color:var(--text-muted);"><div style="font-size:2.5rem;margin-bottom:12px;">🔍</div><p>No words match pattern <strong style="color:var(--accent);font-family:var(--font-mono);">${pattern}</strong></p><p style="font-size:0.85rem;margin-top:8px;">Try using fewer constraints or more wildcards</p></div>`;
-      return;
-    }
-
-    container.innerHTML = results.map(word => {
-      const highlighted = word.split('').map((ch, i) => {
-        const pc = pattern[i];
-        return (pc && pc !== '?' && pc !== '.') ? `<span class="match-letter">${ch}</span>` : `<span class="wild-letter">${ch}</span>`;
-      }).join('');
-      return `<div class="cw-result-item"><div class="cw-result-word">${highlighted}</div><div class="cw-result-len">${word.length}</div><button class="cw-result-copy" onclick="navigator.clipboard?.writeText('${word}');this.textContent='✓';setTimeout(()=>this.textContent='📋',1200);" title="Copy">📋</button></div>`;
-    }).join('');
-  },
-
-  sortBy(mode) {
-    this.sortMode = mode;
-    let sorted = [...this.currentResults];
-    if (mode === 'alpha') sorted.sort();
-    if (mode === 'length') sorted.sort((a,b)=>a.length-b.length);
-    const maxRes = parseInt(document.getElementById('max-results')?.value || 50);
-    const pattern = document.getElementById('pattern-input')?.value?.toUpperCase() || '';
-    this.renderResults(sorted.slice(0,maxRes), pattern);
-    document.querySelectorAll('[id^=sort-]').forEach(b=>b.classList.remove('active'));
-    document.getElementById(`sort-${mode === 'alpha' ? 'alpha' : 'len'}`)?.classList.add('active');
-  },
-
-  copyAllResults() {
-    const words = this.currentResults;
-    if (!words.length) { this.toast('No results to copy', 'error'); return; }
-    navigator.clipboard?.writeText(words.join('\n'));
-    this.toast(`Copied ${words.length} words`, 'success');
-  },
-
-  addHistory(pattern, count) {
-    this.searchHistory.unshift({pattern, count, time: Date.now()});
-    if (this.searchHistory.length > 8) this.searchHistory.pop();
-    const sec = document.getElementById('history-section');
-    const hist = document.getElementById('search-history');
-    if (sec) sec.style.display = 'block';
-    if (hist) hist.innerHTML = this.searchHistory.map(h => `<div class="history-item" onclick="CWS.loadHistory('${h.pattern}')"><span class="hi-pattern">${h.pattern}</span> <span class="hi-count">${h.count} results</span></div>`).join('');
-  },
-
-  loadHistory(pattern) {
-    const input = document.getElementById('pattern-input');
-    if (input) { input.value = pattern; this.onPatternInput(pattern); this.solve(); }
-  },
-
-  loadExample(pattern) {
-    const input = document.getElementById('pattern-input');
-    if (input) { input.value = pattern; this.onPatternInput(pattern); this.solve(); document.getElementById('solver')?.scrollIntoView({behavior:'smooth'}); }
-  },
-
-  clearAll() {
-    const input = document.getElementById('pattern-input');
-    if (input) input.value = '';
-    this.onPatternInput('');
-    this.currentResults = [];
-    const container = document.getElementById('results-container');
-    if (container) container.innerHTML = `<div style="padding:60px 20px;text-align:center;color:var(--text-muted);"><div style="font-size:3rem;margin-bottom:12px;">✏️</div><p>Enter a pattern like <kbd class="kbd">C?T</kbd> or <kbd class="kbd">??IGHT</kbd> to find matching words</p></div>`;
-    const badge = document.getElementById('result-badge');
-    if (badge) { badge.textContent = 'Waiting for input'; badge.style.cssText=''; }
-    document.getElementById('cw-stat-matches').textContent = '0';
-  },
-
-  toast(msg, type) {
-    const c = document.getElementById('toast-container'); if(!c) return;
-    const t = document.createElement('div'); t.className=`toast ${type}`;
-    t.innerHTML=`<span>${type==='success'?'✓':type==='error'?'✗':'ℹ'}</span><span>${msg}</span>`;
-    c.appendChild(t); setTimeout(()=>{t.style.opacity='0';t.style.transition='all 0.3s';setTimeout(()=>t.remove(),300);},3000);
-  }
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-  HeaderComponent.init(); FooterComponent.init();
-  document.querySelectorAll('.faq-question').forEach(q => { q.addEventListener('click', () => { const item=q.closest('.faq-item'),isOpen=item.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open')); if(!isOpen) item.classList.add('open'); }); });
-  const obs = new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.1});
-  document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
-});
-</script>
 </body>
 </html>

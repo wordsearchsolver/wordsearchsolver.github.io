@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LDX5SDDNPD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LDX5SDDNPD');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===== SEO META TAGS ===== -->
+  <title>Anagram Solver — Find Anagrams Instantly</title>
+  <meta name="description" content="Free online Anagram Solver. Enter letters and instantly find all anagrams, sub-anagrams, and word combinations from a comprehensive word database. Perfect for Scrabble, Words With Friends, word puzzles, and word games.">
+  <meta name="keywords" content="anagram solver, anagram finder, anagram generator, find anagrams, anagram words, word unscrambler, anagram helper, word solver, scrabble anagram, anagram dictionary, anagram tool, unscramble letters, word finder">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="WordSearch Solver">
+  <link rel="canonical" href="https://wordsearchsolver.github.io/anagram-solver">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:title" content="Anagram Solver — Find Anagrams Instantly">
+  <meta property="og:description" content="Enter letters and instantly find all anagrams and word combinations. Free, fast, and perfect for word games.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wordsearchsolver.github.io/anagram-solver">
+  <meta property="og:site_name" content="WordSearch Solver">
+  <meta property="og:locale" content="en_US">
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Anagram Solver — Find Anagrams Instantly">
+  <meta name="twitter:description" content="Enter letters and instantly find all anagrams and word combinations. Free, fast, educational.">
+
+  <!-- ===== SCHEMA MARKUP ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://wordsearchsolver.github.io/anagram-solver/#app",
+        "name": "Anagram Solver",
+        "url": "https://wordsearchsolver.github.io/anagram-solver",
+        "description": "Free online tool to find anagrams and word combinations from any set of letters. Uses a comprehensive word database to suggest valid words for Scrabble, word games, and puzzles.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Find exact anagrams",
+          "Find sub-anagrams using a subset of letters",
+          "Filter by word length",
+          "Sort by word length or alphabetically",
+          "Copy results to clipboard",
+          "Mobile compatible"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://wordsearchsolver.github.io/#website",
+        "url": "https://wordsearchsolver.github.io/",
+        "name": "WordSearch Solver",
+        "description": "Free word search, crossword, and anagram puzzle solver tools",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://wordsearchsolver.github.io/anagram-solver/#solver"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://wordsearchsolver.github.io/anagram-solver/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I use the Anagram Solver?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Enter your letters in the input field and click 'Find Anagrams'. The solver will find all words that can be made using exactly those letters, plus optionally sub-anagrams that use a subset. You can also filter by word length or sort results."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is an anagram?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An anagram is a word or phrase formed by rearranging the letters of another word or phrase. For example, 'LISTEN' is an anagram of 'SILENT'. The Anagram Solver finds all valid words that can be formed from your letters."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are sub-anagrams?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sub-anagrams are words formed using a subset of your letters (not necessarily all of them). For example, from the letters 'LISTEN', sub-anagrams include 'TIN', 'NEST', 'SILT', and 'LIST' — all made from some of the letters."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is the Anagram Solver free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, completely free. No account or payment required. The tool runs entirely in your browser."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- ===== STYLES ===== -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Inline styles for anagram-specific elements -->
+  <style>
+    .anagram-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 32px;
+      align-items: start;
+    }
+    .anagram-main { display: flex; flex-direction: column; gap: 20px; }
+    .anagram-sidebar { display: flex; flex-direction: column; gap: 16px; }
+
+    .letters-input-wrap {
+      position: relative;
+    }
+    .letters-input-wrap input {
+      width: 100%;
+      font-family: var(--font-mono);
+      font-size: 24px;
+      letter-spacing: 0.3em;
+      padding: 18px 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      background: white;
+      color: var(--navy);
+      text-transform: uppercase;
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      text-align: center;
+    }
+    .letters-input-wrap input:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 4px rgba(42,157,143,0.12);
+    }
+    .letters-input-wrap input::placeholder {
+      letter-spacing: 0.2em;
+      color: var(--text-light);
+      font-size: 16px;
+      text-transform: none;
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+      min-width: 180px;
+    }
+    .filter-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .length-pills {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+    .len-pill {
+      padding: 6px 12px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      background: white;
+      border: 1.5px solid var(--border);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: var(--font-body);
+      min-width: 32px;
+    }
+    .len-pill:hover { border-color: var(--amber); color: var(--navy); }
+    .len-pill.active {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: white;
+    }
+
+    .sort-select {
+      font-family: var(--font-body);
+      font-size: 14px;
+      padding: 8px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      background: white;
+      color: var(--text);
+      outline: none;
+      cursor: pointer;
+      transition: border-color var(--transition);
+    }
+    .sort-select:focus { border-color: var(--teal); }
+
+    .mode-toggle {
+      display: flex;
+      background: var(--cream);
+      border-radius: 50px;
+      padding: 4px;
+      gap: 4px;
+    }
+    .mode-btn {
+      flex: 1;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: var(--font-body);
+      border: none;
+    }
+    .mode-btn.active {
+      background: white;
+      color: var(--navy);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Results grid */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 8px;
+    }
+    .anagram-word {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: white;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      cursor: pointer;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+      letter-spacing: 0.1em;
+      user-select: none;
+    }
+    .anagram-word:hover {
+      background: var(--cream);
+      border-color: var(--teal-light);
+      transform: translateY(-1px);
+    }
+    .anagram-word.copied {
+      background: rgba(42,157,143,0.15);
+      border-color: var(--teal);
+    }
+    .anagram-word .wlen {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--cream);
+      padding: 1px 6px;
+      border-radius: 50px;
+      letter-spacing: 0;
+      margin-left: 8px;
+      flex-shrink: 0;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+    }
+    .no-results .big-icon { font-size: 40px; display: block; margin-bottom: 12px; }
+
+    .result-count-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal-dark);
+      background: rgba(42,157,143,0.1);
+      padding: 4px 12px;
+      border-radius: 50px;
+    }
+
+    .exact-badge {
+      background: rgba(244,162,97,0.15);
+      color: var(--amber-dark);
+    }
+
+    @media (max-width: 1024px) {
+      .anagram-layout { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .letters-input-wrap input { font-size: 20px; letter-spacing: 0.2em; padding: 14px 16px; }
+      .results-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+      .filter-row { gap: 14px; }
+      .filter-group { min-width: 140px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Mount Point -->
+  <div id="header-mount"></div>
+
+  <main id="main-content">
+
+    <!-- ================================================
+         HERO
+    ================================================ -->
+    <section class="hero" id="home" aria-labelledby="hero-heading" style="min-height:auto;padding:60px 24px 40px;">
+      <div class="hero-inner" style="grid-template-columns:1fr;text-align:center;gap:24px;">
+        <div class="hero-content" style="max-width:720px;margin:0 auto;">
+          <div class="hero-badge" style="margin:0 auto 20px;">
+            <span class="dot"></span>
+            Free &amp; Instant — No Sign-up Required
+          </div>
+          <h1 id="hero-heading" style="font-size:clamp(32px,5vw,56px);">
+            Solve Any<br>
+            <em>Anagram</em><br>
+            <span class="highlight">In Seconds</span>
+          </h1>
+          <p class="hero-desc" style="max-width:560px;margin:0 auto 28px;">
+            Enter your letters and discover every valid word you can make — from full anagrams to smaller sub-words. Perfect for Scrabble, Words With Friends, and word puzzles.
+          </p>
+          <div class="hero-actions" style="justify-content:center;">
+            <a href="#solver" class="btn-primary">🔤 Find Anagrams</a>
+            <a href="#how-it-works" class="btn-secondary">How It Works</a>
+          </div>
+          <div class="hero-trust" style="justify-content:center;margin-top:24px;">
+            <div class="trust-items">
+              <span class="trust-item">✅ Exact anagrams</span>
+              <span class="trust-item">✅ Sub-anagrams</span>
+              <span class="trust-item">✅ Instant results</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         STATS
+    ================================================ -->
+    <section class="stats-section" aria-label="Statistics">
+      <div class="stats-grid">
+        <div class="stat-card animate-on-scroll">
+          <span class="counter-num" data-target="10000" data-suffix="+">0</span>
+          <p class="stat-label">Words in Database</p>
+        </div>
+        <div class="stat-card animate-on-scroll">
+          <span class="counter-num" data-target="100" data-suffix="%">0</span>
+          <p class="stat-label">Free — No Cost, No Account</p>
+        </div>
+        <div class="stat-card animate-on-scroll">
+          <span class="counter-num" data-target="0" data-suffix="s">0</span>
+          <p class="stat-label">Seconds to Get Results</p>
+        </div>
+        <div class="stat-card animate-on-scroll">
+          <span class="counter-num" data-target="2" data-suffix="">0</span>
+          <p class="stat-label">Search Modes</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         SOLVER TOOL
+    ================================================ -->
+    <section id="solver" aria-labelledby="solver-heading" style="background:var(--warm-white);padding:80px 24px;">
+      <div class="solver-inner">
+        <header style="text-align:center;margin-bottom:48px;">
+          <span class="section-label">The Tool</span>
+          <h2 id="solver-heading" class="section-title">Anagram Solver</h2>
+          <p class="section-desc" style="margin:0 auto;">Type in your letters and choose a mode. Find every word you can make.</p>
+        </header>
+
+        <div class="anagram-layout">
+          <!-- Main solver -->
+          <div class="anagram-main">
+            <div class="input-group">
+              <label for="letters-input" class="input-label">
+                🔤 Your Letters
+                <span class="input-label-hint">— 2 to 15 letters</span>
+              </label>
+              <div class="letters-input-wrap">
+                <input
+                  type="text"
+                  id="letters-input"
+                  placeholder="LISTEN"
+                  autocomplete="off"
+                  spellcheck="false"
+                  maxlength="15"
+                  aria-label="Letters to find anagrams for"
+                >
+              </div>
+            </div>
+
+            <div class="input-group">
+              <span class="input-label">🔍 Search Mode</span>
+              <div class="mode-toggle" id="mode-toggle">
+                <button class="mode-btn active" data-mode="anagrams">Exact Anagrams (all letters)</button>
+                <button class="mode-btn" data-mode="subanagrams">Sub-Anagrams (any subset)</button>
+              </div>
+            </div>
+
+            <div class="filter-row">
+              <div class="filter-group">
+                <span class="filter-label">📏 Word Length</span>
+                <div class="length-pills" id="length-pills">
+                  <!-- Generated by JS -->
+                </div>
+              </div>
+              <div class="filter-group" style="flex:0 0 auto;min-width:auto;">
+                <span class="filter-label">↕ Sort</span>
+                <select class="sort-select" id="sort-select">
+                  <option value="length-desc">Longest First</option>
+                  <option value="length-asc">Shortest First</option>
+                  <option value="alpha">A → Z</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="solver-actions">
+              <button id="find-btn" class="btn-solve" style="flex:1;">
+                <span class="btn-text">🔍 Find Anagrams</span>
+              </button>
+              <button id="clear-btn" class="btn-clear" style="flex:0 0 auto;">🗑 Clear</button>
+              <button id="sample-btn" class="btn-sample" style="flex:0 0 auto;">📄 Sample</button>
+            </div>
+
+            <!-- Results -->
+            <div id="results-container" style="margin-top:24px;">
+              <div id="results-placeholder" class="preview-wrap empty-state" style="padding:40px 20px;">
+                <span class="big-icon">🔤</span>
+                <h3 style="font-size:18px;margin-bottom:8px;">No search yet</h3>
+                <p style="font-size:14px;max-width:400px;margin:0 auto;">Enter some letters above and click "Find Anagrams" to see all the words you can make.</p>
+              </div>
+
+              <div id="results-output" style="display:none;">
+                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <span class="result-count-badge" id="result-count">0 words</span>
+                    <span class="result-count-badge exact-badge" id="exact-count" style="display:none;">0 exact anagrams</span>
+                  </div>
+                  <button id="copy-all-btn" class="btn-copy" style="margin-left:0;">📋 Copy All</button>
+                </div>
+                <div class="results-grid" id="results-grid"></div>
+              </div>
+
+              <div id="results-empty" style="display:none;" class="preview-wrap empty-state">
+                <span class="big-icon">😕</span>
+                <h3 style="font-size:18px;margin-bottom:8px;">No matching words</h3>
+                <p style="font-size:14px;max-width:400px;margin:0 auto;">Try different letters, switch to sub-anagram mode, or remove the length filter.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <aside class="anagram-sidebar" aria-label="Solver help">
+            <div class="sidebar-card">
+              <h4>📖 How to Use</h4>
+              <ul style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--text-muted);">
+                <li>• Type your letters (2–15)</li>
+                <li>• Choose <strong>Exact Anagrams</strong> to use all letters</li>
+                <li>• Choose <strong>Sub-Anagrams</strong> to use any subset</li>
+                <li>• Filter by word length for precision</li>
+                <li>• Click any word to copy it</li>
+              </ul>
+            </div>
+            <div class="sidebar-card">
+              <h4>💡 Examples</h4>
+              <div class="format-example" style="line-height:2;">
+                <strong>LISTEN</strong> → SILENT, TINSEL, ENLIST<br>
+                <strong>STONE</strong> → NOTES, ONSET, TONES<br>
+                <strong>CAT</strong> → ACT, CAT<br>
+                <strong>RETAIN</strong> → RETAIN, RETAIN, ...<br>
+                <span style="color:var(--teal-dark)">Sub-mode finds: TIN, NEST, SILT, etc.</span>
+              </div>
+            </div>
+            <div class="sidebar-card">
+              <h4>🎯 Pro Tips</h4>
+              <ul style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--text-muted);">
+                <li>• Use 7–8 letters for best results</li>
+                <li>• Exact mode needs all letters used</li>
+                <li>• Sub mode finds smaller words too</li>
+                <li>• Sort by length for the highest-scoring words</li>
+              </ul>
+            </div>
+            <div class="sidebar-card">
+              <h4>🔗 Related Tools</h4>
+              <p style="font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:10px;">Other puzzle solvers you might like:</p>
+              <a href="/" style="color:var(--teal-dark);font-weight:600;font-size:14px;display:block;margin-bottom:6px;">→ Word Search Solver</a>
+              <a href="/crossword-puzzle-solver" style="color:var(--teal-dark);font-weight:600;font-size:14px;display:block;margin-bottom:6px;">→ Crossword Puzzle Solver</a>
+              <a href="/word-search-generator" style="color:var(--teal-dark);font-weight:600;font-size:14px;display:block;">→ Word Search Generator</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         HOW IT WORKS
+    ================================================ -->
+    <section id="how-it-works" class="section" aria-labelledby="hiw-heading">
+      <div class="section-inner">
+        <header style="text-align:center;">
+          <span class="section-label animate-on-scroll">The Process</span>
+          <h2 id="hiw-heading" class="section-title animate-on-scroll">How the Anagram Solver Works</h2>
+          <p class="section-desc animate-on-scroll" style="margin:0 auto;">
+            Our solver uses letter-frequency matching to find every anagram and sub-anagram in milliseconds.
+          </p>
+        </header>
+        <div class="steps-grid">
+          <article class="step-card animate-on-scroll">
+            <span class="step-number">1</span>
+            <div class="step-icon amber">✏️</div>
+            <h3>Enter Your Letters</h3>
+            <p>Type up to 15 letters into the input field. The solver automatically converts them to uppercase and ignores duplicate letters in the search.</p>
+          </article>
+          <article class="step-card animate-on-scroll">
+            <span class="step-number">2</span>
+            <div class="step-icon teal">🔍</div>
+            <h3>Choose Your Mode</h3>
+            <p>Use "Exact Anagrams" to find words that use every letter, or "Sub-Anagrams" to find any word that uses some or all of your letters.</p>
+          </article>
+          <article class="step-card animate-on-scroll">
+            <span class="step-number">3</span>
+            <div class="step-icon coral">🎯</div>
+            <h3>Browse &amp; Pick</h3>
+            <p>Results are grouped by length and sorted as you prefer. Click any word to copy it. Use the length filter to find the perfect answer for your word game.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         FEATURES
+    ================================================ -->
+    <section id="features" class="section" aria-labelledby="feat-heading" style="background:var(--cream);">
+      <div class="section-inner">
+        <header>
+          <span class="section-label animate-on-scroll">Why Use It</span>
+          <h2 id="feat-heading" class="section-title animate-on-scroll">Features of Our Anagram Solver</h2>
+          <p class="section-desc animate-on-scroll">Built for Scrabble players, crossword fans, and word puzzle lovers.</p>
+        </header>
+        <div class="features-grid">
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">🔤</span>
+            <h3>Exact Anagram Mode</h3>
+            <p>Find all words that use every single one of your letters. Perfect when you know the answer is an exact anagram of your letters.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">🧩</span>
+            <h3>Sub-Anagram Mode</h3>
+            <p>Find words that use any subset of your letters. Ideal for word games where you're trying to squeeze out every possible word from your rack.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">📏</span>
+            <h3>Length Filter</h3>
+            <p>Filter results by exact word length. Choose 2, 3, 4, or more letters to narrow down your options and find the highest-scoring words.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">↕</span>
+            <h3>Sort Options</h3>
+            <p>Sort results by longest first (great for high scores), shortest first, or alphabetically. The choice is yours.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">📋</span>
+            <h3>Copy Results</h3>
+            <p>Click any word to copy it instantly, or use "Copy All" to grab the full list. Paste into a notes app or share with friends.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">📱</span>
+            <h3>Mobile Friendly</h3>
+            <p>Works perfectly on phones and tablets. Use it during a game night to settle disputes or while solving puzzles on the go.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         USE CASES
+    ================================================ -->
+    <section id="use-cases" class="section" aria-labelledby="uc-heading" style="background:var(--warm-white);">
+      <div class="section-inner">
+        <header>
+          <span class="section-label animate-on-scroll">Who Uses It</span>
+          <h2 id="uc-heading" class="section-title animate-on-scroll">Built for Word Game Players &amp; Puzzle Fans</h2>
+          <p class="section-desc animate-on-scroll">Whether you're competing or just love words, our solver is your new secret weapon.</p>
+        </header>
+        <div class="use-cases-grid">
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">🎲</div>
+            <div>
+              <h3>Scrabble &amp; Word Game Players</h3>
+              <p>Stuck with a difficult rack? Enter your letters and find the highest-scoring anagram in seconds. Sort by longest first to maximize your score and dominate the board.</p>
+            </div>
+          </article>
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">📚</div>
+            <div>
+              <h3>Students &amp; Teachers</h3>
+              <p>Explore word relationships, build vocabulary, and discover how letters can be rearranged to form new words. A great learning tool for language arts classrooms.</p>
+            </div>
+          </article>
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">🧩</div>
+            <div>
+              <h3>Puzzle Enthusiasts</h3>
+              <p>Working on an anagram puzzle, jumble, or word ladder? Use the solver to break through the trickiest re-arrangements and keep your solving streak alive.</p>
+            </div>
+          </article>
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">📰</div>
+            <div>
+              <h3>Crossword Solvers</h3>
+              <p>Sometimes a crossword clue gives you the letters as an anagram (often signalled by words like "arranged" or "confused"). Our solver helps you crack those clues fast.</p>
+            </div>
+          </article>
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">📝</div>
+            <div>
+              <h3>Writers &amp; Poets</h3>
+              <p>Looking for creative word combinations? Anagrams can inspire new ideas, clever pen names, and clever turns of phrase. Play with letters to discover surprising words.</p>
+            </div>
+          </article>
+          <article class="use-case-card animate-on-scroll">
+            <div class="use-case-icon">👪</div>
+            <div>
+              <h3>Family Game Night</h3>
+              <p>Bring out the anagram solver during family game night to settle disputes and boost everyone's word-finding skills. Works with any word-based game.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         TIPS
+    ================================================ -->
+    <section id="tips" class="section" aria-labelledby="tips-heading" style="background:var(--cream);">
+      <div class="section-inner">
+        <header>
+          <span class="section-label animate-on-scroll">Pro Advice</span>
+          <h2 id="tips-heading" class="section-title animate-on-scroll">Tips for Anagram Hunting</h2>
+          <p class="section-desc animate-on-scroll">Improve your anagram skills and get the highest scores in your word games.</p>
+        </header>
+        <div class="tips-grid">
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">1</div>
+            <div>
+              <h4>Look for Common Suffixes</h4>
+              <p>Words ending in -ING, -ED, -ER, -LY, -TION are everywhere. If you see those letters in your rack, try forming words with them and see what else sticks.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">2</div>
+            <div>
+              <h4>Start With Vowels</h4>
+              <p>Vowels are usually the fewest letters in your rack, so start there. Knowing which vowels you have limits the possible words dramatically.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">3</div>
+            <div>
+              <h4>Use All Letters When Possible</h4>
+              <p>In Scrabble, using all 7 of your letters in one turn earns a bonus of 50 points (a "bingo"). Try the Exact Anagrams mode first to look for 7-letter words.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">4</div>
+            <div>
+              <h4>Don't Forget 2-Letter Words</h4>
+              <p>In Scrabble, 2-letter words are often the key to scoring well because they let you hook onto existing words. Memorize the 2-letter word list!</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">5</div>
+            <div>
+              <h4>Sort by Length for High Scores</h4>
+              <p>When playing Scrabble, use the "Longest First" sort. Longer words generally score more points, especially if they hit bonus squares.</p>
+            </div>
+          </div>
+          <div class="tip-card animate-on-scroll">
+            <div class="tip-num">6</div>
+            <div>
+              <h4>Sub-Anagrams Save the Day</h4>
+              <p>Sometimes you can't use all your letters. Switch to Sub-Anagram mode to find smaller words that still score well or set up your next move.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         ABOUT ANAGRAMS
+    ================================================ -->
+    <section id="about" class="section" aria-labelledby="about-heading" style="background:var(--warm-white);">
+      <div class="about-inner">
+        <div class="about-content animate-on-scroll">
+          <span class="section-label">Background</span>
+          <h2 id="about-heading" class="section-title">What Is an Anagram?</h2>
+          <p>An anagram is a word or phrase formed by rearranging the letters of another word or phrase. For example, "LISTEN" is an anagram of "SILENT" — both use the exact same six letters.</p>
+          <p>Anagrams have been used in wordplay for centuries. They appear in literature, puzzles, and games, and are famously used in cryptic crossword clues (often signaled by words like "arranged," "confused," "broken," or "mixed").</p>
+          <p>There are two main types: <strong>exact anagrams</strong> (using every letter) and <strong>partial or sub-anagrams</strong> (using a subset of letters). Both are valuable when solving word puzzles or playing games like Scrabble and Words With Friends.</p>
+          <p>Our <strong>Anagram Solver</strong> uses letter-frequency counting to quickly scan a large word database and surface every valid anagram and sub-anagram. It's the fastest way to unscramble letters and find hidden words.</p>
+        </div>
+        <div class="about-visual animate-on-scroll">
+          <h3 style="margin-bottom:20px;">Related Terms</h3>
+          <div class="keyword-cloud">
+            <span class="kw-tag" style="background:rgba(42,157,143,.1);color:var(--teal-dark);border-color:rgba(42,157,143,.2)">Anagram Solver</span>
+            <span class="kw-tag" style="background:rgba(244,162,97,.1);color:var(--amber-dark);border-color:rgba(244,162,97,.25)">Anagram Finder</span>
+            <span class="kw-tag" style="background:rgba(38,70,83,.08);color:var(--navy);border-color:rgba(38,70,83,.15)">Word Unscrambler</span>
+            <span class="kw-tag" style="background:rgba(231,111,81,.1);color:var(--coral);border-color:rgba(231,111,81,.2)">Anagram Generator</span>
+            <span class="kw-tag" style="background:rgba(42,157,143,.1);color:var(--teal-dark);border-color:rgba(42,157,143,.2)">Scrabble Helper</span>
+            <span class="kw-tag" style="background:rgba(244,162,97,.1);color:var(--amber-dark);border-color:rgba(244,162,97,.25)">Words With Friends Helper</span>
+            <span class="kw-tag" style="background:rgba(38,70,83,.08);color:var(--navy);border-color:rgba(38,70,83,.15)">Word Finder</span>
+            <span class="kw-tag" style="background:rgba(231,111,81,.1);color:var(--coral);border-color:rgba(231,111,81,.2)">Letter Scrambler</span>
+            <span class="kw-tag" style="background:rgba(42,157,143,.1);color:var(--teal-dark);border-color:rgba(42,157,143,.2)">Word Game Cheat</span>
+            <span class="kw-tag" style="background:rgba(244,162,97,.1);color:var(--amber-dark);border-color:rgba(244,162,97,.25)">Sub-Anagram Finder</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         FAQ
+    ================================================ -->
+    <section id="faq" class="section" aria-labelledby="faq-heading" style="background:var(--cream);">
+      <div class="section-inner">
+        <header style="text-align:center;">
+          <span class="section-label animate-on-scroll">Help</span>
+          <h2 id="faq-heading" class="section-title animate-on-scroll">Frequently Asked Questions</h2>
+          <p class="section-desc animate-on-scroll" style="margin:0 auto;">Everything you need to know about using the Anagram Solver.</p>
+        </header>
+        <div class="faq-list" role="list">
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              How do I use the Anagram Solver?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Type your letters into the input field (2–15 letters). Choose "Exact Anagrams" to find words that use every letter, or "Sub-Anagrams" to find words using any subset. Click "Find Anagrams" and the solver will show all matching words from the database.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              What's the difference between exact and sub-anagrams?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Exact anagrams use every letter you enter — the word is a perfect anagram of your input. Sub-anagrams use only some of your letters, so they can be shorter. For example, from "LISTEN", exact anagrams include SILENT and TINSEL, while sub-anagrams include TIN, NEST, and SILT.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Can the solver handle duplicate letters?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Yes. The solver counts how many of each letter you have and only finds words that can be formed with those exact letter counts. For example, if you enter "AAB", it will find "ABA" or "BAA" but not "ABC" (no C available) or "AAA" (only two A's).
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              How many letters can I enter?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Up to 15 letters. Most word games use 7 letters, but larger inputs are useful for long puzzles and word challenges. Note that with very many letters, results may be numerous.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Does the solver support Scrabble scoring?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              The solver shows you valid words but does not calculate point values. However, you can sort by longest first to find high-scoring options, since longer words generally score more points in Scrabble and Words With Friends.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Is the Anagram Solver free?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Yes, completely free. No account, no login, no payment. The tool runs entirely in your browser and requires no data to be sent to a server.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Can I copy the results?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Yes! Click any individual word to copy it, or use "Copy All" to copy the entire list. The copied text can be pasted anywhere — notes, messages, or your word game chat.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Does it work on mobile?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Yes. The Anagram Solver is fully responsive and works on phones, tablets, and desktops. The interface and results grid adapt to any screen size.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         CTA SECTION
+    ================================================ -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+      <h2 id="cta-heading">Unscramble Your Letters Now</h2>
+      <p>Enter your letters and see every word you can make — instantly. No sign-up, no download.</p>
+      <a href="#solver" class="cta-btn">🔤 Find Anagrams</a>
+    </section>
+
+  </main>
+
+  <!-- Footer Mount Point -->
+  <div id="footer-mount"></div>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="js/header.js"></script>
+  <script src="js/footer.js"></script>
+  <!-- Word list must load before the solver script -->
+  <script src="js/wordlist.js"></script>
+  <!-- Solver logic -->
+  <script>
+  (function() {
+    'use strict';
+
+    // --- DOM refs ---
+    const lettersInput = document.getElementById('letters-input');
+    const findBtn = document.getElementById('find-btn');
+    const clearBtn = document.getElementById('clear-btn');
+    const sampleBtn = document.getElementById('sample-btn');
+    const modeToggle = document.getElementById('mode-toggle');
+    const modeBtns = document.querySelectorAll('.mode-btn');
+    const lengthPillsContainer = document.getElementById('length-pills');
+    const sortSelect = document.getElementById('sort-select');
+    const resultsPlaceholder = document.getElementById('results-placeholder');
+    const resultsOutput = document.getElementById('results-output');
+    const resultsEmpty = document.getElementById('results-empty');
+    const resultsGrid = document.getElementById('results-grid');
+    const resultCount = document.getElementById('result-count');
+    const exactCount = document.getElementById('exact-count');
+    const copyAllBtn = document.getElementById('copy-all-btn');
+
+    // --- State ---
+    let searchMode = 'anagrams'; // 'anagrams' | 'subanagrams'
+    let activeLength = null; // null = all
+    let lastResults = [];
+    let currentInputLetters = '';
+
+    // --- Build length pills 2..15 ---
+    function buildLengthPills() {
+      lengthPillsContainer.innerHTML = '';
+      const allPill = document.createElement('button');
+      allPill.className = 'len-pill active';
+      allPill.dataset.len = '';
+      allPill.textContent = 'All';
+      allPill.addEventListener('click', () => {
+        activeLength = null;
+        document.querySelectorAll('.len-pill').forEach(p => p.classList.remove('active'));
+        allPill.classList.add('active');
+        rerender();
+      });
+      lengthPillsContainer.appendChild(allPill);
+
+      for (let len = 2; len <= 15; len++) {
+        const pill = document.createElement('button');
+        pill.className = 'len-pill';
+        pill.dataset.len = len;
+        pill.textContent = len;
+        pill.addEventListener('click', () => {
+          if (activeLength === len) {
+            activeLength = null;
+            pill.classList.remove('active');
+            allPill.classList.add('active');
+          } else {
+            activeLength = len;
+            document.querySelectorAll('.len-pill').forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+          }
+          rerender();
+        });
+        lengthPillsContainer.appendChild(pill);
+      }
+    }
+
+    // --- Mode toggle ---
+    modeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        searchMode = btn.dataset.mode;
+        // Re-run search if we have letters
+        if (currentInputLetters) {
+          doSearch();
+        }
+      });
+    });
+
+    // --- Sort change ---
+    sortSelect.addEventListener('change', rerender);
+
+    // --- Letter counts helper ---
+    function countLetters(str) {
+      const counts = {};
+      for (const ch of str) {
+        counts[ch] = (counts[ch] || 0) + 1;
+      }
+      return counts;
+    }
+
+    // --- Can word be formed from available counts? ---
+    function canForm(word, availableCounts) {
+      const wordCounts = countLetters(word);
+      for (const ch in wordCounts) {
+        if (!availableCounts[ch] || availableCounts[ch] < wordCounts[ch]) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    // --- Main search ---
+    function doSearch() {
+      const raw = lettersInput.value.trim().toUpperCase();
+      if (!raw) {
+        showPlaceholder();
+        return;
+      }
+      // Strip non-letters
+      const letters = raw.replace(/[^A-Z]/g, '');
+      if (letters.length < 2) {
+        alert('Please enter at least 2 letters.');
+        showPlaceholder();
+        return;
+      }
+      if (letters.length > 15) {
+        alert('Please enter no more than 15 letters.');
+        return;
+      }
+      if (typeof WORDLIST === 'undefined' || !Array.isArray(WORDLIST)) {
+        alert('Word list is not available. Please check that wordlist.js is loaded correctly.');
+        return;
+      }
+
+      currentInputLetters = letters;
+      const availableCounts = countLetters(letters);
+      const targetLen = letters.length;
+
+      const exactResults = [];
+      const subResults = [];
+
+      for (const word of WORDLIST) {
+        if (typeof word !== 'string') continue;
+        const upper = word.toUpperCase();
+        if (!/^[A-Z]+$/.test(upper)) continue;
+        if (upper.length > targetLen) continue;
+        if (upper.length < 2) continue;
+
+        if (searchMode === 'anagrams') {
+          // Must use ALL letters exactly
+          if (upper.length !== targetLen) continue;
+          if (canForm(upper, availableCounts)) {
+            // Make sure letter counts match exactly (not a subset)
+            const wc = countLetters(upper);
+            let match = true;
+            for (const ch in availableCounts) {
+              if (wc[ch] !== availableCounts[ch]) { match = false; break; }
+            }
+            if (match) exactResults.push(upper);
+          }
+        } else {
+          // Sub-anagrams: any subset
+          if (canForm(upper, availableCounts)) {
+            if (upper.length === targetLen) {
+              // Check if it's an exact anagram
+              const wc = countLetters(upper);
+              let isExact = true;
+              for (const ch in availableCounts) {
+                if (wc[ch] !== availableCounts[ch]) { isExact = false; break; }
+              }
+              if (isExact) exactResults.push(upper);
+              else subResults.push(upper);
+            } else {
+              subResults.push(upper);
+            }
+          }
+        }
+      }
+
+      // In exact mode, only exact results exist
+      // In sub mode, combine (exact + sub)
+      let combined;
+      if (searchMode === 'anagrams') {
+        combined = exactResults;
+      } else {
+        combined = [...exactResults, ...subResults];
+      }
+
+      // Deduplicate and store
+      const unique = [...new Set(combined)];
+      lastResults = {
+        all: unique,
+        exact: [...new Set(exactResults)],
+        mode: searchMode,
+        inputLength: targetLen
+      };
+
+      rerender();
+    }
+
+    // --- Re-render based on current filters ---
+    function rerender() {
+      if (!lastResults || !lastResults.all) {
+        showPlaceholder();
+        return;
+      }
+
+      let list = lastResults.all.slice();
+
+      // Apply length filter
+      if (activeLength) {
+        list = list.filter(w => w.length === activeLength);
+      }
+
+      // Apply sort
+      const sortVal = sortSelect.value;
+      if (sortVal === 'length-desc') {
+        list.sort((a, b) => b.length - a.length || a.localeCompare(b));
+      } else if (sortVal === 'length-asc') {
+        list.sort((a, b) => a.length - b.length || a.localeCompare(b));
+      } else if (sortVal === 'alpha') {
+        list.sort((a, b) => a.localeCompare(b));
+      }
+
+      renderResults(list);
+    }
+
+    // --- Render results ---
+    function renderResults(words) {
+      resultsPlaceholder.style.display = 'none';
+
+      if (words.length === 0) {
+        resultsOutput.style.display = 'none';
+        resultsEmpty.style.display = 'block';
+        return;
+      }
+
+      resultsOutput.style.display = 'block';
+      resultsEmpty.style.display = 'none';
+
+      resultCount.textContent = `${words.length} word${words.length !== 1 ? 's' : ''} found`;
+
+      // Show exact anagram count if applicable
+      if (lastResults.exact && lastResults.exact.length > 0) {
+        exactCount.style.display = 'inline-flex';
+        exactCount.textContent = `${lastResults.exact.length} exact anagram${lastResults.exact.length !== 1 ? 's' : ''}`;
+      } else {
+        exactCount.style.display = 'none';
+      }
+
+      resultsGrid.innerHTML = '';
+      words.forEach(word => {
+        const el = document.createElement('div');
+        el.className = 'anagram-word';
+        el.dataset.word = word;
+
+        const wordSpan = document.createElement('span');
+        wordSpan.textContent = word;
+        el.appendChild(wordSpan);
+
+        const lenBadge = document.createElement('span');
+        lenBadge.className = 'wlen';
+        lenBadge.textContent = word.length;
+        el.appendChild(lenBadge);
+
+        el.addEventListener('click', () => {
+          copyToClipboard(word);
+          el.classList.add('copied');
+          setTimeout(() => el.classList.remove('copied'), 600);
+        });
+
+        resultsGrid.appendChild(el);
+      });
+    }
+
+    function showPlaceholder() {
+      resultsPlaceholder.style.display = 'block';
+      resultsOutput.style.display = 'none';
+      resultsEmpty.style.display = 'none';
+      lastResults = [];
+    }
+
+    // --- Copy helpers ---
+    function copyToClipboard(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+      } else {
+        fallbackCopy(text);
+      }
+    }
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(ta);
+    }
+
+    // --- Copy all ---
+    copyAllBtn.addEventListener('click', () => {
+      if (!lastResults.all || lastResults.all.length === 0) return;
+
+      let list = lastResults.all.slice();
+      if (activeLength) list = list.filter(w => w.length === activeLength);
+
+      if (list.length === 0) return;
+
+      copyToClipboard(list.join('\n'));
+      copyAllBtn.textContent = '✅ Copied!';
+      setTimeout(() => { copyAllBtn.textContent = '📋 Copy All'; }, 1500);
+    });
+
+    // --- Find button ---
+    findBtn.addEventListener('click', doSearch);
+
+    // --- Enter key ---
+    lettersInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        doSearch();
+      }
+    });
+
+    // --- Input sanitize ---
+    lettersInput.addEventListener('input', () => {
+      let val = lettersInput.value.toUpperCase().replace(/[^A-Z]/g, '');
+      lettersInput.value = val;
+    });
+
+    // --- Clear ---
+    clearBtn.addEventListener('click', () => {
+      lettersInput.value = '';
+      currentInputLetters = '';
+      activeLength = null;
+      document.querySelectorAll('.len-pill').forEach(p => p.classList.remove('active'));
+      const allPill = lengthPillsContainer.querySelector('.len-pill[data-len=""]');
+      if (allPill) allPill.classList.add('active');
+      showPlaceholder();
+      lettersInput.focus();
+    });
+
+    // --- Sample ---
+    sampleBtn.addEventListener('click', () => {
+      const samples = ['LISTEN', 'STONE', 'RETAIN', 'MASTER', 'TRAINED', 'CONSIDER', 'PLANET'];
+      lettersInput.value = samples[Math.floor(Math.random() * samples.length)];
+      // Reset mode to exact for sample
+      modeBtns.forEach(b => b.classList.remove('active'));
+      document.querySelector('.mode-btn[data-mode="anagrams"]').classList.add('active');
+      searchMode = 'anagrams';
+      // Reset length filter
+      activeLength = null;
+      document.querySelectorAll('.len-pill').forEach(p => p.classList.remove('active'));
+      const allPill = lengthPillsContainer.querySelector('.len-pill[data-len=""]');
+      if (allPill) allPill.classList.add('active');
+      doSearch();
+    });
+
+    // --- Init ---
+    buildLengthPills();
+    lettersInput.focus();
+
+  })();
+  </script>
+
+</body>
+</html>

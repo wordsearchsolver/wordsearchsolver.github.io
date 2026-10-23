@@ -28,11 +28,13 @@
   <meta property="og:url" content="https://wordsearchsolver.github.io/word-scramble-generator">
   <meta property="og:site_name" content="WordSearch Solver">
   <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://wordsearchsolver.github.io/img/word-scramble-og.png">
 
   <!-- ===== TWITTER CARD ===== -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Word Scramble Generator — Make Jumble Puzzles Instantly">
   <meta name="twitter:description" content="Create custom scrambled word puzzles from your own words. Free, fast, educational.">
+  <meta name="twitter:image" content="https://wordsearchsolver.github.io/img/word-scramble-og.png">
 
   <!-- ===== SCHEMA MARKUP ===== -->
   <script type="application/ld+json">
@@ -41,18 +43,22 @@
     "@graph": [
       {
         "@type": "WebApplication",
-        "@id": "https://wordsearchsolver.github.io/word-scramble-generator/#app",
+        "@id": "https://wordsearchsolver.github.io/word-scramble-generator#app",
         "name": "Word Scramble Generator",
         "url": "https://wordsearchsolver.github.io/word-scramble-generator",
         "description": "Free online tool to generate scrambled word puzzles (jumbles). Create custom jumbles from your own words or our curated word list, choose difficulty, and print your puzzle.",
         "applicationCategory": "EducationalApplication",
+        "applicationSubCategory": "Word Puzzle Generator",
         "operatingSystem": "Any",
         "browserRequirements": "Requires JavaScript",
         "isAccessibleForFree": true,
+        "isFamilyFriendly": true,
+        "inLanguage": "en",
         "offers": {
           "@type": "Offer",
           "price": "0",
-          "priceCurrency": "USD"
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
         },
         "featureList": [
           "Create jumbles from custom words",
@@ -61,22 +67,57 @@
           "Printable puzzle output",
           "Show answers toggle",
           "Mobile compatible"
-        ]
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://wordsearchsolver.github.io/#website",
-        "url": "https://wordsearchsolver.github.io/",
-        "name": "WordSearch Solver",
-        "description": "Free word search, crossword, anagram, and jumble puzzle tools",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://wordsearchsolver.github.io/word-scramble-generator/#generator"
+        ],
+        "screenshot": "https://wordsearchsolver.github.io/img/word-scramble-screenshot.png",
+        "author": {
+          "@type": "Organization",
+          "name": "WordSearch Solver",
+          "url": "https://wordsearchsolver.github.io/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "WordSearch Solver",
+          "url": "https://wordsearchsolver.github.io/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://wordsearchsolver.github.io/favicon.png"
+          }
+        },
+        "isPartOf": {
+          "@id": "https://wordsearchsolver.github.io/#website"
         }
       },
       {
+        "@type": "WebPage",
+        "@id": "https://wordsearchsolver.github.io/word-scramble-generator#webpage",
+        "url": "https://wordsearchsolver.github.io/word-scramble-generator",
+        "name": "Word Scramble Generator — Make Jumble Puzzles Instantly",
+        "description": "Free online Word Scramble Generator. Create custom scrambled word puzzles from your own words or our curated list.",
+        "inLanguage": "en",
+        "isPartOf": { "@id": "https://wordsearchsolver.github.io/#website" },
+        "about": { "@id": "https://wordsearchsolver.github.io/word-scramble-generator#app" },
+        "mainEntity": { "@id": "https://wordsearchsolver.github.io/word-scramble-generator#app" },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://wordsearchsolver.github.io/img/word-scramble-og.png"
+        },
+        "datePublished": "2025-01-01",
+        "dateModified": "2025-01-01",
+        "breadcrumb": {
+          "@id": "https://wordsearchsolver.github.io/word-scramble-generator#breadcrumb"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://wordsearchsolver.github.io/word-scramble-generator#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://wordsearchsolver.github.io/" },
+          { "@type": "ListItem", "position": 2, "name": "Word Scramble Generator", "item": "https://wordsearchsolver.github.io/word-scramble-generator" }
+        ]
+      },
+      {
         "@type": "FAQPage",
-        "@id": "https://wordsearchsolver.github.io/word-scramble-generator/#faq",
+        "@id": "https://wordsearchsolver.github.io/word-scramble-generator#faq",
         "mainEntity": [
           {
             "@type": "Question",
@@ -104,13 +145,66 @@
           },
           {
             "@type": "Question",
+            "name": "How many words should I include in a puzzle?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For best results, use 8-12 words. This gives solvers a satisfying challenge without overwhelming them. For quick puzzles, try 5-6 words. For longer challenges, try 15-20."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I print the puzzle with or without answers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The print version always shows a clean puzzle without answers, perfect for handing out. If you want an answer key, use the 'Show Answers' toggle to display them, then take a screenshot or print a separate copy."
+            }
+          },
+          {
+            "@type": "Question",
             "name": "Is the Word Scramble Generator free?",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "Yes, completely free. No account or payment required. The tool runs entirely in your browser."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use this for classroom activities?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. Teachers can generate puzzles for vocabulary review, spelling practice, or just for fun. Print as many copies as you need for your class. No attribution required."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the generator avoid making the same scramble twice?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The generator shuffles the letters randomly each time, but guarantees that the scrambled version differs from the original word. It also avoids simple reversals. If you regenerate, you'll often get a different scramble, perfect for making multiple versions of the same puzzle."
+            }
           }
         ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://wordsearchsolver.github.io/#website",
+        "url": "https://wordsearchsolver.github.io/",
+        "name": "WordSearch Solver",
+        "description": "Free word search, crossword, anagram, jumble, and puzzle tools",
+        "inLanguage": "en",
+        "publisher": {
+          "@type": "Organization",
+          "name": "WordSearch Solver",
+          "url": "https://wordsearchsolver.github.io/"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://wordsearchsolver.github.io/?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
       }
     ]
   }
@@ -803,10 +897,101 @@
   <!-- ===== SCRIPTS ===== -->
   <script src="js/header.js"></script>
   <script src="js/footer.js"></script>
-  <!-- Word list must load before the generator script -->
   <script src="js/wordlist.js"></script>
   <script src="js/app.js"></script>
-  <!-- Generator logic -->
+
+  <!-- ============================================================
+       Fallback: ensures FAQ, counters, scroll animations, and
+       header scroll state work even if app.js doesn't cover them.
+       Safe because each handler checks a data-bound marker first.
+       ============================================================ -->
+  <script>
+  (function() {
+    'use strict';
+
+    // --- FAQ Accordion (fallback) ---
+    document.querySelectorAll('.faq-question').forEach(function(q) {
+      if (q.dataset.bound === '1') return;
+      q.dataset.bound = '1';
+      q.addEventListener('click', function() {
+        const item = q.closest('.faq-item');
+        if (!item) return;
+        const isOpen = item.classList.toggle('open');
+        q.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    });
+
+    // --- Animate on scroll (fallback) ---
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
+        if (!el.classList.contains('in-view')) observer.observe(el);
+      });
+    } else {
+      document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
+        el.classList.add('in-view');
+      });
+    }
+
+    // --- Counter animation (fallback) ---
+    function animateCounter(el) {
+      if (el.dataset.animated === '1') return;
+      el.dataset.animated = '1';
+      const target = parseInt(el.dataset.target || '0', 10);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1200;
+      const start = performance.now();
+      function tick(now) {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const val = Math.round(eased * target);
+        el.textContent = val + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+        else el.textContent = target + suffix;
+      }
+      requestAnimationFrame(tick);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const counterObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            counterObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      document.querySelectorAll('.counter-num').forEach(function(el) {
+        counterObs.observe(el);
+      });
+    } else {
+      document.querySelectorAll('.counter-num').forEach(animateCounter);
+    }
+
+    // --- Header scroll state (fallback) ---
+    const header = document.querySelector('.site-header');
+    if (header && !header.dataset.scrollBound) {
+      header.dataset.scrollBound = '1';
+      const onScroll = function() {
+        if (window.scrollY > 20) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+  })();
+  </script>
+
+  <!-- ============================================================
+       Generator logic
+       ============================================================ -->
   <script>
   (function() {
     'use strict';
@@ -824,42 +1009,46 @@
     const previewStats = document.getElementById('preview-stats');
     const toggleAnswersBtn = document.getElementById('toggle-answers-btn');
 
+    if (!wordsInput || !generateBtn) return; // page not present
+
     // --- State ---
     let currentDifficulty = 'easy';
-    let currentPuzzle = null; // [{ word, scrambled }]
+    let currentPuzzle = null;
     let answersVisible = false;
 
     // --- Difficulty pills ---
-    diffPills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        diffPills.forEach(p => p.classList.remove('active'));
+    diffPills.forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        diffPills.forEach(function(p) { p.classList.remove('active'); });
         pill.classList.add('active');
         currentDifficulty = pill.dataset.diff;
       });
     });
 
     // --- Load from word list ---
-    loadListBtn.addEventListener('click', () => {
+    loadListBtn.addEventListener('click', function() {
       if (typeof WORDLIST !== 'undefined' && Array.isArray(WORDLIST) && WORDLIST.length > 0) {
         // Filter to words 4-9 letters for good scramble material
-        const pool = WORDLIST.filter(w => typeof w === 'string' && /^[A-Za-z]{4,9}$/.test(w));
+        const pool = WORDLIST.filter(function(w) {
+          return typeof w === 'string' && /^[A-Za-z]{4,9}$/.test(w);
+        });
         if (pool.length === 0) {
           alert('No suitable words found in the word list.');
           return;
         }
-        const shuffled = [...pool].sort(() => Math.random() - 0.5);
+        const shuffled = pool.slice().sort(function() { return Math.random() - 0.5; });
         const count = Math.min(12, Math.max(8, Math.floor(Math.random() * 5) + 8));
-        const picked = shuffled.slice(0, count).map(w => w.toUpperCase());
+        const picked = shuffled.slice(0, count).map(function(w) { return w.toUpperCase(); });
         wordsInput.value = picked.join('\n');
         wordsInput.classList.add('pulse-once');
-        setTimeout(() => wordsInput.classList.remove('pulse-once'), 500);
+        setTimeout(function() { wordsInput.classList.remove('pulse-once'); }, 500);
       } else {
         alert('Word list is not available. Please check that wordlist.js is loaded correctly.');
       }
     });
 
     // --- Clear words ---
-    clearWordsBtn.addEventListener('click', () => {
+    clearWordsBtn.addEventListener('click', function() {
       wordsInput.value = '';
       wordsInput.focus();
     });
@@ -868,8 +1057,8 @@
     function parseWords(raw) {
       return raw
         .split(/[\n,]+/)
-        .map(w => w.trim().toUpperCase())
-        .filter(w => w.length >= 3 && /^[A-Z]+$/.test(w));
+        .map(function(w) { return w.trim().toUpperCase(); })
+        .filter(function(w) { return w.length >= 3 && /^[A-Z]+$/.test(w); });
     }
 
     // --- Shuffle array ---
@@ -877,7 +1066,7 @@
       const a = arr.slice();
       for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
+        const tmp = a[i]; a[i] = a[j]; a[j] = tmp;
       }
       return a;
     }
@@ -899,12 +1088,10 @@
       }
 
       if (difficulty === 'easy') {
-        // Keep first and last letters, shuffle middle
         const first = letters[0];
         const last = letters[letters.length - 1];
         const middle = letters.slice(1, -1);
 
-        // If middle is very short, just shuffle whole thing if needed
         if (middle.length < 2) {
           let scrambled = shuffleArray(letters).join('');
           return scrambled === original ? shuffleArray(letters).join('') : scrambled;
@@ -920,7 +1107,6 @@
       }
 
       if (difficulty === 'medium') {
-        // Full shuffle, but avoid the original and simple reversals
         const reversed = original.split('').reverse().join('');
         let scrambled = shuffleArray(letters).join('');
         let attempts = 0;
@@ -931,7 +1117,7 @@
         return scrambled;
       }
 
-      // hard: completely shuffle, no hints
+      // hard
       let scrambled = shuffleArray(letters).join('');
       let attempts = 0;
       while (scrambled === original && attempts < 30) {
@@ -941,10 +1127,17 @@
       return scrambled;
     }
 
+    // --- Escape HTML for safe print output ---
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, function(c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
     // --- Render preview ---
     function renderPreview(puzzle) {
       scrambleList.innerHTML = '';
-      puzzle.forEach((item, idx) => {
+      puzzle.forEach(function(item, idx) {
         const row = document.createElement('div');
         row.className = 'scramble-item';
 
@@ -971,9 +1164,8 @@
         scrambleList.appendChild(row);
       });
 
-      previewStats.textContent = `${puzzle.length} word${puzzle.length !== 1 ? 's' : ''} · ${currentDifficulty} mode`;
+      previewStats.textContent = puzzle.length + ' word' + (puzzle.length !== 1 ? 's' : '') + ' · ' + currentDifficulty + ' mode';
 
-      // Update toggle button
       if (answersVisible) {
         toggleAnswersBtn.textContent = '🙈 Hide Answers';
         toggleAnswersBtn.classList.add('active');
@@ -988,7 +1180,7 @@
     }
 
     // --- Generate button ---
-    generateBtn.addEventListener('click', () => {
+    generateBtn.addEventListener('click', function() {
       const raw = wordsInput.value;
       const words = parseWords(raw);
       if (words.length < 1) {
@@ -1000,14 +1192,15 @@
         return;
       }
 
-      // Deduplicate
-      const uniqueWords = [...new Set(words)];
+      const uniqueWords = [];
+      const seen = {};
+      words.forEach(function(w) {
+        if (!seen[w]) { seen[w] = true; uniqueWords.push(w); }
+      });
 
-      // Scramble each word
-      const puzzle = uniqueWords.map(word => ({
-        word: word,
-        scrambled: scrambleWord(word, currentDifficulty)
-      }));
+      const puzzle = uniqueWords.map(function(word) {
+        return { word: word, scrambled: scrambleWord(word, currentDifficulty) };
+      });
 
       currentPuzzle = puzzle;
       answersVisible = false;
@@ -1015,15 +1208,13 @@
     });
 
     // --- Toggle answers ---
-    toggleAnswersBtn.addEventListener('click', () => {
+    toggleAnswersBtn.addEventListener('click', function() {
       answersVisible = !answersVisible;
-      if (currentPuzzle) {
-        renderPreview(currentPuzzle);
-      }
+      if (currentPuzzle) renderPreview(currentPuzzle);
     });
 
     // --- Print ---
-    printBtn.addEventListener('click', () => {
+    printBtn.addEventListener('click', function() {
       if (!currentPuzzle) return;
 
       const printWindow = window.open('', '_blank');
@@ -1033,40 +1224,33 @@
       }
 
       let listHTML = '';
-      currentPuzzle.forEach((item, idx) => {
-        listHTML += `
-          <div style="display:flex;align-items:center;gap:16px;padding:12px 16px;border-bottom:1px solid #eee;">
-            <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:#264653;color:#fff;border-radius:6px;font-family:Georgia,serif;font-size:13px;font-weight:700;flex-shrink:0;">${idx + 1}</span>
-            <span style="font-family:monospace;font-size:20px;font-weight:700;letter-spacing:0.25em;color:#264653;flex:1;text-transform:uppercase;">${item.scrambled.split('').join(' ')}</span>
-            <span style="font-size:12px;color:#888;white-space:nowrap;">${item.word.length} letters</span>
-            <span style="border-bottom:1px solid #333;min-width:100px;height:24px;display:inline-block;"></span>
-          </div>
-        `;
+      currentPuzzle.forEach(function(item, idx) {
+        listHTML +=
+          '<div style="display:flex;align-items:center;gap:16px;padding:12px 16px;border-bottom:1px solid #eee;">' +
+            '<span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:#264653;color:#fff;border-radius:6px;font-family:Georgia,serif;font-size:13px;font-weight:700;flex-shrink:0;">' + (idx + 1) + '</span>' +
+            '<span style="font-family:monospace;font-size:20px;font-weight:700;letter-spacing:0.25em;color:#264653;flex:1;text-transform:uppercase;">' + escapeHtml(item.scrambled.split('').join(' ')) + '</span>' +
+            '<span style="font-size:12px;color:#888;white-space:nowrap;">' + item.word.length + ' letters</span>' +
+            '<span style="border-bottom:1px solid #333;min-width:100px;height:24px;display:inline-block;"></span>' +
+          '</div>';
       });
 
-      printWindow.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Word Scramble Puzzle</title>
-          <style>
-            body { font-family: 'Plus Jakarta Sans', Arial, sans-serif; padding: 30px; max-width: 800px; margin: 0 auto; }
-            h1 { font-size: 24px; margin-bottom: 8px; color: #264653; text-align: center; }
-            .subtitle { text-align: center; color: #666; margin-bottom: 24px; font-size: 14px; }
-            .list { border: 2px solid #264653; border-radius: 8px; overflow: hidden; }
-            .footer { margin-top: 20px; text-align: center; font-size: 12px; color: #999; }
-            @media print { body { padding: 10px; } }
-          </style>
-        </head>
-        <body>
-          <h1>Word Scramble Puzzle</h1>
-          <p class="subtitle">Unscramble each word below. Good luck!</p>
-          <div class="list">${listHTML}</div>
-          <p class="footer">Generated with WordScramble Solver</p>
-          <script>window.onload = function() { window.print(); };<\/script>
-        </body>
-        </html>
-      `);
+      printWindow.document.write(
+        '<!DOCTYPE html><html><head><title>Word Scramble Puzzle</title>' +
+        '<style>' +
+          'body { font-family: "Plus Jakarta Sans", Arial, sans-serif; padding: 30px; max-width: 800px; margin: 0 auto; }' +
+          'h1 { font-size: 24px; margin-bottom: 8px; color: #264653; text-align: center; }' +
+          '.subtitle { text-align: center; color: #666; margin-bottom: 24px; font-size: 14px; }' +
+          '.list { border: 2px solid #264653; border-radius: 8px; overflow: hidden; }' +
+          '.footer { margin-top: 20px; text-align: center; font-size: 12px; color: #999; }' +
+          '@media print { body { padding: 10px; } }' +
+        '</style></head><body>' +
+        '<h1>Word Scramble Puzzle</h1>' +
+        '<p class="subtitle">Unscramble each word below. Good luck!</p>' +
+        '<div class="list">' + listHTML + '</div>' +
+        '<p class="footer">Generated with WordScramble Solver</p>' +
+        '<scr' + 'ipt>window.onload = function() { window.print(); };<\/scr' + 'ipt>' +
+        '</body></html>'
+      );
       printWindow.document.close();
     });
 

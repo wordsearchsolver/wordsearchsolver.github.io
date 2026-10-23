@@ -1221,3 +1221,250 @@ textarea::placeholder { color: var(--text-light); }
   .demo-cell { width: 26px; height: 26px; font-size: 11px; }
   .demo-grid { gap: 3px; }
 }
+/* ============================================================
+   HEADER DROPDOWNS (Tools & Games)
+   ============================================================ */
+
+/* Top-level list items become positioning contexts */
+.main-nav > ul > li {
+  position: relative;
+}
+
+/* Dropdown toggle button — looks like a nav link */
+.nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--font-body);
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+}
+.nav-dropdown-toggle:hover,
+.nav-dropdown.open .nav-dropdown-toggle,
+.nav-dropdown-toggle[aria-expanded="true"] {
+  color: var(--navy);
+  background: rgba(244, 162, 97, 0.12);
+}
+
+.nav-dropdown-toggle .caret {
+  font-size: 10px;
+  line-height: 1;
+  transition: transform var(--transition);
+}
+.nav-dropdown.open .nav-dropdown-toggle .caret,
+.nav-dropdown-toggle[aria-expanded="true"] .caret {
+  transform: rotate(180deg);
+}
+
+/* Dropdown panel */
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  min-width: 300px;
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
+  z-index: 1100;
+}
+.nav-dropdown.open .nav-dropdown-menu,
+.nav-dropdown-toggle[aria-expanded="true"] + .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s;
+}
+
+/* Small arrow pointing up at the toggle */
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: var(--warm-white);
+  border-left: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+}
+
+/* Menu items */
+.nav-dropdown-menu a {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--navy);
+  transition: background var(--transition);
+}
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a:focus-visible {
+  background: rgba(244, 162, 97, 0.1);
+  outline: none;
+}
+.nav-dropdown-menu .menu-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+}
+.nav-dropdown-menu .menu-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.3;
+}
+.nav-dropdown-menu .menu-text strong {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.nav-dropdown-menu .menu-text small {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Prevent clicks inside the menu from closing it via the outside-click listener */
+.nav-dropdown-menu {
+  /* JS closes on outside click via document listener — menu clicks
+     bubble but we don't stop propagation, so links work normally */
+}
+
+/* ============================================================
+   MOBILE NAV — grouped sections
+   ============================================================ */
+
+.mobile-nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.mobile-nav-list > li {
+  margin-bottom: 2px;
+}
+
+.mobile-nav-list > li > a {
+  display: block;
+  padding: 12px 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  color: var(--navy);
+  font-size: 15px;
+}
+.mobile-nav-list > li > a:hover {
+  background: rgba(244, 162, 97, 0.12);
+}
+
+/* Group toggle button */
+.mobile-nav-group-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  background: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--transition);
+}
+.mobile-nav-group-toggle:hover {
+  background: rgba(244, 162, 97, 0.12);
+}
+.mobile-nav-group-toggle .caret {
+  font-size: 10px;
+  transition: transform var(--transition);
+}
+.mobile-nav-group.open .mobile-nav-group-toggle .caret,
+.mobile-nav-group-toggle[aria-expanded="true"] .caret {
+  transform: rotate(180deg);
+}
+
+/* Sub-list */
+.mobile-nav-sub {
+  list-style: none;
+  padding: 4px 0 4px 16px;
+  margin: 0;
+}
+.mobile-nav-sub[hidden] {
+  display: none;
+}
+.mobile-nav-sub li a {
+  display: block;
+  padding: 9px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-radius: 8px;
+  border-left: 2px solid var(--border);
+  margin-left: 4px;
+}
+.mobile-nav-sub li a:hover {
+  background: rgba(244, 162, 97, 0.1);
+  color: var(--navy);
+  border-left-color: var(--amber);
+}
+
+/* Lock body scroll when mobile nav is open */
+body.mobile-nav-open {
+  overflow: hidden;
+}
+
+/* ============================================================
+   Hide desktop dropdowns on mobile (mobile nav handles them)
+   ============================================================ */
+@media (max-width: 768px) {
+  .main-nav {
+    display: none;
+  }
+  .nav-dropdown-menu {
+    display: none;
+  }
+}
+
+/* ============================================================
+   Responsive tightening for narrow desktop widths
+   ============================================================ */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .main-nav a,
+  .nav-dropdown-toggle {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+  .header-inner {
+    gap: 16px;
+  }
+}

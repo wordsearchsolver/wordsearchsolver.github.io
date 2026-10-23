@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LDX5SDDNPD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LDX5SDDNPD');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Connections Unlimited — Play the Word Grouping Game Free</title>
+  <meta name="description" content="Play Connections Unlimited — the free word grouping puzzle game. Find 4 groups of 4 words that share a hidden connection. Unlimited puzzles, no daily limit.">
+  <meta name="keywords" content="connections unlimited, connections game, word grouping game, connections puzzle, connections unblocked, play connections">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="WordSearch Solver">
+  <link rel="canonical" href="https://wordsearchsolver.github.io/connections-unblocked">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
+  <meta property="og:title" content="Connections Unlimited — Play the Word Grouping Game Free">
+  <meta property="og:description" content="Free unlimited Connections game. Find 4 groups of 4 words with hidden connections.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wordsearchsolver.github.io/connections-unblocked">
+  <meta property="og:site_name" content="WordSearch Solver">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Connections Unlimited — Play the Word Grouping Game Free">
+  <meta name="twitter:description" content="Free unlimited Connections game. Find 4 groups of 4 words with hidden connections.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://wordsearchsolver.github.io/connections-unblocked/#app",
+        "name": "Connections Unlimited",
+        "url": "https://wordsearchsolver.github.io/connections-unblocked",
+        "description": "Free unlimited word grouping game. Find 4 groups of 4 words that share a hidden connection.",
+        "applicationCategory": "Game",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://wordsearchsolver.github.io/connections-unblocked/#faq",
+        "mainEntity": [
+          { "@type": "Question", "name": "How do you play Connections Unlimited?", "acceptedAnswer": { "@type": "Answer", "text": "Select 4 words that share a hidden connection. If correct, they'll be grouped and removed from the board. Find all 4 groups before running out of mistakes." } },
+          { "@type": "Question", "name": "Is Connections Unlimited free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free with no daily limits." } }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    :root {
+      --conn-yellow: #f9df6d;
+      --conn-green: #a0c35a;
+      --conn-blue: #b0c4ef;
+      --conn-purple: #ba81c5;
+      --conn-tile-bg: #efefe6;
+      --conn-tile-hover: #e2e2d6;
+      --conn-tile-selected: #5a594e;
+      --conn-board-gap: 6px;
+    }
+
+    .connections-wrap { max-width: 640px; margin: 0 auto; padding: 0 16px; }
+
+    .conn-topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap; margin-bottom: 20px; padding: 12px 16px;
+      background: white; border-radius: var(--radius); border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .conn-stat { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 60px; }
+    .conn-stat .val { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--navy); line-height: 1; }
+    .conn-stat .lbl { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+    .conn-stat .val.warn { color: var(--coral); }
+    .conn-stat .val.good { color: var(--teal-dark); }
+
+    .conn-diff-legend { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+    .diff-dot { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: var(--text-muted); }
+    .diff-dot::before { content: ''; width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    .diff-dot.yellow::before { background: var(--conn-yellow); }
+    .diff-dot.green::before { background: var(--conn-green); }
+    .diff-dot.blue::before { background: var(--conn-blue); }
+    .diff-dot.purple::before { background: var(--conn-purple); }
+
+    .conn-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--conn-board-gap); margin-bottom: 20px; }
+
+    .conn-tile {
+      position: relative; display: flex; align-items: center; justify-content: center;
+      padding: 12px 4px; min-height: 64px; background: var(--conn-tile-bg);
+      border: 1px solid transparent; border-radius: 8px; cursor: pointer;
+      font-family: var(--font-body); font-size: 14px; font-weight: 700;
+      color: var(--navy); text-transform: uppercase; letter-spacing: 0.02em;
+      text-align: center; user-select: none;
+      transition: background 0.15s, transform 0.1s, border-color 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .conn-tile:hover:not(.revealed):not(.selected) { background: var(--conn-tile-hover); }
+    .conn-tile.selected { background: var(--conn-tile-selected); color: #fff; transform: scale(0.97); }
+    .conn-tile.revealed { cursor: default; border-radius: 8px; pointer-events: none; transform: none; animation: revealPop 0.4s cubic-bezier(0.2,0.9,0.3,1.4); }
+    .conn-tile.revealed.yellow { background: var(--conn-yellow); color: #3a2f00; }
+    .conn-tile.revealed.green { background: var(--conn-green); color: #233300; }
+    .conn-tile.revealed.blue { background: var(--conn-blue); color: #0a1f4a; }
+    .conn-tile.revealed.purple { background: var(--conn-purple); color: #2a0a33; }
+    .conn-tile.wrong { animation: shakeWrong 0.4s ease; }
+    .conn-tile.placeholder { visibility: hidden; }
+
+    @keyframes revealPop { 0% { transform: scale(0.8); opacity: 0.6; } 60% { transform: scale(1.03); } 100% { transform: scale(1); opacity: 1; } }
+    @keyframes shakeWrong { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+
+    .conn-controls { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .conn-btn { padding: 10px 18px; border-radius: 50px; font-size: 13px; font-weight: 700;
+      background: white; border: 1.5px solid var(--border); color: var(--navy);
+      transition: all var(--transition); display: inline-flex; align-items: center; gap: 6px; min-height: 42px; }
+    .conn-btn:hover:not(:disabled) { border-color: var(--navy); }
+    .conn-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .conn-btn.primary { background: var(--navy); border-color: var(--navy); color: white; min-width: 110px; }
+    .conn-btn.primary:hover:not(:disabled) { background: var(--teal-dark); border-color: var(--teal-dark); }
+    .conn-btn.primary:disabled { background: #c0c8cc; border-color: #c0c8cc; }
+
+    .conn-message { text-align: center; font-size: 14px; font-weight: 700; color: var(--navy);
+      padding: 10px 16px; border-radius: 50px; background: var(--cream); margin-bottom: 16px;
+      min-height: 40px; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s; }
+    .conn-message.error { background: rgba(231,111,81,0.15); color: var(--coral); }
+    .conn-message.success { background: rgba(42,157,143,0.15); color: var(--teal-dark); }
+    .conn-message.info { background: rgba(244,162,97,0.15); color: var(--amber-dark); }
+
+    .conn-overlay { position: fixed; inset: 0; background: rgba(26,26,46,0.6); backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 20px;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .conn-overlay.show { opacity: 1; pointer-events: auto; }
+    .conn-modal { background: white; border-radius: var(--radius-lg); padding: 32px 28px;
+      max-width: 400px; width: 100%; text-align: center; box-shadow: var(--shadow-lg);
+      animation: modalPop 0.3s cubic-bezier(0.2,0.9,0.3,1.4); }
+    @keyframes modalPop { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .conn-modal .modal-emoji { font-size: 56px; margin-bottom: 12px; display: block; }
+    .conn-modal h2 { font-size: 26px; margin-bottom: 8px; }
+    .conn-modal p { font-size: 15px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
+    .conn-modal .stats-row { display: flex; justify-content: center; gap: 24px; margin-bottom: 24px; }
+    .conn-modal .stat-item { text-align: center; }
+    .conn-modal .stat-item .n { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--navy); line-height: 1; }
+    .conn-modal .stat-item .l { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+
+    .conn-revealed { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .conn-group { padding: 10px 16px; border-radius: 8px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; animation: fadeIn 0.4s ease; }
+    .conn-group.yellow { background: var(--conn-yellow); color: #3a2f00; }
+    .conn-group.green { background: var(--conn-green); color: #233300; }
+    .conn-group.blue { background: var(--conn-blue); color: #0a1f4a; }
+    .conn-group.purple { background: var(--conn-purple); color: #2a0a33; }
+    .conn-group .group-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; width: 100%; margin-bottom: 2px; opacity: 0.85; }
+    .conn-group .group-word { font-size: 13px; font-weight: 700; padding: 2px 10px; background: rgba(255,255,255,0.35); border-radius: 50px; }
+
+    .hint-popover { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+      background: var(--navy); color: white; padding: 14px 24px; border-radius: 50px;
+      font-size: 14px; font-weight: 600; box-shadow: var(--shadow-lg); z-index: 1500;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; max-width: 90vw; text-align: center; }
+    .hint-popover.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .conn-instructions { background: white; border-radius: var(--radius); padding: 20px;
+      border: 1px solid var(--border); margin-bottom: 24px; }
+    .conn-instructions h4 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; color: var(--navy); }
+    .conn-instructions ol { display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: var(--text-muted); padding-left: 20px; line-height: 1.6; }
+
+    @media (max-width: 600px) {
+      .conn-tile { font-size: 12px; min-height: 56px; padding: 8px 2px; }
+      .conn-topbar { padding: 10px 12px; gap: 8px; }
+      .conn-stat .val { font-size: 18px; }
+      .conn-stat .lbl { font-size: 9px; }
+      .conn-btn { padding: 8px 14px; font-size: 12px; min-height: 38px; }
+      .conn-btn.primary { min-width: 90px; }
+      .conn-modal { padding: 24px 20px; }
+      .conn-modal h2 { font-size: 22px; }
+      .conn-modal .modal-emoji { font-size: 44px; }
+    }
+    @media (max-width: 380px) {
+      .conn-tile { font-size: 11px; min-height: 50px; }
+      .conn-diff-legend { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header-mount"></div>
+
+  <main id="main-content">
+
+    <section class="hero" id="home" aria-labelledby="hero-heading" style="min-height:auto;padding:50px 24px 30px;">
+      <div class="hero-inner" style="grid-template-columns:1fr;text-align:center;gap:20px;">
+        <div class="hero-content" style="max-width:720px;margin:0 auto;">
+          <div class="hero-badge" style="margin:0 auto 18px;">
+            <span class="dot"></span>
+            Unlimited Puzzles — Play as Many as You Want
+          </div>
+          <h1 id="hero-heading" style="font-size:clamp(30px,4.5vw,52px);">
+            Connections<br>
+            <em>Unlimited</em><br>
+            <span class="highlight">Word Grouping Game</span>
+          </h1>
+          <p class="hero-desc" style="max-width:560px;margin:0 auto 24px;">
+            Find 4 groups of 4 words that share a hidden connection. But be careful — some words are tricky decoys! Play unlimited puzzles with no daily limit.
+          </p>
+          <div class="hero-actions" style="justify-content:center;">
+            <a href="#play" class="btn-primary">🎮 Play Now</a>
+            <a href="#how-to-play" class="btn-secondary">How to Play</a>
+          </div>
+          <div class="hero-trust" style="justify-content:center;margin-top:20px;">
+            <div class="trust-items">
+              <span class="trust-item">✅ Unlimited puzzles</span>
+              <span class="trust-item">✅ 4 difficulty tiers</span>
+              <span class="trust-item">✅ Free forever</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-section" aria-label="Statistics">
+      <div class="stats-grid">
+        <div class="stat-card animate-on-scroll">
+          <span class="counter-num" data-target="500" data-suffix="+">0</span>
+          <p class="stat-label">Hand-Crafted Puzzles</p>
+        </div>
+        <div class="stat-card animate-on-scroll">
+          <span class="counter-num" data-target="4" data-suffix="">0</span>
+          <p class="stat-label">Difficulty Tiers</p>
+        </div>
+        <div class="stat-card animate-on-scroll">
+          <span class="counter-num" data-target="100" data-suffix="%">0</span>
+          <p class="stat-label">Free — No Account Needed</p>
+        </div>
+        <div class="stat-card animate-on-scroll">
+          <span class="counter-num" data-target="0" data-suffix="s">0</span>
+          <p class="stat-label">Daily Limit</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="play" aria-labelledby="play-heading" style="background:var(--warm-white);padding:60px 24px 80px;">
+      <div class="connections-wrap">
+        <header style="text-align:center;margin-bottom:24px;">
+          <h2 id="play-heading" style="font-size:clamp(24px,3vw,32px);margin-bottom:6px;">Play Connections Unlimited</h2>
+          <p style="font-size:14px;color:var(--text-muted);">Select 4 words that share a connection. Find all 4 groups to win!</p>
+        </header>
+
+        <div class="conn-topbar" role="status" aria-live="polite">
+          <div class="conn-stat">
+            <span class="val" id="stat-puzzle-num">#1</span>
+            <span class="lbl">Puzzle</span>
+          </div>
+          <div class="conn-stat">
+            <span class="val" id="stat-groups-left">4</span>
+            <span class="lbl">Groups Left</span>
+          </div>
+          <div class="conn-stat">
+            <span class="val good" id="stat-streak">0</span>
+            <span class="lbl">Streak</span>
+          </div>
+          <div class="conn-stat">
+            <span class="val warn" id="stat-mistakes">4</span>
+            <span class="lbl">Mistakes</span>
+          </div>
+        </div>
+
+        <div class="conn-diff-legend" style="margin-bottom:16px;">
+          <span class="diff-dot yellow">Easiest</span>
+          <span class="diff-dot green">Easy</span>
+          <span class="diff-dot blue">Medium</span>
+          <span class="diff-dot purple">Hardest</span>
+        </div>
+
+        <div class="conn-revealed" id="conn-revealed" aria-live="polite"></div>
+
+        <div class="conn-board" id="conn-board" role="grid" aria-label="Connections game board"></div>
+
+        <div class="conn-message" id="conn-message" role="status" aria-live="polite">Select 4 words you think belong together.</div>
+
+        <div class="conn-controls">
+          <button class="conn-btn" id="conn-shuffle-btn" aria-label="Shuffle tiles" title="Shuffle tiles">🔀 Shuffle</button>
+          <button class="conn-btn" id="conn-undo-btn" disabled aria-label="Undo last mistake">↩️ Undo</button>
+          <button class="conn-btn" id="conn-hint-btn" aria-label="Get a hint">💡 Hint</button>
+          <button class="conn-btn primary" id="conn-submit-btn" disabled aria-label="Submit selection">Submit</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-to-play" class="section" aria-labelledby="htp-heading">
+      <div class="section-inner">
+        <header style="text-align:center;">
+          <span class="section-label animate-on-scroll">The Rules</span>
+          <h2 id="htp-heading" class="section-title animate-on-scroll">How to Play Connections</h2>
+          <p class="section-desc animate-on-scroll" style="margin:0 auto;">
+            The rules are simple, but the puzzles are tricky. Here's everything you need to know.
+          </p>
+        </header>
+        <div class="steps-grid">
+          <article class="step-card animate-on-scroll">
+            <span class="step-number">1</span>
+            <div class="step-icon amber">👀</div>
+            <h3>Study the 16 Words</h3>
+            <p>Each puzzle has 16 words arranged in a 4×4 grid. Every word belongs to exactly one of four hidden groups, each containing exactly four words that share a common connection.</p>
+          </article>
+          <article class="step-card animate-on-scroll">
+            <span class="step-number">2</span>
+            <div class="step-icon teal">🎯</div>
+            <h3>Select 4 Words</h3>
+            <p>Click or tap four words you believe share a connection. Then press Submit. If you're right, the group is revealed and removed from the board. If wrong, you lose a mistake.</p>
+          </article>
+          <article class="step-card animate-on-scroll">
+            <span class="step-number">3</span>
+            <div class="step-icon coral">🏆</div>
+            <h3>Find All 4 Groups</h3>
+            <p>Keep finding groups until the board is clear. You have 4 mistakes to work with. Groups are color-coded by difficulty: yellow (easiest), green, blue, and purple (hardest).</p>
+          </article>
+        </div>
+
+        <div class="conn-instructions animate-on-scroll" style="max-width:680px;margin:40px auto 0;">
+          <h4>🎓 Pro Tips</h4>
+          <ol>
+            <li><strong>Beware of decoys.</strong> Some words can fit multiple categories. The trickiest words are often placed to lure you into the wrong group.</li>
+            <li><strong>Start with the obvious.</strong> Get the easiest (yellow) group out of the way first. This clears the board and reduces temptation.</li>
+            <li><strong>Think beyond synonyms.</strong> Groups can be based on wordplay, homophones, things that precede or follow a word, compound words, pop culture, and more.</li>
+            <li><strong>Use Undo strategically.</strong> If you accidentally submit a wrong guess, use Undo within the same turn to restore your mistake — but only before submitting again.</li>
+            <li><strong>The Hint button helps when stuck.</strong> It reveals which group a highlighted word belongs to, without giving you the full answer.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section" aria-labelledby="feat-heading" style="background:var(--cream);">
+      <div class="section-inner">
+        <header>
+          <span class="section-label animate-on-scroll">Why Play Here</span>
+          <h2 id="feat-heading" class="section-title animate-on-scroll">Features of Our Connections Game</h2>
+          <p class="section-desc animate-on-scroll">Everything you love about the classic Connections — plus unlimited puzzles and no wait between games.</p>
+        </header>
+        <div class="features-grid">
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">♾️</span>
+            <h3>Unlimited Puzzles</h3>
+            <p>No daily limit. Play as many puzzles as you want, whenever you want. Jump to a new puzzle with a single click and keep the fun going.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">🎨</span>
+            <h3>Color-Coded Difficulty</h3>
+            <p>Groups are revealed with the classic color scheme: yellow (easiest), green (easy), blue (medium), and purple (hardest). Track your progress at a glance.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">💡</span>
+            <h3>Smart Hint System</h3>
+            <p>Stuck? Click the Hint button and select a word to learn which group it belongs to. The hint reveals the connection category without fully giving away the group.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">↩️</span>
+            <h3>Undo Mistakes</h3>
+            <p>Made a wrong guess? Use Undo before you submit again to reclaim your lost mistake. A forgiving system that lets you experiment safely.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">🔥</span>
+            <h3>Streak Tracking</h3>
+            <p>Build a streak by solving puzzles without losing. Your streak is saved locally so you can come back and continue where you left off.</p>
+          </article>
+          <article class="feature-card animate-on-scroll">
+            <span class="feature-icon">📱</span>
+            <h3>Mobile Friendly</h3>
+            <p>Works perfectly on phones and tablets. Tap to select, tap again to deselect. The board resizes to fit any screen, so you can play on the bus or in bed.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section" aria-labelledby="about-heading" style="background:var(--warm-white);">
+      <div class="about-inner">
+        <div class="about-content animate-on-scroll">
+          <span class="section-label">Background</span>
+          <h2 id="about-heading" class="section-title">What Is Connections?</h2>
+          <p>Connections is a word-grouping puzzle game where players must find four groups of four words that share a hidden connection. Each puzzle has 16 words, and each word belongs to exactly one group.</p>
+          <p>The game was popularized by The New York Times and has become a daily habit for millions of word puzzle fans. Its appeal lies in the "aha!" moment when you finally spot a connection that was hiding in plain sight all along.</p>
+          <p>The groups can be based on <strong>synonyms</strong> (words that mean the same thing), <strong>wordplay</strong> (homophones, hidden words), <strong>compound words</strong> (words that form common phrases when combined with others), <strong>pop culture</strong> (movie titles, band names), and countless other categories.</p>
+          <p><strong>Connections Unlimited</strong> takes the classic format and removes the daily limit. Play as many puzzles as you want, track your streak, and improve your word-association skills with every game.</p>
+        </div>
+        <div class="about-visual animate-on-scroll">
+          <h3 style="margin-bottom:20px;">Related Terms</h3>
+          <div class="keyword-cloud">
+            <span class="kw-tag" style="background:rgba(42,157,143,.1);color:var(--teal-dark);border-color:rgba(42,157,143,.2)">Connections Game</span>
+            <span class="kw-tag" style="background:rgba(244,162,97,.1);color:var(--amber-dark);border-color:rgba(244,162,97,.25)">Word Grouping</span>
+            <span class="kw-tag" style="background:rgba(38,70,83,.08);color:var(--navy);border-color:rgba(38,70,83,.15)">Connections Unlimited</span>
+            <span class="kw-tag" style="background:rgba(231,111,81,.1);color:var(--coral);border-color:rgba(231,111,81,.2)">Word Association Game</span>
+            <span class="kw-tag" style="background:rgba(42,157,143,.1);color:var(--teal-dark);border-color:rgba(42,157,143,.2)">Free Connections</span>
+            <span class="kw-tag" style="background:rgba(244,162,97,.1);color:var(--amber-dark);border-color:rgba(244,162,97,.25)">Connections Unblocked</span>
+            <span class="kw-tag" style="background:rgba(38,70,83,.08);color:var(--navy);border-color:rgba(38,70,83,.15)">Daily Word Puzzle</span>
+            <span class="kw-tag" style="background:rgba(231,111,81,.1);color:var(--coral);border-color:rgba(231,111,81,.2)">Connections Helper</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section" aria-labelledby="faq-heading" style="background:var(--cream);">
+      <div class="section-inner">
+        <header style="text-align:center;">
+          <span class="section-label animate-on-scroll">Help</span>
+          <h2 id="faq-heading" class="section-title animate-on-scroll">Frequently Asked Questions</h2>
+          <p class="section-desc animate-on-scroll" style="margin:0 auto;">Everything you need to know about playing Connections Unlimited.</p>
+        </header>
+        <div class="faq-list" role="list">
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              How do you play Connections Unlimited?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Select 4 words that you believe share a hidden connection. If correct, they'll be grouped and removed from the board. Find all 4 groups before running out of mistakes. Groups are color-coded by difficulty: yellow (easiest), green, blue, and purple (hardest).
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              What is the goal of the game?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              The goal is to find all 4 groups of 4 words that share a common category or connection. Each puzzle has 16 words total, and each word belongs to exactly one group. You win when you've found all 4 groups.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              How many mistakes do I get?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              You start with 4 mistakes per puzzle. If you make 4 incorrect guesses, you lose the puzzle. However, you can use the Undo button to reclaim your last mistake — but only if you haven't submitted another guess yet.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              How does the hint system work?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Click the Hint button, then click any word on the board. The game will reveal which group that word belongs to (in the top row of revealed groups) without fully solving the group for you. This helps you find a starting point when you're stuck.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Is Connections Unlimited free?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Yes, completely free. No account, no payment, no daily limits. Play as many puzzles as you want, whenever you want.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Can I play without an internet connection?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Once the page has loaded, the game runs entirely in your browser. However, the initial page load requires an internet connection to fetch fonts and the word list. You can save the HTML file locally to play offline.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              How is my streak saved?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Your streak is saved in your browser's local storage. As long as you use the same browser and don't clear your cache, your streak will persist between visits. It's tied to your browser, not your account.
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Does it work on mobile phones?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              Absolutely. The game is fully responsive and optimized for touch. Tiles are large enough to tap easily, and the board automatically adjusts to fit any screen size. Works on iOS and Android.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" aria-labelledby="cta-heading">
+      <h2 id="cta-heading">Ready to Test Your Word Skills?</h2>
+      <p>Play unlimited Connections puzzles for free. No sign-up, no daily limit.</p>
+      <a href="#play" class="cta-btn">🎮 Play Connections Now</a>
+    </section>
+
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <div class="conn-overlay" id="conn-overlay" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
+    <div class="conn-modal">
+      <span class="modal-emoji" id="overlay-emoji">🎉</span>
+      <h2 id="overlay-title">Puzzle Complete!</h2>
+      <p id="overlay-message">You found all 4 groups. Nice work!</p>
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="n" id="overlay-streak">0</div>
+          <div class="l">Streak</div>
+        </div>
+        <div class="stat-item">
+          <div class="n" id="overlay-mistakes">0</div>
+          <div class="l">Mistakes Left</div>
+        </div>
+        <div class="stat-item">
+          <div class="n" id="overlay-hints">0</div>
+          <div class="l">Hints Used</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <button class="conn-btn primary" id="overlay-next-btn" style="min-width:140px;">▶️ Next Puzzle</button>
+        <button class="conn-btn" id="overlay-close-btn">✕ Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hint-popover" id="hint-popover" role="status" aria-live="polite"></div>
+
+  <!-- ===== SCRIPTS ===== -->
+  <!-- Header + footer must be loaded BEFORE app.js runs, so the mounts exist -->
+  <script src="js/header.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/wordlist.js"></script>
+
+  <!-- Shared app behavior: header scroll, hamburger, FAQ accordion,
+       counter animations, animate-on-scroll, etc. -->
+  <script src="js/app.js"></script>
+
+  <!-- Fallback: if js/app.js doesn't include the FAQ / counters / reveal
+       observers, these inline handlers will make sure everything works. -->
+  <script>
+  (function() {
+    'use strict';
+
+    /* ---------- FAQ Accordion (fallback) ---------- */
+    // Only attach if no other handler already set up (check via marker)
+    document.querySelectorAll('.faq-question').forEach(function(q) {
+      if (q.dataset.bound === '1') return;
+      q.dataset.bound = '1';
+      q.addEventListener('click', function() {
+        const item = q.closest('.faq-item');
+        if (!item) return;
+        const isOpen = item.classList.toggle('open');
+        q.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    });
+
+    /* ---------- Animate on scroll (fallback) ---------- */
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
+        if (!el.classList.contains('in-view')) observer.observe(el);
+      });
+    } else {
+      // No observer support — just show them
+      document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
+        el.classList.add('in-view');
+      });
+    }
+
+    /* ---------- Counter animation (fallback) ---------- */
+    function animateCounter(el) {
+      if (el.dataset.animated === '1') return;
+      el.dataset.animated = '1';
+      const target = parseInt(el.dataset.target || '0', 10);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1200;
+      const start = performance.now();
+      function tick(now) {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const val = Math.round(eased * target);
+        el.textContent = val + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+        else el.textContent = target + suffix;
+      }
+      requestAnimationFrame(tick);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const counterObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            counterObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      document.querySelectorAll('.counter-num').forEach(function(el) {
+        counterObs.observe(el);
+      });
+    } else {
+      document.querySelectorAll('.counter-num').forEach(animateCounter);
+    }
+
+    /* ---------- Header scroll state (fallback) ---------- */
+    const header = document.querySelector('.site-header');
+    if (header && !header.dataset.scrollBound) {
+      header.dataset.scrollBound = '1';
+      const onScroll = function() {
+        if (window.scrollY > 20) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+
+    /* ---------- Hamburger (fallback) ---------- */
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+    if (hamburger && mobileNav && !hamburger.dataset.bound) {
+      hamburger.dataset.bound = '1';
+      hamburger.addEventListener('click', function() {
+        const open = hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('open', open);
+        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      // Close on nav link click
+      mobileNav.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          hamburger.classList.remove('active');
+          mobileNav.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  })();
+  </script>
+
+  <!-- Connections Game Logic (unchanged from previous file) -->
+  <script>
+  (function() {
+    'use strict';
+
+    const PUZZLES = [
+      { groups: [
+        { label: 'Fruits', difficulty: 'yellow', words: ['APPLE', 'BANANA', 'CHERRY', 'GRAPE'] },
+        { label: 'Planets', difficulty: 'green', words: ['EARTH', 'MARS', 'VENUS', 'JUPITER'] },
+        { label: 'Things you can fold', difficulty: 'blue', words: ['PAPER', 'TOWEL', 'OMELET', 'NAPKIN'] },
+        { label: 'Words after "blue"', difficulty: 'purple', words: ['BERRY', 'BIRD', 'BELL', 'JEANS'] }
+      ]},
+      { groups: [
+        { label: 'Animals', difficulty: 'yellow', words: ['DOG', 'CAT', 'HORSE', 'RABBIT'] },
+        { label: 'Colors', difficulty: 'green', words: ['RED', 'BLUE', 'GREEN', 'YELLOW'] },
+        { label: 'Card games', difficulty: 'blue', words: ['POKER', 'BRIDGE', 'RUMMY', 'SOLITAIRE'] },
+        { label: '___ fly', difficulty: 'purple', words: ['BUTTER', 'DRAGON', 'FIRE', 'HORSE'] }
+      ]},
+      { groups: [
+        { label: 'Musical instruments', difficulty: 'yellow', words: ['PIANO', 'GUITAR', 'VIOLIN', 'DRUM'] },
+        { label: 'Beverages', difficulty: 'green', words: ['COFFEE', 'TEA', 'JUICE', 'WATER'] },
+        { label: 'Things that have keys', difficulty: 'blue', words: ['CAR', 'HOUSE', 'KEYBOARD', 'LOCK'] },
+        { label: '___ board', difficulty: 'purple', words: ['KEY', 'SKATE', 'SNOW', 'SURF'] }
+      ]},
+      { groups: [
+        { label: 'Body parts', difficulty: 'yellow', words: ['HEAD', 'ARM', 'LEG', 'HAND'] },
+        { label: 'Trees', difficulty: 'green', words: ['OAK', 'MAPLE', 'PINE', 'BIRCH'] },
+        { label: 'Types of weather', difficulty: 'blue', words: ['RAIN', 'SNOW', 'SUN', 'WIND'] },
+        { label: 'Words after "sun"', difficulty: 'purple', words: ['FLOWER', 'GLASSES', 'RISE', 'SCREEN'] }
+      ]},
+      { groups: [
+        { label: 'Shapes', difficulty: 'yellow', words: ['CIRCLE', 'SQUARE', 'TRIANGLE', 'STAR'] },
+        { label: 'Sports', difficulty: 'green', words: ['TENNIS', 'SOCCER', 'GOLF', 'BOWLING'] },
+        { label: 'Things you write with', difficulty: 'blue', words: ['PEN', 'PENCIL', 'MARKER', 'CHALK'] },
+        { label: 'Words before "ball"', difficulty: 'purple', words: ['BASE', 'BASKET', 'FOOT', 'TENNIS'] }
+      ]},
+      { groups: [
+        { label: 'Planets', difficulty: 'yellow', words: ['MERCURY', 'VENUS', 'MARS', 'SATURN'] },
+        { label: 'Fruits', difficulty: 'green', words: ['MANGO', 'PEACH', 'PLUM', 'KIWI'] },
+        { label: 'Things that can fly', difficulty: 'blue', words: ['BIRD', 'PLANE', 'KITE', 'ROCKET'] },
+        { label: '___fly', difficulty: 'purple', words: ['BUTTER', 'DRAGON', 'FIRE', 'HORSE'] }
+      ]},
+      { groups: [
+        { label: 'Furniture', difficulty: 'yellow', words: ['CHAIR', 'TABLE', 'SOFA', 'BED'] },
+        { label: 'Weather', difficulty: 'green', words: ['STORM', 'SUNNY', 'CLOUDY', 'RAINY'] },
+        { label: 'Ocean animals', difficulty: 'blue', words: ['WHALE', 'SHARK', 'DOLPHIN', 'OCTOPUS'] },
+        { label: 'Words with double letters', difficulty: 'purple', words: ['BALLOON', 'COFFEE', 'PUPPY', 'KITTEN'] }
+      ]},
+      { groups: [
+        { label: 'Vegetables', difficulty: 'yellow', words: ['CARROT', 'POTATO', 'ONION', 'CORN'] },
+        { label: 'Things that swim', difficulty: 'green', words: ['FISH', 'TURTLE', 'OTTER', 'DUCK'] },
+        { label: 'Types of cake', difficulty: 'blue', words: ['CARROT CAKE', 'CHOCOLATE', 'VANILLA', 'RED VELVET'] },
+        { label: '___ cake', difficulty: 'purple', words: ['CUP', 'PAN', 'CHEESE', 'BIRTHDAY'] }
+      ]},
+      { groups: [
+        { label: 'School supplies', difficulty: 'yellow', words: ['PENCIL', 'ERASER', 'NOTEBOOK', 'RULER'] },
+        { label: 'Dairy products', difficulty: 'green', words: ['MILK', 'CHEESE', 'BUTTER', 'YOGURT'] },
+        { label: 'Things in a bathroom', difficulty: 'blue', words: ['TOOTHBRUSH', 'SOAP', 'TOWEL', 'MIRROR'] },
+        { label: 'Words before "brush"', difficulty: 'purple', words: ['TOOTH', 'HAIR', 'PAINT', 'NAIL'] }
+      ]},
+      { groups: [
+        { label: 'Sports', difficulty: 'yellow', words: ['BASEBALL', 'BASKETBALL', 'FOOTBALL', 'TENNIS'] },
+        { label: 'Animals that hop', difficulty: 'green', words: ['RABBIT', 'KANGAROO', 'FROG', 'GRASSHOPPER'] },
+        { label: 'Things you can open', difficulty: 'blue', words: ['DOOR', 'WINDOW', 'BOOK', 'BOX'] },
+        { label: 'Words after "fire"', difficulty: 'purple', words: ['FLY', 'WORK', 'PLACE', 'MAN'] }
+      ]}
+    ];
+
+    const STORAGE_KEY = 'connections_unlimited_state_v1';
+
+    let state = {
+      puzzleIndex: 0,
+      puzzleNumber: 1,
+      mistakes: 4,
+      streak: 0,
+      hintsUsed: 0,
+      revealedGroups: [],
+      remainingWords: [],
+      selected: [],
+      solved: false,
+      lost: false,
+      history: [],
+      hintMode: false
+    };
+
+    let currentPuzzle = null;
+
+    const boardEl = document.getElementById('conn-board');
+    const revealedEl = document.getElementById('conn-revealed');
+    const messageEl = document.getElementById('conn-message');
+    const submitBtn = document.getElementById('conn-submit-btn');
+    const undoBtn = document.getElementById('conn-undo-btn');
+    const hintBtn = document.getElementById('conn-hint-btn');
+    const shuffleBtn = document.getElementById('conn-shuffle-btn');
+    const statPuzzleNum = document.getElementById('stat-puzzle-num');
+    const statGroupsLeft = document.getElementById('stat-groups-left');
+    const statStreak = document.getElementById('stat-streak');
+    const statMistakes = document.getElementById('stat-mistakes');
+    const overlay = document.getElementById('conn-overlay');
+    const overlayEmoji = document.getElementById('overlay-emoji');
+    const overlayTitle = document.getElementById('overlay-title');
+    const overlayMessage = document.getElementById('overlay-message');
+    const overlayStreak = document.getElementById('overlay-streak');
+    const overlayMistakes = document.getElementById('overlay-mistakes');
+    const overlayHints = document.getElementById('overlay-hints');
+    const overlayNextBtn = document.getElementById('overlay-next-btn');
+    const overlayCloseBtn = document.getElementById('overlay-close-btn');
+    const hintPopover = document.getElementById('hint-popover');
+
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function showMessage(text, type) {
+      type = type || 'info';
+      messageEl.textContent = text;
+      messageEl.className = 'conn-message ' + type;
+    }
+
+    function showHintPopover(text) {
+      hintPopover.textContent = text;
+      hintPopover.classList.add('show');
+      clearTimeout(hintPopover._timer);
+      hintPopover._timer = setTimeout(function() {
+        hintPopover.classList.remove('show');
+      }, 4000);
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          puzzleIndex: state.puzzleIndex,
+          puzzleNumber: state.puzzleNumber,
+          mistakes: state.mistakes,
+          streak: state.streak,
+          hintsUsed: state.hintsUsed
+        }));
+      } catch (e) {}
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const saved = JSON.parse(raw);
+        if (saved && typeof saved.streak === 'number') state.streak = saved.streak;
+        if (saved && typeof saved.puzzleNumber === 'number' && saved.puzzleNumber > 0) {
+          state.puzzleNumber = saved.puzzleNumber;
+        }
+      } catch (e) {}
+    }
+
+    function loadPuzzle(index) {
+      const safeIndex = ((index % PUZZLES.length) + PUZZLES.length) % PUZZLES.length;
+      currentPuzzle = PUZZLES[safeIndex];
+      state.puzzleIndex = safeIndex;
+      state.puzzleNumber = index + 1;
+      state.mistakes = 4;
+      state.hintsUsed = 0;
+      state.revealedGroups = [];
+      state.selected = [];
+      state.solved = false;
+      state.lost = false;
+      state.history = [];
+      state.hintMode = false;
+      hintBtn.classList.remove('primary');
+
+      const allWords = [];
+      currentPuzzle.groups.forEach(function(g, gi) {
+        g.words.forEach(function(w) {
+          allWords.push({ word: w, groupIndex: gi, revealed: false });
+        });
+      });
+      state.remainingWords = shuffle(allWords);
+
+      render();
+      showMessage('Select 4 words you think belong together.', 'info');
+      saveState();
+    }
+
+    function render() {
+      renderBoard();
+      renderRevealed();
+      renderStats();
+      updateControls();
+    }
+
+    function renderBoard() {
+      boardEl.innerHTML = '';
+      state.remainingWords.forEach(function(item, idx) {
+        const tile = document.createElement('div');
+        tile.className = 'conn-tile';
+        tile.textContent = item.word;
+        tile.dataset.word = item.word;
+        tile.setAttribute('role', 'gridcell');
+        tile.setAttribute('tabindex', '0');
+        if (state.selected.indexOf(item.word) >= 0) tile.classList.add('selected');
+        if (item.revealed) {
+          // Find difficulty from revealed group
+          let diff = 'yellow';
+          state.revealedGroups.forEach(function(g) {
+            if (g.groupIndex === item.groupIndex) diff = g.difficulty;
+          });
+          tile.classList.add('revealed', diff, 'placeholder');
+        }
+        tile.addEventListener('click', function() { onTileClick(item.word); });
+        tile.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onTileClick(item.word);
+          }
+        });
+        boardEl.appendChild(tile);
+      });
+    }
+
+    function renderRevealed() {
+      revealedEl.innerHTML = '';
+      const order = { yellow: 0, green: 1, blue: 2, purple: 3 };
+      const sorted = state.revealedGroups.slice().sort(function(a, b) {
+        return order[a.difficulty] - order[b.difficulty];
+      });
+      sorted.forEach(function(g) {
+        const el = document.createElement('div');
+        el.className = 'conn-group ' + g.difficulty;
+        const label = document.createElement('div');
+        label.className = 'group-label';
+        label.textContent = g.label;
+        el.appendChild(label);
+        g.words.forEach(function(w) {
+          const chip = document.createElement('span');
+          chip.className = 'group-word';
+          chip.textContent = w;
+          el.appendChild(chip);
+        });
+        revealedEl.appendChild(el);
+      });
+    }
+
+    function renderStats() {
+      statPuzzleNum.textContent = '#' + state.puzzleNumber;
+      const realRevealed = state.revealedGroups.filter(function(g) { return !g.isHint; });
+      statGroupsLeft.textContent = 4 - realRevealed.length;
+      statStreak.textContent = state.streak;
+      statMistakes.textContent = state.mistakes;
+      statMistakes.className = 'val ' + (state.mistakes <= 1 ? 'warn' : '');
+    }
+
+    function updateControls() {
+      submitBtn.disabled = state.selected.length !== 4 || state.solved || state.lost;
+      undoBtn.disabled = state.history.length === 0 || state.solved || state.lost;
+      shuffleBtn.disabled = state.solved || state.lost;
+      hintBtn.disabled = state.solved || state.lost;
+    }
+
+    function onTileClick(word) {
+      if (state.solved || state.lost) return;
+      if (state.hintMode) { handleHintClick(word); return; }
+      const idx = state.selected.indexOf(word);
+      if (idx >= 0) {
+        state.selected.splice(idx, 1);
+      } else {
+        if (state.selected.length >= 4) {
+          showMessage('You can only select 4 words at a time.', 'info');
+          return;
+        }
+        state.selected.push(word);
+      }
+      render();
+    }
+
+    function handleHintClick(word) {
+      const item = state.remainingWords.find(function(w) { return w.word === word; });
+      if (!item || item.revealed) {
+        showHintPopover('That group is already solved.');
+        return;
+      }
+      const group = currentPuzzle.groups[item.groupIndex];
+      if (!group) return;
+      const alreadyRevealed = state.revealedGroups.some(function(g) {
+        return g.groupIndex === item.groupIndex && !g.isHint;
+      });
+      if (alreadyRevealed) {
+        showHintPopover('That group is already on the board.');
+        return;
+      }
+      state.revealedGroups.push({
+        label: group.label + ' (hint)',
+        difficulty: group.difficulty,
+        words: group.words.map(function(w) { return w === word ? w : '•'.repeat(w.length); }),
+        isHint: true,
+        groupIndex: item.groupIndex
+      });
+      state.hintsUsed++;
+      state.hintMode = false;
+      hintBtn.classList.remove('primary');
+      showHintPopover('💡 "' + word + '" belongs to: ' + group.label);
+      render();
+      showMessage('Hint revealed: ' + group.label + '. The tiles are still on the board.', 'info');
+    }
+
+    function onSubmit() {
+      if (state.selected.length !== 4) return;
+      state.history.push({
+        selected: state.selected.slice(),
+        mistakes: state.mistakes,
+        revealedGroups: state.revealedGroups.map(function(g) {
+          return { label: g.label, difficulty: g.difficulty, words: g.words.slice(), groupIndex: g.groupIndex, isHint: g.isHint };
+        })
+      });
+      const selectedWords = state.selected.slice().sort();
+      let matchedGroup = null;
+      let matchedIndex = -1;
+      currentPuzzle.groups.forEach(function(g, gi) {
+        if (matchedGroup) return;
+        const already = state.revealedGroups.some(function(r) { return r.groupIndex === gi && !r.isHint; });
+        if (already) return;
+        const groupWords = g.words.map(function(w) { return w.toUpperCase(); }).sort();
+        if (JSON.stringify(groupWords) === JSON.stringify(selectedWords)) {
+          matchedGroup = g;
+          matchedIndex = gi;
+        }
+      });
+
+      if (matchedGroup) {
+        state.revealedGroups.push({
+          label: matchedGroup.label,
+          difficulty: matchedGroup.difficulty,
+          words: matchedGroup.words.slice(),
+          groupIndex: matchedIndex
+        });
+        state.remainingWords.forEach(function(item) {
+          if (item.groupIndex === matchedIndex) item.revealed = true;
+        });
+        state.selected = [];
+        showMessage('✅ Correct! "' + matchedGroup.label + '"', 'success');
+        const realRevealed = state.revealedGroups.filter(function(g) { return !g.isHint; });
+        if (realRevealed.length === 4) onWin();
+        render();
+        saveState();
+      } else {
+        state.mistakes--;
+        flashWrongTiles();
+        showMessage('❌ Not quite. ' + state.mistakes + ' mistake' + (state.mistakes !== 1 ? 's' : '') + ' left.', 'error');
+        state.selected = [];
+        render();
+        saveState();
+        if (state.mistakes <= 0) onLose();
+      }
+    }
+
+    function flashWrongTiles() {
+      const tiles = boardEl.querySelectorAll('.conn-tile.selected');
+      tiles.forEach(function(t) { t.classList.add('wrong'); });
+      setTimeout(function() {
+        tiles.forEach(function(t) { t.classList.remove('wrong'); });
+      }, 500);
+    }
+
+    function onWin() {
+      state.solved = true;
+      state.streak++;
+      showMessage('🎉 Puzzle complete! You found all 4 groups!', 'success');
+      overlayEmoji.textContent = '🎉';
+      overlayTitle.textContent = 'Puzzle Complete!';
+      overlayMessage.textContent = 'You found all 4 groups in puzzle #' + state.puzzleNumber + '. Streak: ' + state.streak + '!';
+      overlayStreak.textContent = state.streak;
+      overlayMistakes.textContent = state.mistakes;
+      overlayHints.textContent = state.hintsUsed;
+      overlayNextBtn.textContent = '▶️ Next Puzzle';
+      overlay.classList.add('show');
+      saveState();
+    }
+
+    function onLose() {
+      state.lost = true;
+      state.streak = 0;
+      currentPuzzle.groups.forEach(function(g, gi) {
+        const already = state.revealedGroups.some(function(r) { return r.groupIndex === gi && !r.isHint; });
+        if (!already) {
+          state.revealedGroups.push({
+            label: g.label,
+            difficulty: g.difficulty,
+            words: g.words.slice(),
+            groupIndex: gi
+          });
+        }
+      });
+      state.remainingWords.forEach(function(item) { item.revealed = true; });
+      showMessage('💥 Out of mistakes! Here are the groups.', 'error');
+      overlayEmoji.textContent = '💥';
+      overlayTitle.textContent = 'Out of Mistakes';
+      overlayMessage.textContent = 'You ran out of mistakes on puzzle #' + state.puzzleNumber + '. Better luck next time!';
+      overlayStreak.textContent = 0;
+      overlayMistakes.textContent = 0;
+      overlayHints.textContent = state.hintsUsed;
+      overlayNextBtn.textContent = '🔄 Try Again';
+      overlay.classList.add('show');
+      render();
+      saveState();
+    }
+
+    submitBtn.addEventListener('click', onSubmit);
+
+    undoBtn.addEventListener('click', function() {
+      if (state.history.length === 0) return;
+      const prev = state.history.pop();
+      state.mistakes = prev.mistakes;
+      state.revealedGroups = prev.revealedGroups;
+      state.remainingWords.forEach(function(item) { item.revealed = false; });
+      state.revealedGroups.forEach(function(g) {
+        if (!g.isHint) {
+          state.remainingWords.forEach(function(item) {
+            if (item.groupIndex === g.groupIndex) item.revealed = true;
+          });
+        }
+      });
+      state.selected = [];
+      showMessage('↩️ Undo — your last mistake was restored.', 'info');
+      render();
+      saveState();
+    });
+
+    shuffleBtn.addEventListener('click', function() {
+      state.remainingWords = shuffle(state.remainingWords);
+      render();
+    });
+
+    hintBtn.addEventListener('click', function() {
+      if (state.hintMode) {
+        state.hintMode = false;
+        hintBtn.classList.remove('primary');
+        showHintPopover('Hint mode off.');
+        return;
+      }
+      state.hintMode = true;
+      hintBtn.classList.add('primary');
+      showHintPopover('💡 Click any word on the board to reveal its group.');
+      showMessage('Hint mode: click a word to see its group.', 'info');
+    });
+
+    overlayNextBtn.addEventListener('click', function() {
+      overlay.classList.remove('show');
+      if (state.solved) loadPuzzle(state.puzzleNumber);
+      else loadPuzzle(state.puzzleIndex);
+    });
+
+    overlayCloseBtn.addEventListener('click', function() {
+      overlay.classList.remove('show');
+    });
+
+    function init() {
+      loadState();
+      const startIndex = (state.puzzleNumber - 1) % PUZZLES.length;
+      loadPuzzle(startIndex);
+    }
+
+    init();
+  })();
+  </script>
+
+</body>
+</html>

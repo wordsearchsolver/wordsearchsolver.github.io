@@ -31,6 +31,18 @@ const Footer = {
                 <li><a href="printable-word-search">Printable Word Search</a></li>
                 <li><a href="random-word-generator">Random Word Generator</a></li>
                 <li><a href="word-search-generator">Word Search Generator</a></li>
+                <li><a href="wordle-solver">Wordle Solver</a></li>
+                <li><a href="word-counter">Word Counter</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Games</h4>
+              <ul>
+                <li><a href="/hangman-unblocked">Hangman Unblocked</a></li>
+                <li><a href="/snake-unblocked">Snake Unblocked</a></li>
+                <li><a href="/minesweeper-unblocked">Minesweeper Unblocked</a></li>
+                <li><a href="/2048-cupcakes">2048 Cupcakes</a></li>
+                <li><a href="/connections-unblocked">Connections Unlimited</a></li>
               </ul>
             </div>
             <div class="footer-col">
@@ -40,7 +52,6 @@ const Footer = {
                 <li><a href="#directions">Search Directions</a></li>
                 <li><a href="#about">About Word Searches</a></li>
                 <li><a href="#faq">FAQ</a></li>
-                <li><a href="/blog">Blog</a></li>
               </ul>
             </div>
             <div class="footer-col">

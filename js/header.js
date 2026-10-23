@@ -63,6 +63,20 @@ const Header = {
                     <small>Make jumble puzzles from words</small>
                   </span>
                 </a>
+                <a href="/wordle-solver" role="menuitem">
+                  <span class="menu-icon">🟩</span>
+                  <span class="menu-text">
+                    <strong>Wordle Solver</strong>
+                    <small>Find the best next 5-letter guess</small>
+                  </span>
+                </a>
+                <a href="/word-counter" role="menuitem">
+                  <span class="menu-icon">📝</span>
+                  <span class="menu-text">
+                    <strong>Word Counter</strong>
+                    <small>Count words, characters and reading time</small>
+                  </span>
+                </a>
               </div>
             </li>
 
@@ -89,6 +103,27 @@ const Header = {
                   <span class="menu-text">
                     <strong>2048 Cupcakes</strong>
                     <small>Merge cupcakes to reach 2048</small>
+                  </span>
+                </a>
+                <a href="/hangman-unblocked" role="menuitem">
+                  <span class="menu-icon">🪢</span>
+                  <span class="menu-text">
+                    <strong>Hangman Unblocked</strong>
+                    <small>Guess the word before time runs out</small>
+                  </span>
+                </a>
+                <a href="/snake-unblocked" role="menuitem">
+                  <span class="menu-icon">🐍</span>
+                  <span class="menu-text">
+                    <strong>Snake Unblocked</strong>
+                    <small>Classic snake, swipe or keyboard</small>
+                  </span>
+                </a>
+                <a href="/minesweeper-unblocked" role="menuitem">
+                  <span class="menu-icon">💣</span>
+                  <span class="menu-text">
+                    <strong>Minesweeper Unblocked</strong>
+                    <small>Clear the board, avoid the mines</small>
                   </span>
                 </a>
               </div>
@@ -123,6 +158,8 @@ const Header = {
                 <li><a href="/anagram-solver">Anagram Solver</a></li>
                 <li><a href="/word-search-generator">Word Search Generator</a></li>
                 <li><a href="/word-scramble-generator">Word Scramble Generator</a></li>
+                <li><a href="/wordle-solver">Wordle Solver</a></li>
+                <li><a href="/word-counter">Word Counter</a></li>
               </ul>
             </li>
 
@@ -134,6 +171,9 @@ const Header = {
               <ul class="mobile-nav-sub" hidden>
                 <li><a href="/connections-unblocked">Connections Unlimited</a></li>
                 <li><a href="/2048-cupcakes">2048 Cupcakes</a></li>
+                <li><a href="/hangman-unblocked">Hangman Unblocked</a></li>
+                <li><a href="/snake-unblocked">Snake Unblocked</a></li>
+                <li><a href="/minesweeper-unblocked">Minesweeper Unblocked</a></li>
               </ul>
             </li>
 

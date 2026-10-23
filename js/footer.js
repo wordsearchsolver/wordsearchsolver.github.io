@@ -40,6 +40,7 @@ const Footer = {
                 <li><a href="#directions">Search Directions</a></li>
                 <li><a href="#about">About Word Searches</a></li>
                 <li><a href="#faq">FAQ</a></li>
+                <li><a href="/blog">Blog</a></li>
               </ul>
             </div>
             <div class="footer-col">

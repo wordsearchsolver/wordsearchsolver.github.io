@@ -35,7 +35,7 @@ const Header = {
                     <small>Find hidden words in any grid</small>
                   </span>
                 </a>
-                <a href="/crossword-puzzle-solver" role="menuitem">
+                <a href="/crossword-solver" role="menuitem">
                   <span class="menu-icon">✏️</span>
                   <span class="menu-text">
                     <strong>Crossword Solver</strong>
@@ -119,7 +119,7 @@ const Header = {
               </button>
               <ul class="mobile-nav-sub" hidden>
                 <li><a href="/#solver">Word Search Solver</a></li>
-                <li><a href="/crossword-puzzle-solver">Crossword Solver</a></li>
+                <li><a href="/crossword-solver">Crossword Solver</a></li>
                 <li><a href="/anagram-solver">Anagram Solver</a></li>
                 <li><a href="/word-search-generator">Word Search Generator</a></li>
                 <li><a href="/word-scramble-generator">Word Scramble Generator</a></li>

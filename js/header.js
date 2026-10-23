@@ -35,28 +35,28 @@ const Header = {
                     <small>Find hidden words in any grid</small>
                   </span>
                 </a>
-                <a href="/crossword-puzzle-solver.html" role="menuitem">
+                <a href="/crossword-puzzle-solver" role="menuitem">
                   <span class="menu-icon">✏️</span>
                   <span class="menu-text">
                     <strong>Crossword Solver</strong>
                     <small>Solve clues with letter patterns</small>
                   </span>
                 </a>
-                <a href="/anagram-solver.html" role="menuitem">
+                <a href="/anagram-solver" role="menuitem">
                   <span class="menu-icon">🔤</span>
                   <span class="menu-text">
                     <strong>Anagram Solver</strong>
                     <small>Unscramble letters into words</small>
                   </span>
                 </a>
-                <a href="/word-search-generator.html" role="menuitem">
+                <a href="/word-search-generator" role="menuitem">
                   <span class="menu-icon">🧩</span>
                   <span class="menu-text">
                     <strong>Word Search Generator</strong>
                     <small>Create custom printable puzzles</small>
                   </span>
                 </a>
-                <a href="/word-scramble-generator.html" role="menuitem">
+                <a href="/word-scramble-generator" role="menuitem">
                   <span class="menu-icon">🔀</span>
                   <span class="menu-text">
                     <strong>Word Scramble Generator</strong>
@@ -77,14 +77,14 @@ const Header = {
                 Games <span class="caret" aria-hidden="true">▾</span>
               </button>
               <div class="nav-dropdown-menu" id="dropdown-games" role="menu">
-                <a href="/connections-unblocked.html" role="menuitem">
+                <a href="/connections-unblocked" role="menuitem">
                   <span class="menu-icon">🧠</span>
                   <span class="menu-text">
                     <strong>Connections Unlimited</strong>
                     <small>Group words by hidden connections</small>
                   </span>
                 </a>
-                <a href="/2048-cupcakes.html" role="menuitem">
+                <a href="/2048-cupcakes" role="menuitem">
                   <span class="menu-icon">🧁</span>
                   <span class="menu-text">
                     <strong>2048 Cupcakes</strong>
@@ -119,10 +119,10 @@ const Header = {
               </button>
               <ul class="mobile-nav-sub" hidden>
                 <li><a href="/#solver">Word Search Solver</a></li>
-                <li><a href="/crossword-puzzle-solver.html">Crossword Solver</a></li>
-                <li><a href="/anagram-solver.html">Anagram Solver</a></li>
-                <li><a href="/word-search-generator.html">Word Search Generator</a></li>
-                <li><a href="/word-scramble-generator.html">Word Scramble Generator</a></li>
+                <li><a href="/crossword-puzzle-solver">Crossword Solver</a></li>
+                <li><a href="/anagram-solver">Anagram Solver</a></li>
+                <li><a href="/word-search-generator">Word Search Generator</a></li>
+                <li><a href="/word-scramble-generator">Word Scramble Generator</a></li>
               </ul>
             </li>
 
@@ -132,8 +132,8 @@ const Header = {
                 <span class="caret" aria-hidden="true">▾</span>
               </button>
               <ul class="mobile-nav-sub" hidden>
-                <li><a href="/connections-unblocked.html">Connections Unlimited</a></li>
-                <li><a href="/2048-cupcakes.html">2048 Cupcakes</a></li>
+                <li><a href="/connections-unblocked">Connections Unlimited</a></li>
+                <li><a href="/2048-cupcakes">2048 Cupcakes</a></li>
               </ul>
             </li>
 

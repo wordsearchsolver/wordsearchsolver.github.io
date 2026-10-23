@@ -20,6 +20,7 @@
   <meta name="author" content="WordSearch Solver">
   <link rel="canonical" href="https://wordsearchsolver.github.io/word-search-generator">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+
   <!-- ===== OPEN GRAPH ===== -->
   <meta property="og:title" content="Word Search Generator — Create Custom Puzzles Instantly">
   <meta property="og:description" content="Generate your own word search puzzles with custom words. Choose grid size, difficulty, and print. Free, no sign-up.">
@@ -27,11 +28,13 @@
   <meta property="og:url" content="https://wordsearchsolver.github.io/word-search-generator">
   <meta property="og:site_name" content="WordSearch Solver">
   <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://wordsearchsolver.github.io/img/word-search-generator-og.png">
 
   <!-- ===== TWITTER CARD ===== -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Word Search Generator — Create Custom Puzzles Instantly">
   <meta name="twitter:description" content="Generate your own word search puzzles with custom words. Free, fast, educational.">
+  <meta name="twitter:image" content="https://wordsearchsolver.github.io/img/word-search-generator-og.png">
 
   <!-- ===== SCHEMA MARKUP ===== -->
   <script type="application/ld+json">
@@ -45,13 +48,17 @@
         "url": "https://wordsearchsolver.github.io/word-search-generator",
         "description": "Free online tool to generate custom word search puzzles. Choose words, grid size, and difficulty. Print or download your puzzle.",
         "applicationCategory": "EducationalApplication",
+        "applicationSubCategory": "Word Puzzle Generator",
         "operatingSystem": "Any",
         "browserRequirements": "Requires JavaScript",
         "isAccessibleForFree": true,
+        "isFamilyFriendly": true,
+        "inLanguage": "en",
         "offers": {
           "@type": "Offer",
           "price": "0",
-          "priceCurrency": "USD"
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
         },
         "featureList": [
           "Create puzzles with custom words",
@@ -59,22 +66,55 @@
           "Printable puzzle output",
           "Uses a curated word list",
           "Mobile compatible"
-        ]
+        ],
+        "screenshot": "https://wordsearchsolver.github.io/img/word-search-generator-screenshot.png",
+        "author": {
+          "@type": "Organization",
+          "name": "WordSearch Solver",
+          "url": "https://wordsearchsolver.github.io/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "WordSearch Solver",
+          "url": "https://wordsearchsolver.github.io/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://wordsearchsolver.github.io/favicon.png"
+          }
+        },
+        "isPartOf": { "@id": "https://wordsearchsolver.github.io/#website" }
       },
       {
-        "@type": "WebSite",
-        "@id": "https://wordsearchsolver.github.io/#website",
-        "url": "https://wordsearchsolver.github.io/",
-        "name": "WordSearch Solver",
-        "description": "Free word search puzzle solver and generator",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://wordsearchsolver.github.io/word-search-generator/#generator"
+        "@type": "WebPage",
+        "@id": "https://wordsearchsolver.github.io/word-search-generator/#webpage",
+        "url": "https://wordsearchsolver.github.io/word-search-generator",
+        "name": "Word Search Generator — Create Custom Puzzles Instantly",
+        "description": "Free online Word Search Generator. Create custom word search puzzles with your own words or from our curated list.",
+        "inLanguage": "en",
+        "isPartOf": { "@id": "https://wordsearchsolver.github.io/#website" },
+        "about": { "@id": "https://wordsearchsolver.github.io/word-search-generator/#app" },
+        "mainEntity": { "@id": "https://wordsearchsolver.github.io/word-search-generator/#app" },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://wordsearchsolver.github.io/img/word-search-generator-og.png"
+        },
+        "datePublished": "2025-01-01",
+        "dateModified": "2025-01-01",
+        "breadcrumb": {
+          "@id": "https://wordsearchsolver.github.io/word-search-generator#breadcrumb"
         }
       },
       {
+        "@type": "BreadcrumbList",
+        "@id": "https://wordsearchsolver.github.io/word-search-generator#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://wordsearchsolver.github.io/" },
+          { "@type": "ListItem", "position": 2, "name": "Word Search Generator", "item": "https://wordsearchsolver.github.io/word-search-generator" }
+        ]
+      },
+      {
         "@type": "FAQPage",
-        "@id": "https://wordsearchsolver.github.io/word-search-generator/#faq",
+        "@id": "https://wordsearchsolver.github.io/word-search-generator#faq",
         "mainEntity": [
           {
             "@type": "Question",
@@ -94,6 +134,22 @@
           },
           {
             "@type": "Question",
+            "name": "What do the difficulty levels mean?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Easy mode places words only horizontally and vertically. Medium adds diagonal placements. Hard uses all 8 directions, including reverse and upward diagonals."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What grid size should I choose?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For kids or quick puzzles, use 8x8 or 10x10. For a standard puzzle, 12x12 or 15x15 works well. For a real challenge, try 18x18 or 20x20."
+            }
+          },
+          {
+            "@type": "Question",
             "name": "What grid sizes are available?",
             "acceptedAnswer": {
               "@type": "Answer",
@@ -102,13 +158,50 @@
           },
           {
             "@type": "Question",
+            "name": "Can I print the puzzle?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. After generating a puzzle, a Print Puzzle button appears. The print version hides highlight colors so you get a clean puzzle sheet with just the letter grid and word list."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many words can I include?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For best results, use 8-12 words for a 10x10 grid, 10-15 for 12x12, and 15-20 for larger grids. The generator will try to place all words; if a word does not fit, it will be skipped."
+            }
+          },
+          {
+            "@type": "Question",
             "name": "Is the Word Search Generator free?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, completely free. No account or payment required."
+              "text": "Yes, completely free. No account or payment required. The tool runs entirely in your browser."
             }
           }
         ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://wordsearchsolver.github.io/#website",
+        "url": "https://wordsearchsolver.github.io/",
+        "name": "WordSearch Solver",
+        "description": "Free word search puzzle solver and generator",
+        "inLanguage": "en",
+        "publisher": {
+          "@type": "Organization",
+          "name": "WordSearch Solver",
+          "url": "https://wordsearchsolver.github.io/"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://wordsearchsolver.github.io/?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
       }
     ]
   }
@@ -455,8 +548,12 @@
               </ol>
             </div>
             <div class="sidebar-card">
-              <h4>🔗 Related Tool</h4>
-              <p style="font-size:14px;color:var(--text-muted);line-height:1.6;">Need to <strong>solve</strong> a word search instead? Try our <a href="/" style="color:var(--teal-dark);font-weight:600;">Word Search Solver</a>.</p>
+              <h4>🔗 Related Tools</h4>
+              <p style="font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:10px;">Need a different puzzle?</p>
+              <a href="/" style="color:var(--teal-dark);font-weight:600;font-size:14px;display:block;margin-bottom:6px;">→ Word Search Solver</a>
+              <a href="/word-scramble-generator.html" style="color:var(--teal-dark);font-weight:600;font-size:14px;display:block;margin-bottom:6px;">→ Word Scramble Generator</a>
+              <a href="/crossword-solver.html" style="color:var(--teal-dark);font-weight:600;font-size:14px;display:block;margin-bottom:6px;">→ Crossword Solver</a>
+              <a href="/anagram-solver.html" style="color:var(--teal-dark);font-weight:600;font-size:14px;display:block;">→ Anagram Solver</a>
             </div>
           </aside>
         </div>
@@ -819,9 +916,114 @@
   <!-- ===== SCRIPTS ===== -->
   <script src="js/header.js"></script>
   <script src="js/footer.js"></script>
-  <!-- Word list must load before the generator script -->
   <script src="js/wordlist.js"></script>
-  <!-- Generator logic -->
+  <script src="js/app.js"></script>
+
+  <!-- ============================================================
+       Fallback: ensures header/footer mount, FAQ toggles, counters,
+       scroll animations, and header scroll state all work even if
+       app.js doesn't cover them. Safe because each handler is
+       guarded by a data-bound marker.
+       ============================================================ -->
+  <script>
+  (function() {
+    'use strict';
+
+    // --- Header/Footer mount fallback (idempotent) ---
+    const headerMount = document.getElementById('header-mount');
+    if (headerMount && !headerMount.children.length && window.Header) {
+      headerMount.innerHTML = Header.render();
+      Header.init();
+    }
+    const footerMount = document.getElementById('footer-mount');
+    if (footerMount && !footerMount.children.length && window.Footer) {
+      footerMount.innerHTML = Footer.render();
+      Footer.init();
+    }
+
+    // --- FAQ Accordion (fallback) ---
+    document.querySelectorAll('.faq-question').forEach(function(q) {
+      if (q.dataset.bound === '1') return;
+      q.dataset.bound = '1';
+      q.addEventListener('click', function() {
+        const item = q.closest('.faq-item');
+        if (!item) return;
+        const isOpen = item.classList.toggle('open');
+        q.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    });
+
+    // --- Animate on scroll (fallback) ---
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
+        if (!el.classList.contains('in-view')) observer.observe(el);
+      });
+    } else {
+      document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
+        el.classList.add('in-view');
+      });
+    }
+
+    // --- Counter animation (fallback) ---
+    function animateCounter(el) {
+      if (el.dataset.animated === '1') return;
+      el.dataset.animated = '1';
+      const target = parseInt(el.dataset.target || '0', 10);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1200;
+      const start = performance.now();
+      function tick(now) {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const val = Math.round(eased * target);
+        el.textContent = val + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+        else el.textContent = target + suffix;
+      }
+      requestAnimationFrame(tick);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const counterObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            counterObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      document.querySelectorAll('.counter-num').forEach(function(el) {
+        counterObs.observe(el);
+      });
+    } else {
+      document.querySelectorAll('.counter-num').forEach(animateCounter);
+    }
+
+    // --- Header scroll state (fallback) ---
+    const header = document.querySelector('.site-header');
+    if (header && !header.dataset.scrollBound) {
+      header.dataset.scrollBound = '1';
+      const onScroll = function() {
+        if (window.scrollY > 20) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+  })();
+  </script>
+
+  <!-- ============================================================
+       Generator logic
+       ============================================================ -->
   <script>
   (function() {
     'use strict';
@@ -840,73 +1042,82 @@
     const previewStats = document.getElementById('preview-stats');
     const wordBank = document.getElementById('word-bank');
 
+    if (!wordsInput || !generateBtn) return; // page not present
+
     // --- State ---
     let currentDifficulty = 'easy';
-    let currentPuzzle = null; // { grid, words: [{word, cells}], rows, cols }
+    let currentPuzzle = null;
 
     // --- Difficulty pills ---
-    diffPills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        diffPills.forEach(p => p.classList.remove('active'));
+    diffPills.forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        diffPills.forEach(function(p) { p.classList.remove('active'); });
         pill.classList.add('active');
         currentDifficulty = pill.dataset.diff;
       });
     });
 
     // --- Load from word list ---
-    loadListBtn.addEventListener('click', () => {
+    loadListBtn.addEventListener('click', function() {
       if (typeof WORDLIST !== 'undefined' && Array.isArray(WORDLIST) && WORDLIST.length > 0) {
-        // Pick a random selection (up to 12 words) to keep puzzles reasonable
-        const shuffled = [...WORDLIST].sort(() => Math.random() - 0.5);
+        const shuffled = WORDLIST.slice().sort(function() { return Math.random() - 0.5; });
         const count = Math.min(12, Math.max(6, Math.floor(Math.random() * 7) + 6));
-        const picked = shuffled.slice(0, count);
+        const picked = shuffled.slice(0, count).map(function(w) { return w.toUpperCase(); });
         wordsInput.value = picked.join('\n');
         wordsInput.classList.add('pulse-once');
-        setTimeout(() => wordsInput.classList.remove('pulse-once'), 500);
+        setTimeout(function() { wordsInput.classList.remove('pulse-once'); }, 500);
       } else {
         alert('Word list is not available. Please check that wordlist.js is loaded correctly.');
       }
     });
 
     // --- Clear words ---
-    clearWordsBtn.addEventListener('click', () => {
+    clearWordsBtn.addEventListener('click', function() {
       wordsInput.value = '';
       wordsInput.focus();
     });
 
-    // --- Parse words from input ---
+    // --- Parse words from input (dedupes) ---
     function parseWords(raw) {
-      return raw
-        .split(/[\n,]+/)
-        .map(w => w.trim().toUpperCase())
-        .filter(w => w.length >= 2 && /^[A-Z]+$/.test(w));
+      const seen = {};
+      const out = [];
+      raw.split(/[\n,]+/).forEach(function(w) {
+        const trimmed = w.trim().toUpperCase();
+        if (trimmed.length >= 2 && /^[A-Z]+$/.test(trimmed) && !seen[trimmed]) {
+          seen[trimmed] = true;
+          out.push(trimmed);
+        }
+      });
+      return out;
     }
 
     // --- Directions based on difficulty ---
     const DIRS = {
-      easy:   [[0,1],[1,0]],                          // right, down
-      medium: [[0,1],[1,0],[1,1],[-1,1]],             // + diag down-right, diag up-right
-      hard:   [[0,1],[1,0],[1,1],[-1,1],[0,-1],[-1,0],[-1,-1],[1,-1]] // all 8
+      easy:   [[0,1],[1,0]],
+      medium: [[0,1],[1,0],[1,1],[-1,1]],
+      hard:   [[0,1],[1,0],[1,1],[-1,1],[0,-1],[-1,0],[-1,-1],[1,-1]]
     };
 
     // --- Main generate function ---
     function generatePuzzle(words, size, difficulty) {
       const dirs = DIRS[difficulty] || DIRS.easy;
-      const grid = Array.from({ length: size }, () => Array(size).fill(''));
+      const grid = [];
+      for (let r = 0; r < size; r++) {
+        grid.push(new Array(size).fill(''));
+      }
       const placedWords = [];
-      const usedPositions = new Set(); // "r,c" to avoid overlapping too much (optional)
 
-      // Sort words: longest first for better placement
-      const sorted = [...words].sort((a, b) => b.length - a.length);
+      const sorted = words.slice().sort(function(a, b) { return b.length - a.length; });
 
-      for (const word of sorted) {
-        if (word.length > size) continue; // can't fit
+      for (let wi = 0; wi < sorted.length; wi++) {
+        const word = sorted[wi];
+        if (word.length > size) continue;
         let placed = false;
-        // Try many random placements
+
         for (let attempt = 0; attempt < 200 && !placed; attempt++) {
           const dir = dirs[Math.floor(Math.random() * dirs.length)];
-          const [dr, dc] = dir;
-          // Calculate valid start range
+          const dr = dir[0], dc = dir[1];
+
           let minR = 0, maxR = size - 1;
           let minC = 0, maxC = size - 1;
           if (dr === 1) maxR = size - word.length;
@@ -918,7 +1129,6 @@
           const startR = Math.floor(Math.random() * (maxR - minR + 1)) + minR;
           const startC = Math.floor(Math.random() * (maxC - minC + 1)) + minC;
 
-          // Check if it fits (no conflicting letters, allow overlap if same letter)
           let fits = true;
           const cells = [];
           for (let i = 0; i < word.length; i++) {
@@ -933,11 +1143,10 @@
           }
 
           if (fits) {
-            // Place it
-            cells.forEach(([r, c], idx) => {
-              grid[r][c] = word[idx];
-            });
-            placedWords.push({ word, cells });
+            for (let i = 0; i < cells.length; i++) {
+              grid[cells[i][0]][cells[i][1]] = word[i];
+            }
+            placedWords.push({ word: word, cells: cells });
             placed = true;
           }
         }
@@ -952,24 +1161,32 @@
         }
       }
 
-      return { grid, words: placedWords, rows: size, cols: size };
+      return { grid: grid, words: placedWords, rows: size, cols: size };
+    }
+
+    // --- Escape helper for print ---
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, function(c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
     }
 
     // --- Render preview ---
     function renderPreview(puzzle) {
-      const { grid, words, rows, cols } = puzzle;
+      const grid = puzzle.grid;
+      const words = puzzle.words;
+      const rows = puzzle.rows;
+      const cols = puzzle.cols;
 
-      // Build cell -> color map for highlights
       const cellColor = {};
       const colors = ['#e63946','#f4a261','#2a9d8f','#457b9d','#9c27b0','#e76f51','#06a77d','#3a86ff','#ff006e','#8338ec','#fb5607','#ffbe0b'];
-      words.forEach((w, i) => {
+      words.forEach(function(w, i) {
         const color = colors[i % colors.length];
-        w.cells.forEach(([r, c]) => {
-          cellColor[`${r},${c}`] = color;
+        w.cells.forEach(function(cell) {
+          cellColor[cell[0] + ',' + cell[1]] = color;
         });
       });
 
-      // Render grid
       const gridEl = document.createElement('div');
       gridEl.className = 'preview-grid';
       for (let r = 0; r < rows; r++) {
@@ -978,7 +1195,7 @@
         for (let c = 0; c < cols; c++) {
           const cellEl = document.createElement('span');
           cellEl.className = 'preview-cell';
-          const key = `${r},${c}`;
+          const key = r + ',' + c;
           if (cellColor[key]) {
             cellEl.classList.add('hl');
             cellEl.style.background = cellColor[key];
@@ -993,12 +1210,10 @@
       previewGridContainer.innerHTML = '';
       previewGridContainer.appendChild(gridEl);
 
-      // Stats
-      previewStats.textContent = `${words.length} word${words.length !== 1 ? 's' : ''} placed · ${rows}×${cols} grid`;
+      previewStats.textContent = words.length + ' word' + (words.length !== 1 ? 's' : '') + ' placed · ' + rows + '×' + cols + ' grid';
 
-      // Word bank
       wordBank.innerHTML = '';
-      words.forEach((w, i) => {
+      words.forEach(function(w, i) {
         const chip = document.createElement('span');
         chip.className = 'word-chip';
         chip.textContent = w.word;
@@ -1009,14 +1224,13 @@
         wordBank.appendChild(chip);
       });
 
-      // Show preview, hide empty state
       previewSection.style.display = 'block';
       emptyState.style.display = 'none';
       printBtn.style.display = 'inline-flex';
     }
 
     // --- Generate button ---
-    generateBtn.addEventListener('click', () => {
+    generateBtn.addEventListener('click', function() {
       const raw = wordsInput.value;
       const words = parseWords(raw);
       if (words.length < 1) {
@@ -1034,60 +1248,56 @@
     });
 
     // --- Print ---
-    printBtn.addEventListener('click', () => {
+    printBtn.addEventListener('click', function() {
       if (!currentPuzzle) return;
 
-      const { grid, words, rows, cols } = currentPuzzle;
+      const grid = currentPuzzle.grid;
+      const words = currentPuzzle.words;
+      const rows = currentPuzzle.rows;
+      const cols = currentPuzzle.cols;
+
       const printWindow = window.open('', '_blank');
       if (!printWindow) {
         alert('Please allow pop-ups to print the puzzle.');
         return;
       }
 
-      // Build print-friendly HTML
       let gridHTML = '<div style="display:inline-block;border:2px solid #333;padding:4px;">';
       for (let r = 0; r < rows; r++) {
         gridHTML += '<div style="display:flex;">';
         for (let c = 0; c < cols; c++) {
-          gridHTML += `<span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid #ccc;font-family:monospace;font-size:14px;font-weight:600;">${grid[r][c]}</span>`;
+          gridHTML += '<span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid #ccc;font-family:monospace;font-size:14px;font-weight:600;">' + escapeHtml(grid[r][c]) + '</span>';
         }
         gridHTML += '</div>';
       }
       gridHTML += '</div>';
 
-      const wordListHTML = words.map(w => `<li style="font-family:monospace;font-size:14px;">${w.word}</li>`).join('');
+      let listHTML = '';
+      words.forEach(function(w) {
+        listHTML += '<li style="font-family:monospace;font-size:14px;">' + escapeHtml(w.word) + '</li>';
+      });
 
-      printWindow.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Word Search Puzzle</title>
-          <style>
-            body { font-family: 'Plus Jakarta Sans', Arial, sans-serif; padding: 30px; display: flex; flex-direction: column; align-items: center; }
-            h1 { font-size: 22px; margin-bottom: 20px; color: #264653; }
-            .grid-wrap { margin-bottom: 24px; }
-            .words { max-width: 500px; }
-            .words h2 { font-size: 16px; margin-bottom: 8px; color: #264653; }
-            .words ul { columns: 3; padding-left: 18px; margin: 0; }
-            .words li { margin-bottom: 4px; }
-            @media print { body { padding: 10px; } }
-          </style>
-        </head>
-        <body>
-          <h1>Word Search Puzzle</h1>
-          <div class="grid-wrap">${gridHTML}</div>
-          <div class="words">
-            <h2>Find these words:</h2>
-            <ul>${wordListHTML}</ul>
-          </div>
-          <script>window.onload = function() { window.print(); };<\/script>
-        </body>
-        </html>
-      `);
+      printWindow.document.write(
+        '<!DOCTYPE html><html><head><title>Word Search Puzzle</title><style>' +
+          'body { font-family: "Plus Jakarta Sans", Arial, sans-serif; padding: 30px; display: flex; flex-direction: column; align-items: center; }' +
+          'h1 { font-size: 22px; margin-bottom: 20px; color: #264653; }' +
+          '.grid-wrap { margin-bottom: 24px; }' +
+          '.words { max-width: 500px; }' +
+          '.words h2 { font-size: 16px; margin-bottom: 8px; color: #264653; }' +
+          '.words ul { columns: 3; padding-left: 18px; margin: 0; }' +
+          '.words li { margin-bottom: 4px; }' +
+          '@media print { body { padding: 10px; } }' +
+        '</style></head><body>' +
+        '<h1>Word Search Puzzle</h1>' +
+        '<div class="grid-wrap">' + gridHTML + '</div>' +
+        '<div class="words"><h2>Find these words:</h2><ul>' + listHTML + '</ul></div>' +
+        '<scr' + 'ipt>window.onload = function() { window.print(); };<\/scr' + 'ipt>' +
+        '</body></html>'
+      );
       printWindow.document.close();
     });
 
-    // --- Initialize: hide print button, show empty state ---
+    // --- Initialize ---
     printBtn.style.display = 'none';
     previewSection.style.display = 'none';
     emptyState.style.display = 'block';
